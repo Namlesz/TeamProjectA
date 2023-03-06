@@ -4,6 +4,19 @@
 # Api
 TeamProjectA.Api/obj
 TeamProjectA.Api/bin
+TeamProjectA.Api/wwwroot/**
+
+# Infrastructure
+TeamProjectA.Infrastructure/obj
+TeamProjectA.Infrastructure/bin
+
+# Application
+TeamProjectA.Application/obj
+TeamProjectA.Application/bin
+
+# Application
+TeamProjectA.Tests/obj
+TeamProjectA.Tests/bin
 
 # Web
 TeamProjectA.Web/node_modules
