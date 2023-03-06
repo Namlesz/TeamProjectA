@@ -1,0 +1,21 @@
+{
+  "version": 2,
+  "dgSpecHash": "rTZFaMeRavNdXaBJoelPlH4vpCN5o/oYE7zDZ7C15v3cJEg1I3qZA4xtw1sLuwPqRBtFaH6NBlwo5ii++/QPKQ==",
+  "success": true,
+  "projectFilePath": "/Users/adam.cherry/repos/TeamProjectA/TeamProjectA.Api/TeamProjectA.Api.csproj",
+  "expectedPackageFiles": [
+    "/Users/adam.cherry/.nuget/packages/microsoft.aspnetcore.openapi/7.0.1/microsoft.aspnetcore.openapi.7.0.1.nupkg.sha512",
+    "/Users/adam.cherry/.nuget/packages/microsoft.aspnetcore.spaservices.extensions/7.0.3/microsoft.aspnetcore.spaservices.extensions.7.0.3.nupkg.sha512",
+    "/Users/adam.cherry/.nuget/packages/microsoft.extensions.apidescription.server/6.0.5/microsoft.extensions.apidescription.server.6.0.5.nupkg.sha512",
+    "/Users/adam.cherry/.nuget/packages/microsoft.extensions.fileproviders.abstractions/7.0.0/microsoft.extensions.fileproviders.abstractions.7.0.0.nupkg.sha512",
+    "/Users/adam.cherry/.nuget/packages/microsoft.extensions.fileproviders.physical/7.0.0/microsoft.extensions.fileproviders.physical.7.0.0.nupkg.sha512",
+    "/Users/adam.cherry/.nuget/packages/microsoft.extensions.filesystemglobbing/7.0.0/microsoft.extensions.filesystemglobbing.7.0.0.nupkg.sha512",
+    "/Users/adam.cherry/.nuget/packages/microsoft.extensions.primitives/7.0.0/microsoft.extensions.primitives.7.0.0.nupkg.sha512",
+    "/Users/adam.cherry/.nuget/packages/microsoft.openapi/1.4.3/microsoft.openapi.1.4.3.nupkg.sha512",
+    "/Users/adam.cherry/.nuget/packages/swashbuckle.aspnetcore/6.4.0/swashbuckle.aspnetcore.6.4.0.nupkg.sha512",
+    "/Users/adam.cherry/.nuget/packages/swashbuckle.aspnetcore.swagger/6.4.0/swashbuckle.aspnetcore.swagger.6.4.0.nupkg.sha512",
+    "/Users/adam.cherry/.nuget/packages/swashbuckle.aspnetcore.swaggergen/6.4.0/swashbuckle.aspnetcore.swaggergen.6.4.0.nupkg.sha512",
+    "/Users/adam.cherry/.nuget/packages/swashbuckle.aspnetcore.swaggerui/6.4.0/swashbuckle.aspnetcore.swaggerui.6.4.0.nupkg.sha512"
+  ],
+  "logs": []
+}
