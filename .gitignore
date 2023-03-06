@@ -1,5 +1,9 @@
-bin/
-obj/
-/packages/
-riderModule.iml
-/_ReSharper.Caches/
+# All
+.idea
+
+# Api
+TeamProjectA.Api/obj
+TeamProjectA.Api/bin
+
+# Web
+TeamProjectA.Web/node_modules

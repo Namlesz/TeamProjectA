@@ -1,6 +1,8 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TeamProjectA", "TeamProjectA\TeamProjectA.csproj", "{9727E661-5DA0-4902-ABAF-D37A96527029}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TeamProjectA.Api", "TeamProjectA.Api\TeamProjectA.Api.csproj", "{9727E661-5DA0-4902-ABAF-D37A96527029}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TeamProjectA.Web", "TeamProjectA.Web\TeamProjectA.Web.csproj", "{410A85BC-A589-4EAE-AEF4-F3B1C93A4660}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -12,5 +14,9 @@ Global
 		{9727E661-5DA0-4902-ABAF-D37A96527029}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{9727E661-5DA0-4902-ABAF-D37A96527029}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{9727E661-5DA0-4902-ABAF-D37A96527029}.Release|Any CPU.Build.0 = Release|Any CPU
+		{410A85BC-A589-4EAE-AEF4-F3B1C93A4660}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{410A85BC-A589-4EAE-AEF4-F3B1C93A4660}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{410A85BC-A589-4EAE-AEF4-F3B1C93A4660}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{410A85BC-A589-4EAE-AEF4-F3B1C93A4660}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal
