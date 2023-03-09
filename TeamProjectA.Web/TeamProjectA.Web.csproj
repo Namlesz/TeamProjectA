@@ -1,5 +1,0 @@
-<Project>
-    <ItemGroup>
-        <Content Include="**" />
-    </ItemGroup>
-</Project>

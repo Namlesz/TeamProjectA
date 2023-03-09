@@ -14,5 +14,15 @@ export default defineConfig({
     },
     build: {
         outDir: '../TeamProjectA.Api/wwwroot'
+    },
+    server: {
+        proxy: {
+            '/api': {
+                target: 'https://localhost:7188',
+                changeOrigin: true,
+                secure: false,
+                ws: true,
+            }
+        }
     }
 })
