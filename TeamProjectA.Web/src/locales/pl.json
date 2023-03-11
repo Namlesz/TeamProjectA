@@ -1,3 +1,9 @@
 {
+  "loginView": {
+    "title": "Logowanie"
+  },
+  "registerView": {
+    "title": "Rejestracja"
+  },
   "test": "Testujemy"
 }

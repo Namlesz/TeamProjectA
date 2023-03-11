@@ -9,8 +9,15 @@ export {}
 
 declare module '@vue/runtime-core' {
   export interface GlobalComponents {
+    Body: typeof import('./src/components/atoms/Typography/Body.vue')['default']
     Button: typeof import('./src/components/atoms/Buttons/Button.vue')['default']
+    Caption: typeof import('./src/components/atoms/Typography/Caption.vue')['default']
     Header: typeof import('./src/components/organisms/Header/Header.vue')['default']
+    HeadlineL: typeof import('./src/components/atoms/Typography/HeadlineL.vue')['default']
+    HeadlineM: typeof import('./src/components/atoms/Typography/HeadlineM.vue')['default']
+    HeadlineS: typeof import('./src/components/atoms/Typography/HeadlineS.vue')['default']
+    HeadlineXL: typeof import('./src/components/atoms/Typography/HeadlineXL.vue')['default']
+    HeadlineXS: typeof import('./src/components/atoms/Typography/HeadlineXS.vue')['default']
     HelloWorld: typeof import('./src/components/HelloWorld.vue')['default']
     IconButton: typeof import('./src/components/atoms/Buttons/IconButton.vue')['default']
     IconCommunity: typeof import('./src/components/icons/IconCommunity.vue')['default']
@@ -20,7 +27,9 @@ declare module '@vue/runtime-core' {
     IconTooling: typeof import('./src/components/icons/IconTooling.vue')['default']
     RouterLink: typeof import('vue-router')['RouterLink']
     RouterView: typeof import('vue-router')['RouterView']
+    Subtitle: typeof import('./src/components/atoms/Typography/Subtitle.vue')['default']
     TheWelcome: typeof import('./src/components/TheWelcome.vue')['default']
+    Typography: typeof import('./src/components/atoms/Typography.vue')['default']
     WelcomeItem: typeof import('./src/components/WelcomeItem.vue')['default']
   }
 }

@@ -36,9 +36,4 @@ export const i18n = createI18n({
   messages: messages,
 })
 
-const app = createApp(App)
-
-app.use(createPinia())
-app.use(router)
-
-app.use(vuetify).use(i18n).mount('#app')
+const app = createApp(App).use(createPinia()).use(router).use(vuetify).use(i18n).mount('#app')

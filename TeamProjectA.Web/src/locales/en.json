@@ -1,3 +1,9 @@
 {
+  "loginView": {
+    "title": "Login"
+  },
+  "registerView": {
+    "title": "Register"
+  },
   "test": "Testing"
 }
