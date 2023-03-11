@@ -1,9 +1,16 @@
-<script setup lang="ts">
-import TheWelcome from '../components/TheWelcome.vue'
+<script setup lang='ts'>
 </script>
 
 <template>
-  <main>
-    <TheWelcome />
-  </main>
+  <v-sheet border rounded :height='500' :width='500'>
+    <div>
+      <Button>Test</Button>
+    </div>
+  </v-sheet>
+
 </template>
+<style lang='scss'>
+.centeredBox {
+
+}
+</style>
