@@ -5,9 +5,6 @@
         <Nullable>enable</Nullable>
         <ImplicitUsings>enable</ImplicitUsings>
         <DockerDefaultTargetOS>Linux</DockerDefaultTargetOS>
-        <SpaProxyServerUrl>https://localhost:3399</SpaProxyServerUrl>
-        <SpaProxyLaunchCommand>npm run dev</SpaProxyLaunchCommand>
-        <SpaRoot>../TeamProjectA.Web/</SpaRoot>
     </PropertyGroup>
 
     <ItemGroup>
@@ -17,13 +14,13 @@
     </ItemGroup>
 
     <ItemGroup>
-      <Content Include="..\.dockerignore">
-        <Link>.dockerignore</Link>
-      </Content>
+        <Folder Include="wwwroot" />
     </ItemGroup>
 
     <ItemGroup>
-      <Folder Include="wwwroot" />
+      <Content Include="..\.dockerignore">
+        <Link>.dockerignore</Link>
+      </Content>
     </ItemGroup>
 
 </Project>

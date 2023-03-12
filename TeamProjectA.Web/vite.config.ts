@@ -24,7 +24,7 @@ export default defineConfig({
     },
   },
   build: {
-    outDir: '../TeamProjectA.Api/wwwroot',
+    outDir: './build',
   },
   server: {
     proxy: {
