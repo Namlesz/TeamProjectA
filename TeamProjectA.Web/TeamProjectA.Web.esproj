@@ -10,7 +10,7 @@
 <!--        <BuildOutputFolder>$(MSBuildProjectDirectory)\dist\CourierComplaints.Web</BuildOutputFolder>-->
     </PropertyGroup>
     <ItemGroup>
-        <Content Include="**"/>
-        <Content Remove="node_modules\**"/>
+        <Content Include="**" />
+        <Content Remove="node_modules\**" />
     </ItemGroup>
 </Project>
