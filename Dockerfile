@@ -5,9 +5,9 @@ EXPOSE 443
 
 FROM node:18-alpine AS node-build
 WORKDIR src/web
-COPY TeamProjectA.Web/package*.json ./
+COPY TeamProjectA.Web/package*.json .
 RUN npm install
-COPY TeamProjectA.Web/ ./
+COPY TeamProjectA.Web/ .
 RUN npm run build
 
 FROM mcr.microsoft.com/dotnet/sdk:7.0 AS build
