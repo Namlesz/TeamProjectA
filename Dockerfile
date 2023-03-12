@@ -3,28 +3,28 @@ WORKDIR /app
 EXPOSE 80
 EXPOSE 443
 
-FROM node:18-alpine as node
-WORKDIR "src/web"
-COPY "TeamProjectA.Web/package*.json" ./
+FROM node:18-alpine AS node-build
+WORKDIR src/web
+COPY TeamProjectA.Web/package*.json ./
 RUN npm install
-COPY "TeamProjectA.Web/" .
+COPY TeamProjectA.Web/ ./
 RUN npm run build
-WORKDIR "src/web/build"
-COPY . "/src/TeamProjectA.Api/wwwroot"
 
 FROM mcr.microsoft.com/dotnet/sdk:7.0 AS build
 WORKDIR /src
 
-COPY ["TeamProjectA.Api/TeamProjectA.Api.csproj", "TeamProjectA.Api/"]
+COPY TeamProjectA.Api/TeamProjectA.Api.csproj TeamProjectA.Api/
 
-RUN dotnet restore "TeamProjectA.Api/TeamProjectA.Api.csproj"
+RUN dotnet restore TeamProjectA.Api/TeamProjectA.Api.csproj
 COPY . .
 
-WORKDIR "/src/TeamProjectA.Api"
-RUN dotnet build "TeamProjectA.Api.csproj" -c Release -o /app/build
+WORKDIR /src/TeamProjectA.Api
+RUN dotnet build TeamProjectA.Api.csproj -c Release -o /app/build
+
+COPY --from=node-build /src/web/build/ wwwroot/
 
 FROM build AS publish
-RUN dotnet publish "TeamProjectA.Api.csproj" -c Release -o /app/publish
+RUN dotnet publish TeamProjectA.Api.csproj -c Release -o /app/publish
 
 FROM base AS final
 WORKDIR /app
