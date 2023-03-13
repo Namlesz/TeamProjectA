@@ -1,3 +1,4 @@
+//TODO: Move to separate classes
 var builder = WebApplication.CreateBuilder(args);
 
 builder.Services.AddControllers();
