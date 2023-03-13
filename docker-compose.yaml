@@ -1,0 +1,13 @@
+version: "3.9"
+services:
+  web:
+    build: .
+    ports:
+      - "8000:80"
+      - "8001:443"
+#    environment:
+#      - "ASPNETCORE_ENVIRONMENT=Development"
+#      - "ASPNETCORE_URLS=https://+;http://+"
+#      - "ASPNETCORE_HTTPS_PORT=8001"
+#      - "ASPNETCORE_Kestrel__Certificates__Default__Password=1234"
+#      - "ASPNETCORE_Kestrel__Certificates__Default__Path=/https/aspnetapp.pfx"

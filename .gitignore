@@ -14,9 +14,10 @@ TeamProjectA.Infrastructure/bin
 TeamProjectA.Application/obj
 TeamProjectA.Application/bin
 
-# Application
+# Test
 TeamProjectA.Tests/obj
 TeamProjectA.Tests/bin
 
 # Web
 TeamProjectA.Web/node_modules
+TeamProjectA.Web/build
