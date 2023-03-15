@@ -8,5 +8,7 @@ jobs:
     
     steps:
       - name: Check out code
-      - uses: actions/checkout@v2
-      - run: docker build . -t test_image
+        uses: actions/checkout@v2
+        
+      - name: Build docker image
+        run: docker build . -t test_image
