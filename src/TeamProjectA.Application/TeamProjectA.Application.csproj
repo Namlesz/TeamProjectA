@@ -7,7 +7,15 @@
     </PropertyGroup>
 
     <ItemGroup>
-      <ProjectReference Include="..\TeamProjectA.Api\TeamProjectA.Api.csproj" />
+      <PackageReference Include="MediatR" Version="12.0.1" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <Folder Include="Commands" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <ProjectReference Include="..\TeamProjectA.Infrastructure\TeamProjectA.Infrastructure.csproj" />
     </ItemGroup>
 
 </Project>
