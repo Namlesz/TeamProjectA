@@ -6,6 +6,8 @@
         <!-- Command to create an optimized build of the project that's ready for publishing -->
 <!--        <BuildCommand>npm run build</BuildCommand>-->
         <ProductionBuildCommand>npm run build</ProductionBuildCommand>
+        <OutputType>Module</OutputType>
+        <LangVersion>11</LangVersion>
         <!-- Folder where production build objects will be placed -->
 <!--        <BuildOutputFolder>$(MSBuildProjectDirectory)\dist\CourierComplaints.Web</BuildOutputFolder>-->
     </PropertyGroup>

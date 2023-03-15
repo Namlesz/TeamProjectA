@@ -2,22 +2,22 @@
 .idea
 
 # Api
-TeamProjectA.Api/obj
-TeamProjectA.Api/bin
-TeamProjectA.Api/wwwroot/**
+src/TeamProjectA.Api/obj
+src/TeamProjectA.Api/bin
+src/TeamProjectA.Api/wwwroot/**
 
 # Infrastructure
-TeamProjectA.Infrastructure/obj
-TeamProjectA.Infrastructure/bin
+src/TeamProjectA.Infrastructure/obj
+src/TeamProjectA.Infrastructure/bin
 
 # Application
-TeamProjectA.Application/obj
-TeamProjectA.Application/bin
+src/TeamProjectA.Application/obj
+src/TeamProjectA.Application/bin
 
 # Test
-TeamProjectA.Tests/obj
-TeamProjectA.Tests/bin
+tests/TeamProjectA.Tests/obj
+tests/TeamProjectA.Tests/bin
 
 # Web
-TeamProjectA.Web/node_modules
-TeamProjectA.Web/build
+src/TeamProjectA.Web/node_modules
+src/TeamProjectA.Web/build
