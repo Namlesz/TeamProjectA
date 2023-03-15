@@ -14,7 +14,6 @@
     </ItemGroup>
 
     <ItemGroup>
-        <Folder Include="Startup" />
         <Folder Include="wwwroot" />
     </ItemGroup>
     
