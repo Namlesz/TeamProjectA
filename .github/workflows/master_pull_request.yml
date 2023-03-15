@@ -1,0 +1,12 @@
+name: pull-request-test
+on:
+  pull_request:
+    branches: [ master ]
+jobs:
+  test-docker:
+    runs-on: ubuntu-latest
+    
+    steps:
+      - name: Check out code
+      - uses: actions/checkout@v2
+      - run: docker build . -t test_image
