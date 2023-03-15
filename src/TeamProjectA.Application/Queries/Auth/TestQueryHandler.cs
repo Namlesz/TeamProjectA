@@ -6,6 +6,6 @@ public class TestQueryHandler : IRequestHandler<TestQuery, string>
 {
     public Task<string> Handle(TestQuery request, CancellationToken cancellationToken)
     {
-        return Task.FromResult("Hello World!");
+        return Task.FromResult("Hello world test!");
     }
 }
