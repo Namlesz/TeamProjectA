@@ -4,8 +4,14 @@ import { RouterView } from 'vue-router'
 <template>
   <v-app>
     <Header />
-    <RouterView class='ma-auto' />
+    <div class="appWrapper">
+      <RouterView />
+    </div>
   </v-app>
 </template>
 <style scoped>
+.appWrapper{
+  position: fixed;
+  top: 64px;
+}
 </style>

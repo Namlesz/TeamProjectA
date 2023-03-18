@@ -8,7 +8,7 @@ const toggleTheme = () => {
 }
 </script>
 <template>
-  <v-app-bar rounded>
+  <v-app-bar>
     <v-app-bar-title>Test</v-app-bar-title>
     <IconButton @click='toggleTheme' icon='mdi-theme-light-dark'>
     </IconButton>

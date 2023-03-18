@@ -1,4 +1,8 @@
 {
+  "landing-page": {
+    "login": "Zaloguj się",
+    "register": "Zarejestruj się"
+  },
   "loginView": {
     "title": "Logowanie"
   },
