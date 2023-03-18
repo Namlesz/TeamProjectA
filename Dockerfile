@@ -8,7 +8,7 @@ EXPOSE 443
 FROM node:18-alpine AS node-build
 WORKDIR src/web
 
-COPY srccc/TeamProjectA.Web/package*.json ./
+COPY src/TeamProjectA.Web/package*.json ./
 RUN npm install
 
 COPY src/TeamProjectA.Web/ ./

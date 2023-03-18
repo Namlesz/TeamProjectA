@@ -1,11 +1,19 @@
 using MediatR;
+using TeamProjectA.Infrastructure.Repositories.Interfaces;
 
 namespace TeamProjectA.Application.Queries.Auth;
 
-public class TestQueryHandler : IRequestHandler<TestQuery, string>
+public class TestQueryHandler : IRequestHandler<TestQuery, bool>
 {
-    public Task<string> Handle(TestQuery request, CancellationToken cancellationToken)
+    private readonly IUserRepository _userRepository;
+
+    public TestQueryHandler(IUserRepository userRepository)
     {
-        return Task.FromResult("Hello world test!");
+        _userRepository = userRepository;
+    }
+
+    public async Task<bool> Handle(TestQuery request, CancellationToken cancellationToken)
+    {
+        return await _userRepository.TestMethod();
     }
 }
