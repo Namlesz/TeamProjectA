@@ -1,11 +1,13 @@
-<script setup lang="ts">
+<script setup lang='ts'>
 import { useI18n } from 'vue-i18n'
-import { computed, ref } from 'vue'
+import { computed } from 'vue'
 import router from '@/router'
 import { useAccountStore } from '@/stores/account'
+import { useDisplay } from 'vuetify'
 
 const tKey = 'menu-items'
 
+const { mobile } = useDisplay()
 const { t } = useI18n()
 const accountStore = useAccountStore()
 
@@ -52,37 +54,37 @@ const handleLogout = () => {
 }
 </script>
 <template>
-  <v-navigation-drawer expand-on-hover rail>
-    <v-sheet class="d-flex flex-column justify-space-between" height="100%">
+  <v-navigation-drawer :expand-on-hover='mobile ? false : true' :rail='mobile ? false : true'>
+    <v-sheet class='d-flex flex-column justify-space-between' height='100%'>
       <v-sheet>
         <v-list>
           <v-list-item
-            prepend-avatar="https://randomuser.me/api/portraits/women/85.jpg"
-            title="Sandra Adams"
-            subtitle="sandra_a88@gmailcom"
+            prepend-avatar='https://randomuser.me/api/portraits/women/85.jpg'
+            title='Sandra Adams'
+            subtitle='sandra_a88@gmailcom'
           ></v-list-item>
         </v-list>
         <v-divider></v-divider>
-        <v-list density="compact" nav>
+        <v-list density='compact' nav>
           <v-list-item
-            v-for="menuItem in menuItems"
-            :prepend-icon="menuItem.icon"
-            :title="menuItem.title"
-            :value="menuItem.value"
-            :active="activeMenuItem === menuItem.value"
-            @click="handleChangeMenuItem(menuItem.value)"
+            v-for='menuItem in menuItems'
+            :prepend-icon='menuItem.icon'
+            :title='menuItem.title'
+            :value='menuItem.value'
+            :active='activeMenuItem === menuItem.value'
+            @click='handleChangeMenuItem(menuItem.value)'
           />
         </v-list>
       </v-sheet>
       <v-sheet>
         <v-list>
           <v-list-item
-            prepend-icon="mdi-logout-variant"
-            :title="t(`${tKey}.logout`)"
-            value="logout"
-            class="text-red"
-            @clickOnce="handleLogout"
-            :active="false"
+            prepend-icon='mdi-logout-variant'
+            :title='t(`${tKey}.logout`)'
+            value='logout'
+            class='text-red'
+            @clickOnce='handleLogout'
+            :active='false'
           />
         </v-list>
       </v-sheet>

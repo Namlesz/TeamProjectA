@@ -4,9 +4,14 @@ import router from '@/router'
 
 export const useAccountStore = defineStore('account', () => {
   const shouldMenuBeVisible = ref<boolean>(false)
+  const shouldMenuBeOpen = ref<boolean>(false)
 
   function setShouldMenuBeVisible(value: boolean) {
     shouldMenuBeVisible.value = value
+  }
+
+  function setShouldMenuBeOpen(value: boolean) {
+    shouldMenuBeOpen.value = value
   }
 
   function logout() {
@@ -19,5 +24,12 @@ export const useAccountStore = defineStore('account', () => {
     router.replace({ name: 'home' })
   }
 
-  return { shouldMenuBeVisible, setShouldMenuBeVisible, logout, login }
+  return {
+    shouldMenuBeVisible,
+    shouldMenuBeOpen,
+    setShouldMenuBeVisible,
+    setShouldMenuBeOpen,
+    logout,
+    login,
+  }
 })
