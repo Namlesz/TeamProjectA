@@ -12,3 +12,16 @@ jobs:
         
       - name: Build docker image
         run: docker build . -t test_image
+  lint-and-build-frontend:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v2
+    - name: Go to frontend directory
+    - run: cd src/TeamProjectA.Web
+    - name: Install modules
+    - run: npm install
+    - name: Run ESLint
+    - run: eslint --ext .vue src
+    - name: Build app
+    - run: npm run build
+     
