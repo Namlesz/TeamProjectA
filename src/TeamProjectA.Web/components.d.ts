@@ -9,18 +9,19 @@ export {}
 
 declare module '@vue/runtime-core' {
   export interface GlobalComponents {
-    Body: typeof import('./src/components/atoms/Typography/Body.vue')['default']
-    Button: typeof import('./src/components/atoms/Buttons/Button.vue')['default']
-    Caption: typeof import('./src/components/atoms/Typography/Caption.vue')['default']
-    Header: typeof import('./src/components/organisms/Header/Header.vue')['default']
+    AppHeader: typeof import('./src/components/organisms/AppHeader/AppHeader.vue')['default']
     HeadlineL: typeof import('./src/components/atoms/Typography/HeadlineL.vue')['default']
     HeadlineM: typeof import('./src/components/atoms/Typography/HeadlineM.vue')['default']
     HeadlineS: typeof import('./src/components/atoms/Typography/HeadlineS.vue')['default']
     HeadlineXL: typeof import('./src/components/atoms/Typography/HeadlineXL.vue')['default']
     HeadlineXS: typeof import('./src/components/atoms/Typography/HeadlineXS.vue')['default']
     IconButton: typeof import('./src/components/atoms/Buttons/IconButton.vue')['default']
+    NavigationMenu: typeof import('./src/components/organisms/NavigationMenu/NavigationMenu.vue')['default']
     RouterLink: typeof import('vue-router')['RouterLink']
     RouterView: typeof import('vue-router')['RouterView']
-    Subtitle: typeof import('./src/components/atoms/Typography/Subtitle.vue')['default']
+    TextBody: typeof import('./src/components/atoms/Typography/TextBody.vue')['default']
+    TextButton: typeof import('./src/components/atoms/Buttons/TextButton.vue')['default']
+    TextCaption: typeof import('./src/components/atoms/Typography/TextCaption.vue')['default']
+    TextSubtitle: typeof import('./src/components/atoms/Typography/TextSubtitle.vue')['default']
   }
 }

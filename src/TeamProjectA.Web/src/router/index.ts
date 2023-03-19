@@ -5,9 +5,8 @@ const router = createRouter({
   routes: [
     {
       path: '/',
-      redirect: () => {
-        return { path: '/account/login' }
-      },
+      name: 'landing page',
+      component: () => import('@/views/LandingPage/LandingPage.vue'),
     },
     {
       path: '/account',
@@ -23,7 +22,28 @@ const router = createRouter({
     {
       path: '/account/register',
       name: 'register',
-      component: () => import('@/views/AccountViews/RegisterView/RegisterView.vue'),
+      component: () =>
+        import('@/views/AccountViews/RegisterView/RegisterView.vue'),
+    },
+    {
+      path: '/home',
+      name: 'home',
+      component: () => import('@/views/HomeView/HomeView.vue'),
+    },
+    {
+      path: '/trainers',
+      name: 'trainers',
+      component: () => import('@/views/TrainersView/TrainersView.vue'),
+    },
+    {
+      path: '/invites',
+      name: 'invites',
+      component: () => import('@/views/InvitesView/InvitesView.vue'),
+    },
+    {
+      path: '/friends',
+      name: 'friends',
+      component: () => import('@/views/FriendsView/FriendsView.vue'),
     },
     // error 404
     {

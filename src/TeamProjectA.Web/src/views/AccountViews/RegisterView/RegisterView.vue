@@ -7,12 +7,15 @@ const tKey = 'registerView'
 </script>
 
 <template>
-  <v-sheet border rounded :height='500' :width='500'>
+  <v-sheet
+    border
+    rounded
+    :height='500'
+    :width='500'
+  >
     <div>
       <HeadlineL>{{ t(`${tKey}.title`) }}</HeadlineL>
-      <Button>{{ t('test') }}</Button>
+      <TextButton>{{ t('test') }}</TextButton>
     </div>
   </v-sheet>
-
 </template>
-

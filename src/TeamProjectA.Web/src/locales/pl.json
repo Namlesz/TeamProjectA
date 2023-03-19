@@ -1,6 +1,17 @@
 {
+  "landing-page": {
+    "login": "Zaloguj się",
+    "register": "Zarejestruj się"
+  },
   "loginView": {
     "title": "Logowanie"
+  },
+  "menu-items": {
+    "friends": "Znajomi",
+    "home": "Strona główna",
+    "invites": "Zaproszenia",
+    "logout": "Wyloguj",
+    "trainers": "Trenerzy"
   },
   "registerView": {
     "title": "Rejestracja"

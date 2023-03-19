@@ -1,6 +1,4 @@
 <script setup lang="ts"></script>
 <template>
-  <div class='text-h1 pa-2'>
-    <slot />
-  </div>
+  <HeadlineL>Lista znajomych PZ-19</HeadlineL>
 </template>
