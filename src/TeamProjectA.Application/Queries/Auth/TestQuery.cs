@@ -2,6 +2,6 @@ using MediatR;
 
 namespace TeamProjectA.Application.Queries.Auth;
 
-public class TestQuery : IRequest<string>
+public class TestQuery : IRequest<bool>
 {
 }
