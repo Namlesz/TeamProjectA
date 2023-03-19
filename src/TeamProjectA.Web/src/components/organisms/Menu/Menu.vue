@@ -43,8 +43,6 @@ const menuItems = [
   },
 ]
 
-console.log(activeMenuItem.value)
-
 const handleChangeMenuItem = (value: string) => {
   router.push({ name: value })
 }
