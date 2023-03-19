@@ -6,6 +6,13 @@
   "loginView": {
     "title": "Login"
   },
+  "menu-items": {
+    "friends": "Friends",
+    "home": "Home page",
+    "invites": "Invites",
+    "logout": "Logout",
+    "trainers": "Trainers"
+  },
   "registerView": {
     "title": "Register"
   },

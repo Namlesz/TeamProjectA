@@ -1,7 +1,6 @@
-<script setup lang='ts'>
-</script>
+<script setup lang="ts"></script>
 <template>
-  <div class='text-body-1 pa-2'>
+  <div class="text-body-1 pa-2">
     <slot></slot>
   </div>
 </template>

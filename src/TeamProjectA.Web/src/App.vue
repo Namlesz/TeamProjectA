@@ -1,17 +1,17 @@
-<script setup lang='ts'>
+<script setup lang="ts">
 import { RouterView } from 'vue-router'
+import { useAccountStore } from '@/stores/account'
+import { storeToRefs } from 'pinia'
+
+const accountStore = useAccountStore()
+const { shouldMenuBeVisible } = storeToRefs(accountStore)
 </script>
 <template>
   <v-app>
     <Header />
-    <div class="appWrapper">
+    <Menu v-if="shouldMenuBeVisible" />
+    <v-main>
       <RouterView />
-    </div>
+    </v-main>
   </v-app>
 </template>
-<style scoped>
-.appWrapper{
-  position: fixed;
-  top: 64px;
-}
-</style>

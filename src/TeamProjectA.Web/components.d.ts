@@ -19,6 +19,7 @@ declare module '@vue/runtime-core' {
     HeadlineXL: typeof import('./src/components/atoms/Typography/HeadlineXL.vue')['default']
     HeadlineXS: typeof import('./src/components/atoms/Typography/HeadlineXS.vue')['default']
     IconButton: typeof import('./src/components/atoms/Buttons/IconButton.vue')['default']
+    Menu: typeof import('./src/components/organisms/Menu/Menu.vue')['default']
     RouterLink: typeof import('vue-router')['RouterLink']
     RouterView: typeof import('vue-router')['RouterView']
     Subtitle: typeof import('./src/components/atoms/Typography/Subtitle.vue')['default']
