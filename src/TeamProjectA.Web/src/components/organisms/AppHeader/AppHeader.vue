@@ -14,11 +14,19 @@ const toggleTheme = () => {
 </script>
 <template>
   <v-app-bar>
-    <v-app-bar-title v-if='!mobile'>Test</v-app-bar-title>
-    <v-app-bar-title v-if='mobile'>
-      <IconButton v-if='shouldMenuBeVisible' icon='mdi-menu'
-                  @click='accountStore.setShouldMenuBeOpen(!shouldMenuBeOpen)' />
+    <v-app-bar-title v-if='!mobile'>
+      Test
     </v-app-bar-title>
-    <IconButton @click='toggleTheme' icon='mdi-theme-light-dark' />
+    <v-app-bar-title v-if='mobile'>
+      <IconButton
+        v-if='shouldMenuBeVisible'
+        icon='mdi-menu'
+        @click='accountStore.setShouldMenuBeOpen(!shouldMenuBeOpen)'
+      />
+    </v-app-bar-title>
+    <IconButton
+      icon='mdi-theme-light-dark'
+      @click='toggleTheme'
+    />
   </v-app-bar>
 </template>

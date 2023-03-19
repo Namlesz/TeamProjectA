@@ -52,20 +52,30 @@ const handleLogout = () => {
 }
 </script>
 <template>
-  <v-navigation-drawer :expand-on-hover='mobile ? false : true' :rail='mobile ? false : true'>
-    <v-sheet class='d-flex flex-column justify-space-between' height='100%'>
+  <v-navigation-drawer
+    :expand-on-hover='!mobile'
+    :rail='!mobile'
+  >
+    <v-sheet
+      class='d-flex flex-column justify-space-between'
+      height='100%'
+    >
       <v-sheet>
         <v-list>
           <v-list-item
             prepend-avatar='https://randomuser.me/api/portraits/women/85.jpg'
             title='Sandra Adams'
             subtitle='sandra_a88@gmailcom'
-          ></v-list-item>
+          />
         </v-list>
-        <v-divider></v-divider>
-        <v-list density='compact' nav>
+        <v-divider />
+        <v-list
+          density='compact'
+          nav
+        >
           <v-list-item
             v-for='menuItem in menuItems'
+            :key='menuItem.value'
             :prepend-icon='menuItem.icon'
             :title='menuItem.title'
             :value='menuItem.value'
@@ -81,8 +91,8 @@ const handleLogout = () => {
             :title='t(`${tKey}.logout`)'
             value='logout'
             class='text-red'
-            @clickOnce='handleLogout'
             :active='false'
+            @click-once='handleLogout'
           />
         </v-list>
       </v-sheet>

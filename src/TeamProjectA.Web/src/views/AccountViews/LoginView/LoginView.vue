@@ -1,6 +1,5 @@
-<script setup lang="ts">
+<script setup lang='ts'>
 import { useI18n } from 'vue-i18n'
-import router from '@/router'
 import { useAccountStore } from '@/stores/account'
 
 const { t } = useI18n()
@@ -15,10 +14,19 @@ const goToHome = () => {
 </script>
 
 <template>
-  <v-sheet border rounded :height="500" :width="500">
+  <v-sheet
+    border
+    rounded
+    :height='500'
+    :width='500'
+  >
     <div>
-      <HeadlineL>{{ t(`${tKey}.title`) }}</HeadlineL>
-      <Button @click="goToHome">{{ t('test') }}</Button>
+      <HeadlineL>
+        {{ t(`${tKey}.title`) }}
+      </HeadlineL>
+      <TextButton @click='goToHome'>
+        {{ t('test') }}
+      </TextButton>
     </div>
   </v-sheet>
 </template>

@@ -1,6 +1,6 @@
-<script setup lang="ts">
-defineProps(['icon'])
+<script setup lang='ts'>
+defineProps<{ icon?: string }>()
 </script>
 <template>
-  <v-btn :icon="icon"></v-btn>
+  <v-btn :icon='icon' />
 </template>

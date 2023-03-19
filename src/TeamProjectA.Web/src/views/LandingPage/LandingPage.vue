@@ -1,4 +1,4 @@
-<script setup lang="ts">
+<script setup lang='ts'>
 import router from '@/router'
 import { useI18n } from 'vue-i18n'
 
@@ -16,6 +16,10 @@ const goToRegister = () => {
 </script>
 <template>
   <HeadlineL>Landing Page TODO PZ-13</HeadlineL>
-  <Button @click="goToLogin">{{ t(`${tKey}.login`) }}</Button>
-  <Button @click="goToRegister">{{ t(`${tKey}.register`) }}</Button>
+  <TextButton @click='goToLogin'>
+    {{ t(`${tKey}.login`) }}
+  </TextButton>
+  <TextButton @click='goToRegister'>
+    {{ t(`${tKey}.register`) }}
+  </TextButton>
 </template>
