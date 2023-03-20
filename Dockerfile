@@ -14,6 +14,8 @@ RUN npm install
 COPY src/TeamProjectA.Web/ ./
 RUN npm run build
 
+RUN npm run lint
+
 # Build the API
 FROM mcr.microsoft.com/dotnet/sdk:7.0 AS build
 
