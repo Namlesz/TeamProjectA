@@ -22,7 +22,10 @@ public static class RegisterMiddleware
         }
 
         app.UseHttpsRedirection();
+
+        app.UseAuthentication();
         app.UseAuthorization();
+
         app.MapControllers();
 
         return app;

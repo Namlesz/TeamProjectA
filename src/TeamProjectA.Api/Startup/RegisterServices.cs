@@ -1,4 +1,6 @@
+using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.Extensions.Options;
+using Microsoft.Identity.Web;
 using MongoDB.Bson;
 using MongoDB.Bson.Serialization;
 using MongoDB.Bson.Serialization.Serializers;
@@ -25,7 +27,7 @@ public static class RegisterServices
         builder.ConfigureMongoDbConnection();
         builder.Services.AddDbContexts();
         builder.Services.AddRepositories();
-
+        builder.ConfigureIdentity();
         return builder;
     }
 
@@ -37,6 +39,18 @@ public static class RegisterServices
     private static void AddRepositories(this IServiceCollection services)
     {
         services.AddScoped<IUserRepository, UserRepository>();
+    }
+
+    private static void ConfigureIdentity(this WebApplicationBuilder builder)
+    {
+        builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
+            .AddMicrosoftIdentityWebApi(options =>
+                {
+                    builder.Configuration.Bind("AzureAdB2C", options);
+
+                    options.TokenValidationParameters.NameClaimType = "name";
+                },
+                options => { builder.Configuration.Bind("AzureAdB2C", options); });
     }
 
     private static void ConfigureMongoDbConnection(this WebApplicationBuilder builder)
