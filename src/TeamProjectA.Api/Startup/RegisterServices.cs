@@ -1,3 +1,6 @@
+using System.Reflection;
+using Mapster;
+using MapsterMapper;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.Extensions.Options;
 using Microsoft.Identity.Web;
@@ -27,18 +30,28 @@ public static class RegisterServices
         builder.ConfigureMongoDbConnection();
         builder.Services.AddDbContexts();
         builder.Services.AddRepositories();
+        builder.Services.AddMapster();
         builder.ConfigureIdentity();
         return builder;
+    }
+
+    private static void AddMapster(this IServiceCollection services)
+    {
+        TypeAdapterConfig.GlobalSettings.Scan(Assembly.GetExecutingAssembly());
+        services.AddSingleton(TypeAdapterConfig.GlobalSettings);
+        services.AddScoped<IMapper, ServiceMapper>();
     }
 
     private static void AddDbContexts(this IServiceCollection services)
     {
         services.AddSingleton<UserContext>();
+        services.AddSingleton<WorkoutsContext>();
     }
 
     private static void AddRepositories(this IServiceCollection services)
     {
         services.AddScoped<IUserRepository, UserRepository>();
+        services.AddScoped<IWorkoutsRepository, WorkoutsRepository>();
     }
 
     private static void ConfigureIdentity(this WebApplicationBuilder builder)

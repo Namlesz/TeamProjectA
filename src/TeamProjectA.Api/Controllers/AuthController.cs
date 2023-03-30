@@ -6,6 +6,7 @@ using TeamProjectA.Application.Queries.Auth;
 
 namespace TeamProjectA.Api.Controllers;
 
+// TODO: Check how to get user information
 [ApiController, Route("api/[controller]/[action]")]
 [RequiredScope("taskread")]
 [Authorize]
@@ -22,8 +23,11 @@ public class AuthController : ControllerBase
 
 
     [HttpGet]
-    public Task<IActionResult> Hello() =>
-        Task.FromResult<IActionResult>(Ok("_httpContextAccessor.HttpContext?.User.Identity?.Name"));
+    public Task<IActionResult> Hello()
+    {
+        var x  = _httpContextAccessor.HttpContext?.User.FindFirst("http://schemas.microsoft.com/identity/claims/objectidentifier")?.Value;  
+        return Task.FromResult<IActionResult>(Ok(x));
+    }
 
 
     [HttpGet]
