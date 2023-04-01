@@ -1,6 +1,6 @@
 namespace TeamProjectA.Api.Startup;
 
-public static class RegisterMiddleware
+internal static class RegisterMiddleware
 {
     public static WebApplication SetupMiddleware(this WebApplication app)
     {

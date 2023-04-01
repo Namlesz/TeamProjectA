@@ -1,10 +1,11 @@
 using Microsoft.Extensions.Options;
 using MongoDB.Driver;
+using TeamProjectA.Infrastructure.Entities;
 using TeamProjectA.Infrastructure.Settings;
 
 namespace TeamProjectA.Infrastructure.DAL;
 
-public class WorkoutsContext
+public sealed class WorkoutsContext
 {
     private readonly IMongoDatabase _db;
     private readonly string _collectionName;
@@ -15,10 +16,5 @@ public class WorkoutsContext
         _collectionName = dbConfig.Value.WorkoutsCollection;
     }
 
-
-    // TODO: Consider using a not generic method (defined object)
-    public IMongoCollection<TDocument> GetCollection<TDocument>()
-    {
-        return _db.GetCollection<TDocument>(_collectionName);
-    }
+    public IMongoCollection<WorkoutEntity> GetCollection() => _db.GetCollection<WorkoutEntity>(_collectionName);
 }

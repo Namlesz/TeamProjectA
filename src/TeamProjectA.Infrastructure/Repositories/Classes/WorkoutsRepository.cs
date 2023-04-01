@@ -1,29 +1,40 @@
+using MapsterMapper;
+using MongoDB.Driver;
+using MongoDB.Driver.Linq;
 using TeamProjectA.Domain.Workouts;
 using TeamProjectA.Infrastructure.DAL;
+using TeamProjectA.Infrastructure.Entities;
 using TeamProjectA.Infrastructure.Repositories.Interfaces;
 
 namespace TeamProjectA.Infrastructure.Repositories.Classes;
 
-public class WorkoutsRepository : IWorkoutsRepository
+public sealed class WorkoutsRepository : IWorkoutsRepository
 {
     private readonly WorkoutsContext _context;
+    private readonly IMapper _mapper;
 
-    public WorkoutsRepository(WorkoutsContext context)
+    public WorkoutsRepository(WorkoutsContext context, IMapper mapper)
     {
         _context = context;
+        _mapper = mapper;
     }
 
-    public async Task<bool> CreateWorkout(NewWorkout workout)
+    public async Task<Guid?> CreateWorkout(NewWorkout workout)
     {
+        var newWorkout = _mapper.Map<NewWorkout, WorkoutEntity>(workout);
         try
         {
-            await _context.GetCollection<NewWorkout>().InsertOneAsync(workout);
-            return true;
+            await _context.GetCollection().InsertOneAsync(newWorkout);
+            return newWorkout.Id;
         }
         catch (Exception e)
         {
             Console.WriteLine(e);
-            return false;
+            return null;
         }
     }
+
+    public async Task<WorkoutDto?> GetWorkoutDetailsById(Guid id) =>
+        _mapper.Map<WorkoutEntity, WorkoutDto>(await _context.GetCollection().AsQueryable()
+            .Where(x => x.Id == id).FirstOrDefaultAsync());
 }

@@ -16,7 +16,7 @@ using TeamProjectA.Infrastructure.Settings;
 
 namespace TeamProjectA.Api.Startup;
 
-public static class RegisterServices
+internal static class RegisterServices
 {
     public static WebApplicationBuilder ConfigureServices(this WebApplicationBuilder builder)
     {
@@ -68,6 +68,11 @@ public static class RegisterServices
 
     private static void ConfigureMongoDbConnection(this WebApplicationBuilder builder)
     {
+#pragma warning disable CS0618
+        BsonDefaults.GuidRepresentationMode = GuidRepresentationMode.V3;
+#pragma warning restore CS0618
+        BsonSerializer.RegisterSerializer(new GuidSerializer(GuidRepresentation.Standard));
+
         builder.Services.Configure<DbConfig>(builder.Configuration.GetSection("Database"));
         builder.Services.AddSingleton<IMongoDatabase>(sp =>
         {
@@ -76,8 +81,5 @@ public static class RegisterServices
 
             return mongoClient.GetDatabase(dbConfig.DatabaseName);
         });
-
-        // Set GuidRepresentation to Standard
-        BsonSerializer.RegisterSerializer(new GuidSerializer(GuidRepresentation.Standard));
     }
 }

@@ -3,18 +3,18 @@ using MediatR;
 
 namespace TeamProjectA.Application.Commands.Workouts.CreateWorkout;
 
-public class CreateWorkoutCommand : IRequest<bool>
+public sealed class CreateWorkoutCommand : IRequest<Guid?>
 {
-    [Required] public DateOnly WorkoutDate { get; set; }
-    [Required] public string WorkoutName { get; set; } = null!;
-    [Required] public string AuthorId { get; set; } = null!;
-    [Required] public IEnumerable<WorkoutExercise> Exercises { get; set; } = null!;
+    [Required] public DateOnly WorkoutDate { get; init; }
+    [Required] public string WorkoutName { get; init; } = null!;
+    [Required] public string AuthorId { get; init; } = null!;
+    [Required] public IEnumerable<WorkoutExercise> Exercises { get; init; } = null!;
 }
 
-public class WorkoutExercise
+public sealed class WorkoutExercise
 {
-    [Required] public string Name { get; set; } = null!;
-    [Required] public int Reps { get; set; }
-    [Required] public int Sets { get; set; }
-    [Required] public string Description { get; set; } = null!;
+    [Required] public string Name { get; init; } = null!;
+    [Required] public int Reps { get; init; }
+    [Required] public int Sets { get; init; }
+    [Required] public string Description { get; init; } = null!;
 }

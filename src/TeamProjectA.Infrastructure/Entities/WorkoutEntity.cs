@@ -1,14 +1,17 @@
-namespace TeamProjectA.Domain.Workouts;
+using MongoDB.Bson.Serialization.Attributes;
 
-public sealed class NewWorkout
+namespace TeamProjectA.Infrastructure.Entities;
+
+public class WorkoutEntity
 {
+    [BsonId] public Guid Id { get; set; }
     public DateTime WorkoutDate { get; set; }
     public string WorkoutName { get; set; } = null!;
     public string AuthorId { get; set; } = null!;
-    public IEnumerable<NewExercise> Exercises { get; set; } = null!;
+    public IEnumerable<Exercise> Exercises { get; set; } = null!;
 }
 
-public sealed class NewExercise
+public class Exercise
 {
     public string Name { get; set; } = null!;
     public int Reps { get; set; }

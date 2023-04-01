@@ -4,7 +4,7 @@ using TeamProjectA.Infrastructure.Repositories.Interfaces;
 
 namespace TeamProjectA.Infrastructure.Repositories.Classes;
 
-public class UserRepository : IUserRepository
+public sealed class UserRepository : IUserRepository
 {
     private readonly UserContext _context;
 

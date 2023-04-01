@@ -4,5 +4,6 @@ namespace TeamProjectA.Infrastructure.Repositories.Interfaces;
 
 public interface IWorkoutsRepository
 {
-    Task<bool> CreateWorkout(NewWorkout workout);
+    Task<Guid?> CreateWorkout(NewWorkout workout);
+    Task<WorkoutDto?> GetWorkoutDetailsById(Guid requestId);
 }

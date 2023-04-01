@@ -10,7 +10,7 @@ namespace TeamProjectA.Api.Controllers;
 [ApiController, Route("api/[controller]/[action]")]
 [RequiredScope("taskread")]
 [Authorize]
-public class AuthController : ControllerBase
+public sealed class AuthController : ControllerBase
 {
     private readonly IMediator _mediator;
     private readonly IHttpContextAccessor _httpContextAccessor;

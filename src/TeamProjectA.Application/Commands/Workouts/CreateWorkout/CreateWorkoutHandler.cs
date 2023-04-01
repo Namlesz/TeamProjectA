@@ -5,7 +5,7 @@ using TeamProjectA.Infrastructure.Repositories.Interfaces;
 
 namespace TeamProjectA.Application.Commands.Workouts.CreateWorkout;
 
-public class CreateWorkoutHandler : IRequestHandler<CreateWorkoutCommand, bool>
+public sealed class CreateWorkoutHandler : IRequestHandler<CreateWorkoutCommand, Guid?>
 {
     private readonly IWorkoutsRepository _workoutRepository;
     private readonly IMapper _mapper;
@@ -16,6 +16,6 @@ public class CreateWorkoutHandler : IRequestHandler<CreateWorkoutCommand, bool>
         _mapper = mapper;
     }
 
-    public async Task<bool> Handle(CreateWorkoutCommand request, CancellationToken cancellationToken) =>
+    public async Task<Guid?> Handle(CreateWorkoutCommand request, CancellationToken cancellationToken) =>
         await _workoutRepository.CreateWorkout(_mapper.Map<CreateWorkoutCommand, NewWorkout>(request));
 }
