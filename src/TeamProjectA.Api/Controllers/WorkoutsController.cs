@@ -20,7 +20,7 @@ public sealed class WorkoutsController : ControllerBase
 
     [HttpPost]
     [SwaggerOperation("Create a new workout")]
-    [SwaggerResponse(StatusCodes.Status204NoContent, "Workout successful created")]
+    [SwaggerResponse(StatusCodes.Status200OK)]
     [SwaggerResponse(StatusCodes.Status500InternalServerError, "Can't save workout")]
     public async Task<ActionResult<IdResult>> CreateWorkout([FromBody] CreateWorkoutCommand command) =>
         await _mediator.Send(command) switch
@@ -39,7 +39,7 @@ public sealed class WorkoutsController : ControllerBase
             { } workout => Ok(workout),
             null => NotFound()
         };
+    // TODO: Endpoint -> Remove workout
 
     // TODO: Endpoint -> GetWorkoutListByDay
-    // TODO: Endpoint -> Remove workout
 }
