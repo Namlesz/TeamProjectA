@@ -3,6 +3,7 @@ using Microsoft.AspNetCore.Mvc;
 using Swashbuckle.AspNetCore.Annotations;
 using TeamProjectA.Application.Commands.Workouts.CreateWorkout;
 using TeamProjectA.Application.Queries.Workouts.GetWorkoutDetailsById;
+using TeamProjectA.Domain.BasicModels;
 using TeamProjectA.Domain.Workouts;
 
 namespace TeamProjectA.Api.Controllers;
@@ -21,10 +22,10 @@ public sealed class WorkoutsController : ControllerBase
     [SwaggerOperation("Create a new workout")]
     [SwaggerResponse(StatusCodes.Status204NoContent, "Workout successful created")]
     [SwaggerResponse(StatusCodes.Status500InternalServerError, "Can't save workout")]
-    public async Task<IActionResult> CreateWorkout([FromBody] CreateWorkoutCommand command) =>
+    public async Task<ActionResult<IdResult>> CreateWorkout([FromBody] CreateWorkoutCommand command) =>
         await _mediator.Send(command) switch
         {
-            { } workoutId => Ok(workoutId),
+            { } workoutId => Ok(new IdResult(workoutId.ToString())),
             null => BadRequest()
         };
 
