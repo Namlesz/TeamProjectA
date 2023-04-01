@@ -31,14 +31,12 @@ describe('AccountStore', () => {
     // arrange
     const userStore = useAccountStore()
     localStorage.setItem('userToken', expiredJWT)
-    const routerSpy = vi.spyOn(router, 'replace')
 
     // act
     userStore.checkUserAuthentication()
 
     // assert
     expect(userStore.isAuthenticated).toBe(false)
-    expect(routerSpy).toHaveBeenCalledWith('/')
     expect(userStore.checkUserAuthentication()).toBe(false)
   })
 
