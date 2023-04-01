@@ -27,7 +27,7 @@ describe('AccountStore', () => {
     expect(userStore.checkUserAuthentication()).toBe(false)
   })
 
-  test('User token is expired, checks user Authentication, sets isAuthenticated false, redirects to login view and returns false', () => {
+  test('User token is expired, checks user Authentication, sets isAuthenticated false and returns false', () => {
     // arrange
     const userStore = useAccountStore()
     localStorage.setItem('userToken', expiredJWT)
