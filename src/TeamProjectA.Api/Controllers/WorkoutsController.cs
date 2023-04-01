@@ -2,6 +2,7 @@ using MediatR;
 using Microsoft.AspNetCore.Mvc;
 using Swashbuckle.AspNetCore.Annotations;
 using TeamProjectA.Application.Commands.Workouts.CreateWorkout;
+using TeamProjectA.Application.Commands.Workouts.DeleteWorkout;
 using TeamProjectA.Application.Queries.Workouts.GetWorkoutDetailsById;
 using TeamProjectA.Domain.BasicModels;
 using TeamProjectA.Domain.Workouts;
@@ -22,8 +23,8 @@ public sealed class WorkoutsController : ControllerBase
     [SwaggerOperation("Create a new workout")]
     [SwaggerResponse(StatusCodes.Status200OK)]
     [SwaggerResponse(StatusCodes.Status500InternalServerError, "Can't save workout")]
-    public async Task<ActionResult<IdResult>> CreateWorkout([FromBody] CreateWorkoutCommand command) =>
-        await _mediator.Send(command) switch
+    public async Task<ActionResult<IdResult>> CreateWorkout([FromBody] CreateWorkoutCommand request) =>
+        await _mediator.Send(request) switch
         {
             { } workoutId => Ok(new IdResult(workoutId.ToString())),
             null => BadRequest()
@@ -33,13 +34,23 @@ public sealed class WorkoutsController : ControllerBase
     [SwaggerOperation("Get workout detail by id")]
     [SwaggerResponse(StatusCodes.Status200OK)]
     [SwaggerResponse(StatusCodes.Status404NotFound, "Workout not found")]
-    public async Task<ActionResult<WorkoutDto>> GetWorkoutDetailsById([FromQuery] GetWorkoutDetailsByIdQuery request) =>
+    public async Task<ActionResult<WorkoutDto>> GetWorkoutDetails([FromQuery] GetWorkoutDetailsByIdQuery request) =>
         await _mediator.Send(request) switch
         {
             { } workout => Ok(workout),
             null => NotFound()
         };
-    // TODO: Endpoint -> Remove workout
+
+    [HttpDelete]
+    [SwaggerOperation("Delete workout by id")]
+    [SwaggerResponse(StatusCodes.Status204NoContent)]
+    [SwaggerResponse(StatusCodes.Status400BadRequest, "Can't delete workout")]
+    public async Task<ActionResult<WorkoutDto>> DeleteWorkout([FromQuery] DeleteWorkoutByIdCommand request) =>
+        await _mediator.Send(request) switch
+        {
+            true => NoContent(),
+            false => BadRequest()
+        };
 
     // TODO: Endpoint -> GetWorkoutListByDay
 }

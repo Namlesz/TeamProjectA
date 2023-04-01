@@ -37,4 +37,10 @@ public sealed class WorkoutsRepository : IWorkoutsRepository
     public async Task<WorkoutDto?> GetWorkoutDetailsById(Guid id) =>
         _mapper.Map<WorkoutEntity, WorkoutDto>(await _context.GetCollection().AsQueryable()
             .Where(x => x.Id == id).FirstOrDefaultAsync());
+
+    public async Task<bool> DeleteWorkoutById(Guid requestId)
+    {
+        var result = await _context.GetCollection().DeleteOneAsync(x => x.Id == requestId);
+        return result.IsAcknowledged && result.DeletedCount == 1;
+    }
 }
