@@ -7,7 +7,8 @@ public sealed class CreateWorkoutCommand : IRequest<Guid?>
 {
     [Required] public DateOnly WorkoutDate { get; init; }
     [Required] public string WorkoutName { get; init; } = null!;
-    [Required] public string AuthorId { get; init; } = null!;
+    [Required] public Guid AuthorId { get; init; }
+    [Required] public Guid OwnerId { get; init; }
     [Required] public IEnumerable<WorkoutExercise> Exercises { get; init; } = null!;
 }
 

@@ -1,6 +1,6 @@
 using Mapster;
 using TeamProjectA.Application.Commands.Workouts.CreateWorkout;
-using TeamProjectA.Domain.Workouts;
+using TeamProjectA.Domain.Entities.Workouts;
 
 namespace TeamProjectA.Api.Config;
 

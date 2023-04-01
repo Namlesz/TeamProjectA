@@ -4,12 +4,13 @@ using Swashbuckle.AspNetCore.Annotations;
 using TeamProjectA.Application.Commands.Workouts.CreateWorkout;
 using TeamProjectA.Application.Commands.Workouts.DeleteWorkout;
 using TeamProjectA.Application.Queries.Workouts.GetWorkoutDetailsById;
-using TeamProjectA.Domain.BasicModels;
-using TeamProjectA.Domain.Workouts;
+using TeamProjectA.Application.Queries.Workouts.GetWorkoutsForUser;
+using TeamProjectA.Domain.Entities.BaseModels;
+using TeamProjectA.Domain.Entities.Workouts;
 
 namespace TeamProjectA.Api.Controllers;
 
-[ApiController, Route("api/[controller]/[action]")]
+[ApiController, Route("api/[controller]/[action]/{request}")]
 public sealed class WorkoutsController : ControllerBase
 {
     private readonly IMediator _mediator;
@@ -52,5 +53,9 @@ public sealed class WorkoutsController : ControllerBase
             false => BadRequest()
         };
 
-    // TODO: Endpoint -> GetWorkoutListByDay
+    [HttpGet]
+    [SwaggerOperation("Get workouts for user")]
+    [SwaggerResponse(StatusCodes.Status200OK)]
+    public async Task<ActionResult<List<WorkoutDto>>> GetWorkouts([FromQuery] GetWorkoutsForUserQuery request) =>
+        Ok(await _mediator.Send(request));
 }

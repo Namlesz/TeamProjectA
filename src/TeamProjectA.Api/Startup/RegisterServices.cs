@@ -9,9 +9,9 @@ using MongoDB.Bson.Serialization;
 using MongoDB.Bson.Serialization.Serializers;
 using MongoDB.Driver;
 using TeamProjectA.Application.Queries.Auth;
+using TeamProjectA.Domain.Repositories;
 using TeamProjectA.Infrastructure.DAL;
-using TeamProjectA.Infrastructure.Repositories.Classes;
-using TeamProjectA.Infrastructure.Repositories.Interfaces;
+using TeamProjectA.Infrastructure.Repositories;
 using TeamProjectA.Infrastructure.Settings;
 
 namespace TeamProjectA.Api.Startup;

@@ -1,15 +1,15 @@
-namespace TeamProjectA.Domain.Workouts;
+namespace TeamProjectA.Domain.Entities.Workouts;
 
-public sealed class WorkoutDto
-{ 
-    public Guid Id { get; set; }
+public sealed class NewWorkout
+{
     public DateTime WorkoutDate { get; set; }
     public string WorkoutName { get; set; } = null!;
-    public string AuthorId { get; set; } = null!;
-    public IEnumerable<ExerciseDto> Exercises { get; set; } = null!;
+    public Guid AuthorId { get; set; }
+    public Guid OwnerId { get; set; }
+    public IEnumerable<NewExercise> Exercises { get; set; } = null!;
 }
 
-public sealed class ExerciseDto
+public sealed class NewExercise
 {
     public string Name { get; set; } = null!;
     public int Reps { get; set; }

@@ -1,7 +1,7 @@
 using MapsterMapper;
 using MediatR;
-using TeamProjectA.Domain.Workouts;
-using TeamProjectA.Infrastructure.Repositories.Interfaces;
+using TeamProjectA.Domain.Entities.Workouts;
+using TeamProjectA.Domain.Repositories;
 
 namespace TeamProjectA.Application.Commands.Workouts.CreateWorkout;
 
