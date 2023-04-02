@@ -4,7 +4,7 @@ using TeamProjectA.Domain.Entities.Workouts;
 
 namespace TeamProjectA.Api.Config;
 
-internal sealed class MapsterConfig : IRegister
+public sealed class MapsterConfig : IRegister
 {
     public void Register(TypeAdapterConfig config)
     {

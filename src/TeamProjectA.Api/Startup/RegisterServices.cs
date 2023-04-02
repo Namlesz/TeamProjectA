@@ -45,7 +45,7 @@ internal static class RegisterServices
     private static void AddDbContexts(this IServiceCollection services)
     {
         services.AddSingleton<UserContext>();
-        services.AddSingleton<WorkoutsContext>();
+        services.AddSingleton<IWorkoutsContext, WorkoutsContext>();
     }
 
     private static void AddRepositories(this IServiceCollection services)

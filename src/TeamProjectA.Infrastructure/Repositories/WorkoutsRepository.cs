@@ -10,10 +10,10 @@ namespace TeamProjectA.Infrastructure.Repositories;
 
 public sealed class WorkoutsRepository : IWorkoutsRepository
 {
-    private readonly WorkoutsContext _context;
+    private readonly IWorkoutsContext _context;
     private readonly IMapper _mapper;
 
-    public WorkoutsRepository(WorkoutsContext context, IMapper mapper)
+    public WorkoutsRepository(IWorkoutsContext context, IMapper mapper)
     {
         _context = context;
         _mapper = mapper;

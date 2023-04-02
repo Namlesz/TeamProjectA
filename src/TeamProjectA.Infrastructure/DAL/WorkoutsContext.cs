@@ -5,7 +5,7 @@ using TeamProjectA.Infrastructure.Settings;
 
 namespace TeamProjectA.Infrastructure.DAL;
 
-public sealed class WorkoutsContext
+public class WorkoutsContext : IWorkoutsContext
 {
     private readonly IMongoDatabase _db;
     private readonly string _collectionName;

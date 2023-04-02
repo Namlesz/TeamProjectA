@@ -46,7 +46,7 @@ public sealed class WorkoutsController : ControllerBase
     [SwaggerOperation("Delete workout by id")]
     [SwaggerResponse(StatusCodes.Status204NoContent)]
     [SwaggerResponse(StatusCodes.Status400BadRequest, "Can't delete workout")]
-    public async Task<ActionResult<WorkoutDto>> DeleteWorkout([FromQuery] DeleteWorkoutByIdCommand request) =>
+    public async Task<IActionResult> DeleteWorkout([FromQuery] DeleteWorkoutByIdCommand request) =>
         await _mediator.Send(request) switch
         {
             true => NoContent(),
