@@ -46,8 +46,7 @@ public sealed class WorkoutsRepository : IWorkoutsRepository
 
     public async Task<List<WorkoutDto>> GetWorkoutsForUser(Guid userId)
     {
-        // TODO: Map WorkoutEntity list to WorkoutDto list
-        // return await _context.GetCollection().AsQueryable().Where(x => x.OwnerId == userId).ToListAsync();
-        throw new NotImplementedException();
+        var workouts = await _context.GetCollection().AsQueryable().Where(x => x.OwnerId == userId).ToListAsync();
+        return _mapper.Map<List<WorkoutEntity>, List<WorkoutDto>>(workouts);
     }
 }

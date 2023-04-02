@@ -7,9 +7,20 @@
     </PropertyGroup>
 
     <ItemGroup>
-      <ProjectReference Include="..\TeamProjectA.Api\TeamProjectA.Api.csproj" />
-      <ProjectReference Include="..\TeamProjectA.Application\TeamProjectA.Application.csproj" />
-      <ProjectReference Include="..\TeamProjectA.Infrastructure\TeamProjectA.Infrastructure.csproj" />
+      <ProjectReference Include="..\..\src\TeamProjectA.Api\TeamProjectA.Api.csproj" />
+      <ProjectReference Include="..\..\src\TeamProjectA.Application\TeamProjectA.Application.csproj" />
+      <ProjectReference Include="..\..\src\TeamProjectA.Domain\TeamProjectA.Domain.csproj" />
+      <ProjectReference Include="..\..\src\TeamProjectA.Infrastructure\TeamProjectA.Infrastructure.csproj" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <PackageReference Include="Moq" Version="4.18.4" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <Folder Include="Api.Tests" />
+      <Folder Include="Application.Tests" />
+      <Folder Include="Infrastructure.Tests" />
     </ItemGroup>
 
 </Project>

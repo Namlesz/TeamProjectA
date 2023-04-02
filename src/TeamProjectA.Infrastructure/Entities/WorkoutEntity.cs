@@ -6,7 +6,7 @@ public class WorkoutEntity
 {
     [BsonId] public Guid Id { get; set; }
     public DateTime WorkoutDate { get; set; }
-    public string WorkoutName { get; set; }
+    public string WorkoutName { get; set; } = null!;
     public Guid AuthorId { get; set; }
     public Guid OwnerId { get; set; }
     public IEnumerable<Exercise> Exercises { get; set; } = null!;

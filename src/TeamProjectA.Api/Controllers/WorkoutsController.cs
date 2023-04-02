@@ -10,7 +10,7 @@ using TeamProjectA.Domain.Entities.Workouts;
 
 namespace TeamProjectA.Api.Controllers;
 
-[ApiController, Route("api/[controller]/[action]/{request}")]
+[ApiController, Route("api/[controller]/[action]"), Produces("application/json")]
 public sealed class WorkoutsController : ControllerBase
 {
     private readonly IMediator _mediator;
