@@ -9,22 +9,24 @@
     </PropertyGroup>
 
     <ItemGroup>
-        <PackageReference Include="Mapster" Version="7.3.0" />
-        <PackageReference Include="Mapster.DependencyInjection" Version="1.0.0" />
-        <PackageReference Include="MediatR" Version="12.0.1" />
-        <PackageReference Include="Microsoft.AspNetCore.OpenApi" Version="7.0.4" />
-        <PackageReference Include="Microsoft.Identity.Web" Version="2.7.0" />
-        <PackageReference Include="MongoDB.Driver" Version="2.19.1" />
-        <PackageReference Include="Swashbuckle.AspNetCore" Version="6.5.0" />
-        <PackageReference Include="Swashbuckle.AspNetCore.Annotations" Version="6.5.0" />
+        <PackageReference Include="Mapster" Version="7.3.0"/>
+        <PackageReference Include="Mapster.DependencyInjection" Version="1.0.0"/>
+        <PackageReference Include="MediatR" Version="12.0.1"/>
+        <PackageReference Include="Microsoft.AspNetCore.OpenApi" Version="7.0.4"/>
+        <PackageReference Include="Microsoft.Identity.Web" Version="2.7.0"/>
+        <PackageReference Include="MongoDB.Driver" Version="2.19.1"/>
+        <PackageReference Include="Swashbuckle.AspNetCore" Version="6.5.0"/>
+        <PackageReference Include="Swashbuckle.AspNetCore.Annotations" Version="6.5.0"/>
     </ItemGroup>
 
     <ItemGroup>
-        <Folder Include="wwwroot" />
+        <Folder Include="wwwroot"/>
     </ItemGroup>
 
     <ItemGroup>
-      <ProjectReference Include="..\TeamProjectA.Application\TeamProjectA.Application.csproj" />
+        <ProjectReference Include="..\TeamProjectA.Application\TeamProjectA.Application.csproj"/>
+        <ProjectReference Include="..\TeamProjectA.Domain\TeamProjectA.Domain.csproj"/>
+        <ProjectReference Include="..\TeamProjectA.Infrastructure\TeamProjectA.Infrastructure.csproj"/>
     </ItemGroup>
-    
+
 </Project>

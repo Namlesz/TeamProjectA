@@ -1,8 +1,0 @@
-﻿<wpf:ResourceDictionary xml:space="preserve" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:s="clr-namespace:System;assembly=mscorlib" xmlns:ss="urn:shemas-jetbrains-com:settings-storage-xaml" xmlns:wpf="http://schemas.microsoft.com/winfx/2006/xaml/presentation">
-	<s:String x:Key="/Default/Environment/UnitTesting/UnitTestSessionStore/Sessions/=b962c706_002D353c_002D4165_002Dbcea_002D6ae80d8cf736/@EntryIndexedValue">&lt;SessionState ContinuousTestingMode="0" IsActive="True" Name="CreateWorkout_ValidInput_ReturnsGuid" xmlns="urn:schemas-jetbrains-com:jetbrains-ut-session"&gt;
-  &lt;TestAncestor&gt;
-    &lt;TestId&gt;NUnit3x::17BF48D6-CF89-43CC-927E-999BED43BE47::net7.0::TeamProjectA.Tests.Api.Tests.WorkoutsControllerTests&lt;/TestId&gt;
-    &lt;TestId&gt;NUnit3x::17BF48D6-CF89-43CC-927E-999BED43BE47::net7.0::TeamProjectA.Tests.Infrastructure.Tests.WorkoutRepository.DeleteWorkoutTests.DeleteWorkoutById_fail_deleted_count_equal_zero&lt;/TestId&gt;
-    &lt;TestId&gt;NUnit3x::17BF48D6-CF89-43CC-927E-999BED43BE47::net7.0::TeamProjectA.Tests.Infrastructure.Tests.WorkoutRepository.DeleteWorkoutTests.DeleteWorkoutById_success_deleted_count_equal_one&lt;/TestId&gt;
-  &lt;/TestAncestor&gt;
-&lt;/SessionState&gt;</s:String></wpf:ResourceDictionary>
