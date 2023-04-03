@@ -1,6 +1,6 @@
 namespace TeamProjectA.Api.Startup;
 
-public static class RegisterMiddleware
+internal static class RegisterMiddleware
 {
     public static WebApplication SetupMiddleware(this WebApplication app)
     {
@@ -22,7 +22,10 @@ public static class RegisterMiddleware
         }
 
         app.UseHttpsRedirection();
+
+        app.UseAuthentication();
         app.UseAuthorization();
+
         app.MapControllers();
 
         return app;

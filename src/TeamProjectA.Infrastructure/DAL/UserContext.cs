@@ -4,7 +4,7 @@ using TeamProjectA.Infrastructure.Settings;
 
 namespace TeamProjectA.Infrastructure.DAL;
 
-public class UserContext
+public sealed class UserContext
 {
     private readonly IMongoDatabase _db;
     private readonly string _collectionName;

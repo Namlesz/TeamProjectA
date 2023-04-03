@@ -14,6 +14,10 @@ src/TeamProjectA.Infrastructure/bin
 src/TeamProjectA.Application/obj
 src/TeamProjectA.Application/bin
 
+# Domain
+src/TeamProjectA.Domain/obj
+src/TeamProjectA.Domain/bin
+
 # Test
 tests/TeamProjectA.Tests/obj
 tests/TeamProjectA.Tests/bin

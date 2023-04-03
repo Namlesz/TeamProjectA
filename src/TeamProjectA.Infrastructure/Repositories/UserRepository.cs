@@ -1,10 +1,10 @@
 using MongoDB.Bson.Serialization.Attributes;
+using TeamProjectA.Domain.Repositories;
 using TeamProjectA.Infrastructure.DAL;
-using TeamProjectA.Infrastructure.Repositories.Interfaces;
 
-namespace TeamProjectA.Infrastructure.Repositories.Classes;
+namespace TeamProjectA.Infrastructure.Repositories;
 
-public class UserRepository : IUserRepository
+public sealed class UserRepository : IUserRepository
 {
     private readonly UserContext _context;
 

@@ -1,5 +1,5 @@
 using MediatR;
-using TeamProjectA.Infrastructure.Repositories.Interfaces;
+using TeamProjectA.Domain.Repositories;
 
 namespace TeamProjectA.Application.Queries.Auth;
 

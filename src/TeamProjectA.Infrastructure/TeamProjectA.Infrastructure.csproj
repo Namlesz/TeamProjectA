@@ -7,8 +7,13 @@
     </PropertyGroup>
 
     <ItemGroup>
+      <PackageReference Include="Mapster" Version="7.3.0" />
       <PackageReference Include="Microsoft.Extensions.Options" Version="7.0.1" />
-      <PackageReference Include="MongoDB.Driver" Version="2.19.0" />
+      <PackageReference Include="MongoDB.Driver" Version="2.19.1" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <ProjectReference Include="..\TeamProjectA.Domain\TeamProjectA.Domain.csproj" />
     </ItemGroup>
 
 </Project>

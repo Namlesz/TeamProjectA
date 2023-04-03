@@ -1,4 +1,4 @@
-namespace TeamProjectA.Infrastructure.Repositories.Interfaces;
+namespace TeamProjectA.Domain.Repositories;
 
 public interface IUserRepository
 {

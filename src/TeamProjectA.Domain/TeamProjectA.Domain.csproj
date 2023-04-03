@@ -7,12 +7,7 @@
     </PropertyGroup>
 
     <ItemGroup>
-      <PackageReference Include="Mapster" Version="7.3.0" />
-      <PackageReference Include="MediatR" Version="12.0.1" />
-    </ItemGroup>
-
-    <ItemGroup>
-      <ProjectReference Include="..\TeamProjectA.Domain\TeamProjectA.Domain.csproj" />
+      <Folder Include="Exceptions" />
     </ItemGroup>
 
 </Project>

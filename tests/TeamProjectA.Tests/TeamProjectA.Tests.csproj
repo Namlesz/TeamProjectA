@@ -7,9 +7,20 @@
     </PropertyGroup>
 
     <ItemGroup>
-      <ProjectReference Include="..\TeamProjectA.Api\TeamProjectA.Api.csproj" />
-      <ProjectReference Include="..\TeamProjectA.Application\TeamProjectA.Application.csproj" />
-      <ProjectReference Include="..\TeamProjectA.Infrastructure\TeamProjectA.Infrastructure.csproj" />
+      <ProjectReference Include="..\..\src\TeamProjectA.Api\TeamProjectA.Api.csproj" />
+      <ProjectReference Include="..\..\src\TeamProjectA.Application\TeamProjectA.Application.csproj" />
+      <ProjectReference Include="..\..\src\TeamProjectA.Domain\TeamProjectA.Domain.csproj" />
+      <ProjectReference Include="..\..\src\TeamProjectA.Infrastructure\TeamProjectA.Infrastructure.csproj" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <PackageReference Include="Microsoft.NET.Test.Sdk" Version="17.5.0" />
+      <PackageReference Include="Moq" Version="4.18.4" />
+      <PackageReference Include="NUnit" Version="3.13.3" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <Folder Include="Application.Tests" />
     </ItemGroup>
 
 </Project>

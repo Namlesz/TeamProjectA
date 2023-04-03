@@ -20,10 +20,17 @@ RUN npm run lint
 FROM mcr.microsoft.com/dotnet/sdk:7.0 AS build
 
 COPY src/TeamProjectA.Api/TeamProjectA.Api.csproj src/TeamProjectA.Api/
+COPY src/TeamProjectA.Application/TeamProjectA.Application.csproj src/TeamProjectA.Application/
+COPY src/TeamProjectA.Domain/TeamProjectA.Domain.csproj src/TeamProjectA.Domain/
+COPY src/TeamProjectA.Infrastructure/TeamProjectA.Infrastructure.csproj src/TeamProjectA.Infrastructure/
+
 WORKDIR /src/TeamProjectA.Api
 
 RUN dotnet restore TeamProjectA.Api.csproj
-COPY . .
+COPY src/TeamProjectA.Api .
+COPY src/TeamProjectA.Application .
+COPY src/TeamProjectA.Domain .
+COPY src/TeamProjectA.Infrastructure .
 
 RUN dotnet build TeamProjectA.Api.csproj -c Release -o /app/build
 
