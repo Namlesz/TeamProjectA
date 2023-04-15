@@ -1,35 +1,51 @@
-using MediatR;
+using System.IdentityModel.Tokens.Jwt;
+using System.Security.Claims;
+using System.Text;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.Identity.Web.Resource;
-using TeamProjectA.Application.Queries.Auth;
+using Microsoft.IdentityModel.Tokens;
 
 namespace TeamProjectA.Api.Controllers;
 
-// TODO: Check how to get user information
-[ApiController, Route("api/[controller]/[action]")]
-[RequiredScope("taskread")]
-[Authorize]
+[ApiController, Route("api/[controller]/[action]"), AllowAnonymous]
 public sealed class AuthController : ControllerBase
 {
-    private readonly IMediator _mediator;
-    private readonly IHttpContextAccessor _httpContextAccessor;
+    private readonly IConfiguration _configuration;
 
-    public AuthController(IMediator mediator, IHttpContextAccessor httpContextAccessor)
+
+    public AuthController(IConfiguration configuration)
     {
-        _mediator = mediator;
-        _httpContextAccessor = httpContextAccessor;
+        _configuration = configuration;
     }
 
-
-    [HttpGet]
-    public Task<IActionResult> Hello()
+    [HttpPost]
+    public IActionResult Login([FromQuery] string login)
     {
-        var x  = _httpContextAccessor.HttpContext?.User.FindFirst("http://schemas.microsoft.com/identity/claims/objectidentifier")?.Value;  
-        return Task.FromResult<IActionResult>(Ok(x));
+        var authClaims = new List<Claim>
+        {
+            new(ClaimTypes.Name, login),
+            new(JwtRegisteredClaimNames.Jti, Guid.NewGuid().ToString()),
+        };
+
+        var token = GetToken(authClaims);
+        return Ok(new
+        {
+            token = new JwtSecurityTokenHandler().WriteToken(token)
+        });
     }
 
+    private JwtSecurityToken GetToken(IEnumerable<Claim> authClaims)
+    {
+        var authSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(_configuration["JWT:Secret"] ??
+                                                                             throw new MissingFieldException(
+                                                                                 "Can't load encode key.")));
 
-    [HttpGet]
-    public async Task<IActionResult> Test() => Ok(await _mediator.Send(new TestQuery()));
+        var token = new JwtSecurityToken(
+            expires: DateTime.Now.AddDays(1),
+            claims: authClaims,
+            signingCredentials: new SigningCredentials(authSigningKey, SecurityAlgorithms.HmacSha256)
+        );
+
+        return token;
+    }
 }
