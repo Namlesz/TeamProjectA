@@ -1,8 +1,11 @@
 using System.IdentityModel.Tokens.Jwt;
 using System.Security.Claims;
+using MediatR;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using TeamProjectA.Api.Auth;
+using TeamProjectA.Application.Commands.Auth.CreateUser;
+using TeamProjectA.Application.Queries.Auth.GetUser;
 
 namespace TeamProjectA.Api.Controllers;
 
@@ -10,20 +13,26 @@ namespace TeamProjectA.Api.Controllers;
 public sealed class AuthController : ControllerBase
 {
     private readonly TokenManager _tokenManager;
+    private readonly IMediator _mediator;
 
-    public AuthController(TokenManager tokenManager)
+    public AuthController(TokenManager tokenManager, IMediator mediator)
     {
         _tokenManager = tokenManager;
+        _mediator = mediator;
     }
 
     [HttpPost]
-    public IActionResult Login([FromQuery] string login)
+    public async Task<IActionResult> Login([FromQuery] string login)
     {
-        // TODO: Add user to db if not exists else get user from db
+        var userId = await _mediator.Send(new GetUserQuery { Login = login.ToLower() }) ??
+                     await _mediator.Send(new CreateUserCommand { Login = login.ToLower() });
+
+        if (userId is null)
+            return BadRequest("Can't create user");
+
         var authClaims = new List<Claim>
         {
-            // TODO: Claim for user id
-            new("UserId", "2da7f6e6-326e-478c-a6a9-fa0983606e8c"),
+            new("UserId", userId.ToString()!),
             new(ClaimTypes.Name, login),
             new(JwtRegisteredClaimNames.Jti, Guid.NewGuid().ToString())
         };

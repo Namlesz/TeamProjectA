@@ -18,4 +18,7 @@ public class TeamDbContext : ITeamDbContext
 
     public IMongoCollection<WorkoutEntity> WorkoutsCollection =>
         _db.GetCollection<WorkoutEntity>(_dbConfig.Value.WorkoutsCollection);
+    
+    public IMongoCollection<UserEntity> UsersCollection =>
+        _db.GetCollection<UserEntity>(_dbConfig.Value.UsersCollection);
 }

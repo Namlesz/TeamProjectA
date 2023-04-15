@@ -12,7 +12,7 @@ using MongoDB.Bson.Serialization;
 using MongoDB.Bson.Serialization.Serializers;
 using MongoDB.Driver;
 using TeamProjectA.Api.Auth;
-using TeamProjectA.Application.Queries.Auth;
+using TeamProjectA.Application.Queries.Workouts.GetWorkoutsForUser;
 using TeamProjectA.Domain.Repositories;
 using TeamProjectA.Domain.Shared;
 using TeamProjectA.Infrastructure.DAL;
@@ -29,7 +29,7 @@ internal static class RegisterServices
         builder.Services.AddEndpointsApiExplorer();
         builder.Services.AddSwaggerGen();
         builder.Services.AddMediatR(x => x.RegisterServicesFromAssemblies(
-            typeof(TestQuery).Assembly
+            typeof(GetWorkoutsForUserQuery).Assembly
         ));
 
         builder.ConfigureMongoDbConnection();
@@ -53,7 +53,6 @@ internal static class RegisterServices
 
     private static void AddDbContexts(this IServiceCollection services)
     {
-        services.AddSingleton<UserContext>();
         services.AddSingleton<ITeamDbContext, TeamDbContext>();
     }
 

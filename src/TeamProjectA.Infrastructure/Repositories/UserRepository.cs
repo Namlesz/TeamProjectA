@@ -1,35 +1,40 @@
-using MongoDB.Bson.Serialization.Attributes;
+using MongoDB.Driver;
+using MongoDB.Driver.Linq;
+using TeamProjectA.Domain.Entities.Users;
 using TeamProjectA.Domain.Repositories;
 using TeamProjectA.Infrastructure.DAL;
+using TeamProjectA.Infrastructure.Entities;
 
 namespace TeamProjectA.Infrastructure.Repositories;
 
 public sealed class UserRepository : IUserRepository
 {
-    private readonly UserContext _context;
+    private readonly ITeamDbContext _context;
 
-    public UserRepository(UserContext context)
+    public UserRepository(ITeamDbContext context)
     {
         _context = context;
     }
 
-    public async Task<bool> TestMethod()
+    public async Task<Guid?> CreateNewUser(NewUser newUser)
     {
+        var user = new UserEntity
+        {
+            Login = newUser.Login
+        };
+
         try
         {
-            await _context.GetCollection<TestPost>().InsertOneAsync(new TestPost { Name = "test" });
-            return true;
+            await _context.UsersCollection.InsertOneAsync(user);
+            return user.Id;
         }
         catch (Exception e)
         {
             Console.WriteLine(e);
-            return false;
+            return null;
         }
     }
-}
 
-internal class TestPost
-{
-    [BsonId] public Guid Id { get; set; }
-    public string Name { get; set; } = null!;
+    public async Task<Guid?> GetUser(string login) =>
+        (await _context.UsersCollection.AsQueryable().Where(x => x.Login == login).FirstOrDefaultAsync())?.Id;
 }
