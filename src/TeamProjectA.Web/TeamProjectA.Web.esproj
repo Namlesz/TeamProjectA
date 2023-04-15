@@ -1,18 +1,12 @@
 <Project>
-    <PropertyGroup>
-        <StartupCommand>npm start</StartupCommand>
-        <!-- Command to run on project build -->
-        <!--        <BuildCommand></BuildCommand>-->
-        <!-- Command to create an optimized build of the project that's ready for publishing -->
-<!--        <BuildCommand>npm run build</BuildCommand>-->
-        <ProductionBuildCommand>npm run build</ProductionBuildCommand>
-        <OutputType>Module</OutputType>
-        <LangVersion>11</LangVersion>
-        <!-- Folder where production build objects will be placed -->
-<!--        <BuildOutputFolder>$(MSBuildProjectDirectory)\dist\CourierComplaints.Web</BuildOutputFolder>-->
-    </PropertyGroup>
+    <!--    Not working until sdk is only form .net framework-->
+    <!--    <PropertyGroup>-->
+    <!--        <ProductionBuildCommand>npm run build</ProductionBuildCommand>-->
+    <!--        <LangVersion>11</LangVersion>-->
+    <!--        <BuildOutputFolder>$(MSBuildProjectDirectory)\dist\CourierComplaints.Api\wwwroot</BuildOutputFolder>-->
+    <!--    </PropertyGroup>-->
     <ItemGroup>
-        <Content Include="**" />
-        <Content Remove="node_modules\**" />
+        <Content Include="**"/>
+        <Content Remove="node_modules\**"/>
     </ItemGroup>
 </Project>

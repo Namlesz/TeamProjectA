@@ -3,7 +3,7 @@ using TeamProjectA.Infrastructure.Entities;
 
 namespace TeamProjectA.Infrastructure.DAL;
 
-public interface IWorkoutsContext
+public interface ITeamDbContext
 {
-    public IMongoCollection<WorkoutEntity> GetCollection();
+    public IMongoCollection<WorkoutEntity> WorkoutsCollection { get; }
 }

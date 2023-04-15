@@ -13,9 +13,9 @@ public class DeleteWorkoutTests
     [Test]
     public async Task DeleteWorkoutById_fail_deleted_count_equal_zero()
     {
-        var mockContext = new Mock<IWorkoutsContext>();
+        var mockContext = new Mock<ITeamDbContext>();
         mockContext.Setup(c =>
-            c.GetCollection().DeleteOneAsync(It.IsAny<FilterDefinition<WorkoutEntity>>(),
+            c.WorkoutsCollection.DeleteOneAsync(It.IsAny<FilterDefinition<WorkoutEntity>>(),
                 It.IsAny<CancellationToken>())).ReturnsAsync(new DeleteResult.Acknowledged(0));
 
         var repository = new WorkoutsRepository(mockContext.Object, null!);
@@ -26,9 +26,9 @@ public class DeleteWorkoutTests
     [Test]
     public async Task DeleteWorkoutById_success_deleted_count_equal_one()
     {
-        var mockContext = new Mock<IWorkoutsContext>();
+        var mockContext = new Mock<ITeamDbContext>();
         mockContext.Setup(c =>
-            c.GetCollection().DeleteOneAsync(It.IsAny<FilterDefinition<WorkoutEntity>>(),
+            c.WorkoutsCollection.DeleteOneAsync(It.IsAny<FilterDefinition<WorkoutEntity>>(),
                 It.IsAny<CancellationToken>())).ReturnsAsync(new DeleteResult.Acknowledged(1));
 
         var repository = new WorkoutsRepository(mockContext.Object, null!);

@@ -45,7 +45,7 @@ internal static class RegisterServices
     private static void AddDbContexts(this IServiceCollection services)
     {
         services.AddSingleton<UserContext>();
-        services.AddSingleton<IWorkoutsContext, WorkoutsContext>();
+        services.AddSingleton<ITeamDbContext, TeamDbContext>();
     }
 
     private static void AddRepositories(this IServiceCollection services)
@@ -73,11 +73,12 @@ internal static class RegisterServices
 #pragma warning restore CS0618
         BsonSerializer.RegisterSerializer(new GuidSerializer(GuidRepresentation.Standard));
 
+        var connectionString = builder.Configuration.GetConnectionString("TeamProjectAppDb");
         builder.Services.Configure<DbConfig>(builder.Configuration.GetSection("Database"));
         builder.Services.AddSingleton<IMongoDatabase>(sp =>
         {
             var dbConfig = sp.GetRequiredService<IOptions<DbConfig>>().Value;
-            var mongoClient = new MongoClient(dbConfig.ConnectionString);
+            var mongoClient = new MongoClient(connectionString);
 
             return mongoClient.GetDatabase(dbConfig.DatabaseName);
         });
