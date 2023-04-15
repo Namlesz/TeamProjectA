@@ -16,9 +16,11 @@ public sealed class TokenManager
 
     public JwtSecurityToken GetToken(IEnumerable<Claim> authClaims)
     {
-        var authSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(_configuration["JWT:Secret"] ??
-                                                                             throw new MissingFieldException(
-                                                                                 "Can't load encode key.")));
+        var authSigningKey = new SymmetricSecurityKey(
+            Encoding.UTF8.GetBytes(
+                _configuration["JWT:Secret"] ?? throw new MissingFieldException("Can't load encode key.")
+            )
+        );
 
         var token = new JwtSecurityToken(
             expires: DateTime.Now.AddDays(1),
