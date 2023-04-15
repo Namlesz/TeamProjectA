@@ -38,6 +38,7 @@ internal static class RegisterServices
         builder.Services.AddMapster();
         builder.AddJwtBearerAuthentication();
         builder.Services.ConfigureSwagger();
+        builder.Services.AddScoped<CurrentUser>();
         // builder.ConfigureIdentity(); // <-- Use for B2C
         return builder;
     }
@@ -76,7 +77,6 @@ internal static class RegisterServices
 
     private static void AddJwtBearerAuthentication(this WebApplicationBuilder builder)
     {
-        builder.Services.AddScoped<CurrentUser>();
         builder.Services.AddAuthentication(options =>
             {
                 options.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;

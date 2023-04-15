@@ -7,7 +7,6 @@ using TeamProjectA.Application.Queries.Workouts.GetWorkoutDetailsById;
 using TeamProjectA.Application.Queries.Workouts.GetWorkoutsForUser;
 using TeamProjectA.Domain.Entities.BaseModels;
 using TeamProjectA.Domain.Entities.Workouts;
-using TeamProjectA.Domain.Shared;
 
 namespace TeamProjectA.Api.Controllers;
 
@@ -15,12 +14,10 @@ namespace TeamProjectA.Api.Controllers;
 public sealed class WorkoutsController : ControllerBase
 {
     private readonly IMediator _mediator;
-    private readonly CurrentUser _currentUser;
 
-    public WorkoutsController(IMediator mediator, CurrentUser currentUser)
+    public WorkoutsController(IMediator mediator)
     {
         _mediator = mediator;
-        _currentUser = currentUser;
     }
 
     [HttpPost]
@@ -61,10 +58,4 @@ public sealed class WorkoutsController : ControllerBase
     [SwaggerResponse(StatusCodes.Status200OK)]
     public async Task<ActionResult<List<WorkoutDto>>> GetWorkouts([FromQuery] GetWorkoutsForUserQuery request) =>
         Ok(await _mediator.Send(request));
-    
-    [HttpGet]
-    public IActionResult Test()
-    {
-        return Ok(_currentUser);
-    }
 }

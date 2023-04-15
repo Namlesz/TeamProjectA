@@ -12,7 +12,7 @@ internal sealed class CurrentUserMiddleware
         _next = next;
     }
 
-    public async Task Invoke(HttpContext context, CurrentUser currentUser)
+    public async Task InvokeAsync(HttpContext context, CurrentUser currentUser)
     {
         try
         {
