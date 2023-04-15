@@ -26,6 +26,9 @@
     <ItemGroup>
         <ProjectReference Include="..\TeamProjectA.Application\TeamProjectA.Application.csproj"/>
         <ProjectReference Include="..\TeamProjectA.Infrastructure\TeamProjectA.Infrastructure.csproj"/>
+        <ProjectReference Include="..\TeamProjectA.Web\TeamProjectA.Web.esproj">
+            <referenceOutputAssembly>false</referenceOutputAssembly>
+        </ProjectReference>
     </ItemGroup>
 
 </Project>
