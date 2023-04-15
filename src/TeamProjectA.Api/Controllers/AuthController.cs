@@ -11,7 +11,9 @@ using TeamProjectA.Domain.Entities.BaseModels;
 
 namespace TeamProjectA.Api.Controllers;
 
-[ApiController, Route("api/[controller]/[action]"), AllowAnonymous]
+[ApiController]
+[AllowAnonymous]
+[Route("api/[controller]/[action]")]
 public sealed class AuthController : ControllerBase
 {
     private readonly TokenManager _tokenManager;
