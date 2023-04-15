@@ -14,7 +14,7 @@ public sealed class TokenManager
         _configuration = configuration;
     }
 
-    public JwtSecurityToken GetToken(IEnumerable<Claim> authClaims)
+    private JwtSecurityToken GetToken(IEnumerable<Claim> authClaims)
     {
         var authSigningKey = new SymmetricSecurityKey(
             Encoding.UTF8.GetBytes(
@@ -27,7 +27,10 @@ public sealed class TokenManager
             claims: authClaims,
             signingCredentials: new SigningCredentials(authSigningKey, SecurityAlgorithms.HmacSha256)
         );
-
+        
         return token;
     }
+    
+    public string GetTokenString(IEnumerable<Claim> authClaims) =>
+        new JwtSecurityTokenHandler().WriteToken(GetToken(authClaims));
 }
