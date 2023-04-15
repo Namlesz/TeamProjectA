@@ -38,6 +38,7 @@ internal static class RegisterServices
         builder.Services.AddMapster();
         builder.AddJwtBearerAuthentication();
         builder.Services.ConfigureSwagger();
+        builder.Services.AddSingleton<TokenManager>();
         builder.Services.AddScoped<CurrentUser>();
         // builder.ConfigureIdentity(); // <-- Use for B2C
         return builder;

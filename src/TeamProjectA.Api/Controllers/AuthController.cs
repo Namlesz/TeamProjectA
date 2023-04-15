@@ -1,21 +1,19 @@
 using System.IdentityModel.Tokens.Jwt;
 using System.Security.Claims;
-using System.Text;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.IdentityModel.Tokens;
+using TeamProjectA.Api.Auth;
 
 namespace TeamProjectA.Api.Controllers;
 
 [ApiController, Route("api/[controller]/[action]"), AllowAnonymous]
 public sealed class AuthController : ControllerBase
 {
-    private readonly IConfiguration _configuration;
+    private readonly TokenManager _tokenManager;
 
-
-    public AuthController(IConfiguration configuration)
+    public AuthController(TokenManager tokenManager)
     {
-        _configuration = configuration;
+        _tokenManager = tokenManager;
     }
 
     [HttpPost]
@@ -30,25 +28,10 @@ public sealed class AuthController : ControllerBase
             new(JwtRegisteredClaimNames.Jti, Guid.NewGuid().ToString())
         };
 
-        var token = GetToken(authClaims);
+        var token = _tokenManager.GetToken(authClaims);
         return Ok(new
         {
             token = new JwtSecurityTokenHandler().WriteToken(token)
         });
-    }
-
-    private JwtSecurityToken GetToken(IEnumerable<Claim> authClaims)
-    {
-        var authSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(_configuration["JWT:Secret"] ??
-                                                                             throw new MissingFieldException(
-                                                                                 "Can't load encode key.")));
-
-        var token = new JwtSecurityToken(
-            expires: DateTime.Now.AddDays(1),
-            claims: authClaims,
-            signingCredentials: new SigningCredentials(authSigningKey, SecurityAlgorithms.HmacSha256)
-        );
-
-        return token;
     }
 }
