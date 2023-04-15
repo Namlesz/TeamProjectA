@@ -14,6 +14,7 @@ using MongoDB.Driver;
 using TeamProjectA.Api.Auth;
 using TeamProjectA.Application.Queries.Auth;
 using TeamProjectA.Domain.Repositories;
+using TeamProjectA.Domain.Shared;
 using TeamProjectA.Infrastructure.DAL;
 using TeamProjectA.Infrastructure.Repositories;
 using TeamProjectA.Infrastructure.Settings;
@@ -75,6 +76,7 @@ internal static class RegisterServices
 
     private static void AddJwtBearerAuthentication(this WebApplicationBuilder builder)
     {
+        builder.Services.AddScoped<CurrentUser>();
         builder.Services.AddAuthentication(options =>
             {
                 options.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;

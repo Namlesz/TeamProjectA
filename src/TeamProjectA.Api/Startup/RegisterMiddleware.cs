@@ -1,3 +1,5 @@
+using TeamProjectA.Api.Auth;
+
 namespace TeamProjectA.Api.Startup;
 
 internal static class RegisterMiddleware
@@ -27,6 +29,8 @@ internal static class RegisterMiddleware
         app.UseAuthorization();
 
         app.MapControllers().RequireAuthorization();
+        
+        app.UseMiddleware<CurrentUserMiddleware>();
 
         return app;
     }
