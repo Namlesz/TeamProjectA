@@ -8,13 +8,17 @@ namespace TeamProjectA.Infrastructure.DAL;
 public class TeamDbContext : ITeamDbContext
 {
     private readonly IMongoDatabase _db;
-    private readonly string _collectionName;
+    private readonly IOptions<DbConfig> _dbConfig;
 
     public TeamDbContext(IMongoDatabase db, IOptions<DbConfig> dbConfig)
     {
         _db = db;
-        _collectionName = dbConfig.Value.WorkoutsCollection;
+        _dbConfig = dbConfig;
     }
 
-    public IMongoCollection<WorkoutEntity> WorkoutsCollection => _db.GetCollection<WorkoutEntity>(_collectionName);
+    public IMongoCollection<WorkoutEntity> WorkoutsCollection =>
+        _db.GetCollection<WorkoutEntity>(_dbConfig.Value.WorkoutsCollection);
+    
+    public IMongoCollection<UserEntity> UsersCollection =>
+        _db.GetCollection<UserEntity>(_dbConfig.Value.UsersCollection);
 }

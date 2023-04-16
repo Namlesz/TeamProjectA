@@ -1,15 +1,20 @@
 using System.Reflection;
+using System.Text;
 using Mapster;
 using MapsterMapper;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.Extensions.Options;
 using Microsoft.Identity.Web;
+using Microsoft.IdentityModel.Tokens;
+using Microsoft.OpenApi.Models;
 using MongoDB.Bson;
 using MongoDB.Bson.Serialization;
 using MongoDB.Bson.Serialization.Serializers;
 using MongoDB.Driver;
-using TeamProjectA.Application.Queries.Auth;
+using TeamProjectA.Api.Auth;
+using TeamProjectA.Application.Queries.Workouts.GetWorkoutsForUser;
 using TeamProjectA.Domain.Repositories;
+using TeamProjectA.Domain.Shared;
 using TeamProjectA.Infrastructure.DAL;
 using TeamProjectA.Infrastructure.Repositories;
 using TeamProjectA.Infrastructure.Settings;
@@ -24,14 +29,18 @@ internal static class RegisterServices
         builder.Services.AddEndpointsApiExplorer();
         builder.Services.AddSwaggerGen();
         builder.Services.AddMediatR(x => x.RegisterServicesFromAssemblies(
-            typeof(TestQuery).Assembly
+            typeof(GetWorkoutsForUserQuery).Assembly
         ));
 
         builder.ConfigureMongoDbConnection();
         builder.Services.AddDbContexts();
         builder.Services.AddRepositories();
         builder.Services.AddMapster();
-        builder.ConfigureIdentity();
+        builder.AddJwtBearerAuthentication();
+        builder.Services.ConfigureSwagger();
+        builder.Services.AddSingleton<TokenManager>();
+        builder.Services.AddScoped<CurrentUser>();
+        // builder.ConfigureIdentity(); // <-- Use for B2C
         return builder;
     }
 
@@ -44,7 +53,6 @@ internal static class RegisterServices
 
     private static void AddDbContexts(this IServiceCollection services)
     {
-        services.AddSingleton<UserContext>();
         services.AddSingleton<ITeamDbContext, TeamDbContext>();
     }
 
@@ -54,6 +62,7 @@ internal static class RegisterServices
         services.AddScoped<IWorkoutsRepository, WorkoutsRepository>();
     }
 
+    // Use for B2C authentication
     private static void ConfigureIdentity(this WebApplicationBuilder builder)
     {
         builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
@@ -64,6 +73,53 @@ internal static class RegisterServices
                     options.TokenValidationParameters.NameClaimType = "name";
                 },
                 options => { builder.Configuration.Bind("AzureAdB2C", options); });
+    }
+
+    private static void AddJwtBearerAuthentication(this WebApplicationBuilder builder)
+    {
+        builder.Services.AddAuthentication(options =>
+            {
+                options.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
+                options.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
+                options.DefaultScheme = JwtBearerDefaults.AuthenticationScheme;
+            })
+            .AddJwtBearer(options =>
+            {
+                options.SaveToken = true;
+                options.RequireHttpsMetadata = false;
+                options.TokenValidationParameters = new TokenValidationParameters()
+                {
+                    ValidateIssuer = false,
+                    ValidateAudience = false,
+                    IssuerSigningKey =
+                        new SymmetricSecurityKey(Encoding.UTF8.GetBytes(builder.Configuration["JWT:Secret"] ??
+                                                                        throw new MissingFieldException(
+                                                                            "Can't load jwt key.")))
+                };
+            });
+    }
+
+    private static void ConfigureSwagger(this IServiceCollection services)
+    {
+        services.AddSwaggerGen(options =>
+        {
+            options.EnableAnnotations();
+            options.AddSecurityDefinition(name: "Bearer", securityScheme: new OpenApiSecurityScheme
+            {
+                Name = "Authorization",
+                Description = "Enter the Bearer Authorization string as following: `Bearer [token]`",
+                In = ParameterLocation.Header,
+                Type = SecuritySchemeType.ApiKey,
+                Scheme = "Bearer"
+            });
+            options.OperationFilter<BasicAuthOperationsFilter>();
+            options.SwaggerDoc("v1", new OpenApiInfo
+            {
+                Title = "Team App API",
+                Version = "v1",
+                Description = ".NET 7 WebAPI"
+            });
+        });
     }
 
     private static void ConfigureMongoDbConnection(this WebApplicationBuilder builder)

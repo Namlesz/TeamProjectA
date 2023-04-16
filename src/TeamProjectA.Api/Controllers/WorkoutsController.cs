@@ -10,7 +10,9 @@ using TeamProjectA.Domain.Entities.Workouts;
 
 namespace TeamProjectA.Api.Controllers;
 
-[ApiController, Route("api/[controller]/[action]"), Produces("application/json")]
+[ApiController]
+[Route("api/[controller]/[action]")]
+[Produces("application/json")]
 public sealed class WorkoutsController : ControllerBase
 {
     private readonly IMediator _mediator;
@@ -56,6 +58,6 @@ public sealed class WorkoutsController : ControllerBase
     [HttpGet]
     [SwaggerOperation("Get workouts for user")]
     [SwaggerResponse(StatusCodes.Status200OK)]
-    public async Task<ActionResult<List<WorkoutDto>>> GetWorkouts([FromQuery] GetWorkoutsForUserQuery request) =>
-        Ok(await _mediator.Send(request));
+    public async Task<ActionResult<List<WorkoutDto>>> GetWorkouts() =>
+        Ok(await _mediator.Send(new GetWorkoutsForUserQuery()));
 }

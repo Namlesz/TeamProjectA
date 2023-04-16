@@ -1,35 +1,50 @@
+using System.IdentityModel.Tokens.Jwt;
+using System.Security.Claims;
 using MediatR;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.Identity.Web.Resource;
-using TeamProjectA.Application.Queries.Auth;
+using Swashbuckle.AspNetCore.Annotations;
+using TeamProjectA.Api.Auth;
+using TeamProjectA.Application.Commands.Auth.CreateUser;
+using TeamProjectA.Application.Queries.Auth.GetUser;
+using TeamProjectA.Domain.Entities.BaseModels;
 
 namespace TeamProjectA.Api.Controllers;
 
-// TODO: Check how to get user information
-[ApiController, Route("api/[controller]/[action]")]
-[RequiredScope("taskread")]
-[Authorize]
+[ApiController]
+[AllowAnonymous]
+[Route("api/[controller]/[action]")]
 public sealed class AuthController : ControllerBase
 {
+    private readonly TokenManager _tokenManager;
     private readonly IMediator _mediator;
-    private readonly IHttpContextAccessor _httpContextAccessor;
 
-    public AuthController(IMediator mediator, IHttpContextAccessor httpContextAccessor)
+    public AuthController(TokenManager tokenManager, IMediator mediator)
     {
+        _tokenManager = tokenManager;
         _mediator = mediator;
-        _httpContextAccessor = httpContextAccessor;
     }
 
-
-    [HttpGet]
-    public Task<IActionResult> Hello()
+    [HttpPost]
+    [SwaggerOperation("Login user or create new user if not exists")]
+    [SwaggerResponse(StatusCodes.Status200OK)]
+    [SwaggerResponse(StatusCodes.Status500InternalServerError, "Can't create user")]
+    public async Task<ActionResult<TokenResult>> Login([FromQuery] string login)
     {
-        var x  = _httpContextAccessor.HttpContext?.User.FindFirst("http://schemas.microsoft.com/identity/claims/objectidentifier")?.Value;  
-        return Task.FromResult<IActionResult>(Ok(x));
+        var userId = await _mediator.Send(new GetUserQuery { Login = login.ToLower() }) ??
+                     await _mediator.Send(new CreateUserCommand { Login = login.ToLower() });
+
+        if (userId is null)
+            return Problem("Can't create user");
+
+        var authClaims = new List<Claim>
+        {
+            new("UserId", userId.ToString()!),
+            new(ClaimTypes.Name, login),
+            new(JwtRegisteredClaimNames.Jti, Guid.NewGuid().ToString())
+        };
+
+        var token = _tokenManager.GetTokenString(authClaims);
+        return Ok(new TokenResult(token));
     }
-
-
-    [HttpGet]
-    public async Task<IActionResult> Test() => Ok(await _mediator.Send(new TestQuery()));
 }
