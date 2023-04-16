@@ -21,6 +21,7 @@ internal static class RegisterMiddleware
         {
             app.UseDefaultFiles();
             app.UseStaticFiles();
+            app.MapFallbackToFile("index.html");
         }
 
         app.UseHttpsRedirection();
