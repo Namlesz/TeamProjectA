@@ -10,7 +10,6 @@ const { t } = useI18n()
 const openLoginModal = ref<boolean>(false)
 
 const goToLogin = () => {
-  //router.push({ name: 'login' })
   openLoginModal.value = true
 }
 
