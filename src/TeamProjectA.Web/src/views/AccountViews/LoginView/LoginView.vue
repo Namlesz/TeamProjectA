@@ -1,6 +1,7 @@
 <script setup lang='ts'>
 import { useI18n } from 'vue-i18n'
 import { useAccountStore } from '@/stores/account'
+import CenteredBox from '@/components/molecules/CenteredBox/CenteredBox.vue'
 
 const { t } = useI18n()
 
@@ -14,12 +15,7 @@ const goToHome = () => {
 </script>
 
 <template>
-  <v-sheet
-    border
-    rounded
-    :height='500'
-    :width='500'
-  >
+  <CenteredBox>
     <div>
       <HeadlineL>
         {{ t(`${tKey}.title`) }}
@@ -28,5 +24,5 @@ const goToHome = () => {
         {{ t('test') }}
       </TextButton>
     </div>
-  </v-sheet>
+  </CenteredBox>
 </template>

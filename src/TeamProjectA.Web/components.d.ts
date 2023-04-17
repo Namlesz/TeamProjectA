@@ -10,12 +10,17 @@ export {}
 declare module '@vue/runtime-core' {
   export interface GlobalComponents {
     AppHeader: typeof import('./src/components/organisms/AppHeader/AppHeader.vue')['default']
+    BasicBox: typeof import('./src/components/atoms/BasicBox/BasicBox.vue')['default']
+    BasicModal: typeof import('./src/components/atoms/BasicModal/BasicModal.vue')['default']
+    CenteredBox: typeof import('./src/components/molecules/CenteredBox/CenteredBox.vue')['default']
+    CenteredModal: typeof import('./src/components/organisms/CenteredModal/CenteredModal.vue')['default']
     HeadlineL: typeof import('./src/components/atoms/Typography/HeadlineL.vue')['default']
     HeadlineM: typeof import('./src/components/atoms/Typography/HeadlineM.vue')['default']
     HeadlineS: typeof import('./src/components/atoms/Typography/HeadlineS.vue')['default']
     HeadlineXL: typeof import('./src/components/atoms/Typography/HeadlineXL.vue')['default']
     HeadlineXS: typeof import('./src/components/atoms/Typography/HeadlineXS.vue')['default']
     IconButton: typeof import('./src/components/atoms/Buttons/IconButton.vue')['default']
+    LoginModal: typeof import('./src/components/modals/LoginModal/LoginModal.vue')['default']
     NavigationMenu: typeof import('./src/components/organisms/NavigationMenu/NavigationMenu.vue')['default']
     RouterLink: typeof import('vue-router')['RouterLink']
     RouterView: typeof import('vue-router')['RouterView']

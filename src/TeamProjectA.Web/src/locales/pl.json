@@ -6,6 +6,15 @@
   "loginView": {
     "title": "Logowanie"
   },
+  "loginModal": {
+    "title": "Hej",
+    "body": "Wystarczy, że podasz nam swoją nazwę użytkownika, aby rozpocząć przygodę z treningami.",
+    "button": "Do dzieła!",
+    "form": {
+      "nickname": "Nazwa użytkownika",
+      "nickname-is-empty-error": "Nazwa użytkownika nie może być pusta"
+    }
+  },
   "menu-items": {
     "friends": "Znajomi",
     "home": "Strona główna",

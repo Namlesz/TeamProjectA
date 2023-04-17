@@ -14,7 +14,10 @@ export default defineConfig({
     vueJsx(),
     Components(),
     VueI18nPlugin({
-      include: resolve(dirname(fileURLToPath(import.meta.url)), './src/locales/**'),
+      include: resolve(
+        dirname(fileURLToPath(import.meta.url)),
+        './src/locales/**',
+      ),
       runtimeOnly: false,
     }),
   ],
