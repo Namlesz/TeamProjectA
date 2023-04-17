@@ -7,6 +7,7 @@ export const useAccountStore = defineStore('account', () => {
   const shouldMenuBeVisible = ref<boolean>(false)
   const shouldMenuBeOpen = ref<boolean>(false)
   const isAuthenticated = ref<boolean>(false)
+  const token = ref<string>('')
 
   function setShouldMenuBeVisible(value: boolean) {
     shouldMenuBeVisible.value = value
@@ -16,14 +17,8 @@ export const useAccountStore = defineStore('account', () => {
     shouldMenuBeOpen.value = value
   }
 
-  function logout() {
-    setShouldMenuBeVisible(false)
-    router.replace({ name: 'login' })
-  }
-
-  function login() {
-    setShouldMenuBeVisible(true)
-    router.replace({ name: 'home' })
+  function setToken(value: string) {
+    token.value = value
   }
 
   function checkUserAuthentication() {
@@ -43,15 +38,31 @@ export const useAccountStore = defineStore('account', () => {
           isAuthenticated.value = false
           router.replace('/')
           localStorage.removeItem('userToken')
-          localStorage.removeItem('userId')
 
           return false
         }
       }
     } else {
       isAuthenticated.value = false
+      router.replace('/')
 
       return false
+    }
+  }
+
+  function logout() {
+    setToken('')
+    localStorage.setItem('userToken', '')
+    setShouldMenuBeVisible(false)
+    router.replace({ name: 'landing page' })
+  }
+
+  function login(token: string) {
+    setToken(token)
+    localStorage.setItem('userToken', token)
+    if (checkUserAuthentication()) {
+      setShouldMenuBeVisible(true)
+      router.replace({ name: 'home' })
     }
   }
 

@@ -2,24 +2,60 @@
 import CenteredModal from '@/components/organisms/CenteredModal/CenteredModal.vue'
 import TextBody from '@/components/atoms/Typography/TextBody.vue'
 import { useI18n } from 'vue-i18n'
-import { ref } from 'vue'
 import TextButton from '@/components/atoms/Buttons/TextButton.vue'
+import { useQuery } from '@tanstack/vue-query'
+import axios from 'axios'
+import { useField, useForm } from 'vee-validate'
+import { useAccountStore } from '@/stores/account'
+import { useToasterStore } from '@/stores/toaster'
 
-const tKey = 'loginModal'
+const { handleSubmit } = useForm({
+  validationSchema: {
+    nickname(value: string) {
+      if (value) return true
 
-const { t } = useI18n()
-
-const nickname = ref<string>('')
-
-const rules = [
-  (value: string) => {
-    if (value) return true
-
-    return t(`${tKey}.form.nickname-is-empty-error`)
+      return t(`${tKey}.form.nickname-is-empty-error`)
+    },
   },
-]
+})
 
 defineEmits(['on-close'])
+
+const tKey = 'loginModal'
+const { t } = useI18n()
+const nickname = useField('nickname')
+const accountStore = useAccountStore()
+const toasterStore = useToasterStore()
+
+const { refetch, isFetching, isFetched, isError, data } = useQuery({
+  queryKey: ['loginUser'],
+  queryFn: () => axios.post('/api/Auth/Login', null, {
+    params: {
+      login: nickname.value.value,
+    },
+  }),
+  select: (response) => response.data,
+  enabled: false,
+})
+
+const loginUser = async () => {
+  await refetch()
+
+  if (isFetched.value) {
+    if (isError.value) {
+      toasterStore.triggerToaster(t('common.errors.internal-server-error'), 'error')
+
+      return
+    }
+
+    accountStore.login(data.value.token)
+  }
+}
+
+const submit = handleSubmit(() => {
+  loginUser()
+})
+
 </script>
 <template>
   <CenteredModal
@@ -34,14 +70,15 @@ defineEmits(['on-close'])
       <TextBody class='text-justify'>
         {{ t(`${tKey}.body`) }}
       </TextBody>
-      <v-form
+      <form
         fast-fail
-        @submit.prevent
+        @submit.prevent='submit'
       >
         <v-text-field
-          v-model='nickname'
-          :rules='rules'
+          v-model='nickname.value.value'
+          :error-messages='nickname.errorMessage.value ?? ""'
           :label='t(`${tKey}.form.nickname`)'
+          :loading='isFetching'
         />
         <TextButton
           full-width
@@ -51,7 +88,7 @@ defineEmits(['on-close'])
         >
           {{ t(`${tKey}.button`) }}
         </TextButton>
-      </v-form>
+      </form>
     </template>
   </CenteredModal>
 </template>

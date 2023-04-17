@@ -2,7 +2,10 @@
 
 </script>
 <template>
-  <v-dialog transition='dialog-bottom-transition'>
+  <v-dialog
+    transition='dialog-bottom-transition'
+    :scrim='false'
+  >
     <slot />
   </v-dialog>
 </template>

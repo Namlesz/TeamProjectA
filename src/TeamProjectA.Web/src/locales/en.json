@@ -1,19 +1,24 @@
 {
+  "common": {
+    "errors": {
+      "internal-server-error": "Oops! Something went wrong."
+    }
+  },
   "landing-page": {
     "login": "Login",
     "register": "Register"
   },
-  "loginView": {
-    "title": "Login"
-  },
   "loginModal": {
-    "title": "hey",
     "body": "All you need to do is provide us with your nickname to get started on your training adventure.",
     "button": "Let's go!",
     "form": {
       "nickname": "Nickname",
       "nickname-is-empty-error": "Nickname can't be empty"
-    }
+    },
+    "title": "hey"
+  },
+  "loginView": {
+    "title": "Login"
   },
   "menu-items": {
     "friends": "Friends",
