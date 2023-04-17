@@ -79,6 +79,7 @@ const submit = handleSubmit(() => {
           :error-messages='nickname.errorMessage.value ?? ""'
           :label='t(`${tKey}.form.nickname`)'
           :loading='isFetching'
+          name='nickname'
         />
         <TextButton
           full-width
