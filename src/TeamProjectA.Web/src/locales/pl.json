@@ -1,7 +1,21 @@
 {
+  "common": {
+    "errors": {
+      "internal-server-error": "Ups! Coś poszło nie tak."
+    }
+  },
   "landing-page": {
     "login": "Zaloguj się",
     "register": "Zarejestruj się"
+  },
+  "loginModal": {
+    "body": "Wystarczy, że podasz nam swoją nazwę użytkownika, aby rozpocząć przygodę z treningami.",
+    "button": "Do dzieła!",
+    "form": {
+      "nickname": "Nazwa użytkownika",
+      "nickname-is-empty-error": "Nazwa użytkownika nie może być pusta"
+    },
+    "title": "Hej"
   },
   "loginView": {
     "title": "Logowanie"

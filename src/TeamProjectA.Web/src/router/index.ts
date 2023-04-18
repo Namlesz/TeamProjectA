@@ -1,4 +1,10 @@
 import { createRouter, createWebHistory } from 'vue-router'
+import { useAccountStore } from '@/stores/account'
+
+function checkAuthentication() {
+  const accountStore = useAccountStore()
+  accountStore.checkUserAuthentication()
+}
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
@@ -9,41 +15,28 @@ const router = createRouter({
       component: () => import('@/views/LandingPage/LandingPage.vue'),
     },
     {
-      path: '/account',
-      redirect: () => {
-        return { path: '/account/login' }
-      },
-    },
-    {
-      path: '/account/login',
-      name: 'login',
-      component: () => import('@/views/AccountViews/LoginView/LoginView.vue'),
-    },
-    {
-      path: '/account/register',
-      name: 'register',
-      component: () =>
-        import('@/views/AccountViews/RegisterView/RegisterView.vue'),
-    },
-    {
       path: '/home',
       name: 'home',
       component: () => import('@/views/HomeView/HomeView.vue'),
+      beforeEnter: () => checkAuthentication(),
     },
     {
       path: '/trainers',
       name: 'trainers',
       component: () => import('@/views/TrainersView/TrainersView.vue'),
+      beforeEnter: () => checkAuthentication(),
     },
     {
       path: '/invites',
       name: 'invites',
       component: () => import('@/views/InvitesView/InvitesView.vue'),
+      beforeEnter: () => checkAuthentication(),
     },
     {
       path: '/friends',
       name: 'friends',
       component: () => import('@/views/FriendsView/FriendsView.vue'),
+      beforeEnter: () => checkAuthentication(),
     },
     // error 404
     {
