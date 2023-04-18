@@ -4,9 +4,10 @@ services:
     build: .
     ports:
       - "8000:80"
-      - "8001:443"
-#    environment:
-#      - "ASPNETCORE_ENVIRONMENT=Development"
+#      - "8001:443"
+    environment:
+      - "ASPNETCORE_ENVIRONMENT=Production"
+      - "ConnectionStrings:TeamProjectAppDb=[CONNECTION_STRING]"
 #      - "ASPNETCORE_URLS=https://+;http://+"
 #      - "ASPNETCORE_HTTPS_PORT=8001"
 #      - "ASPNETCORE_Kestrel__Certificates__Default__Password=1234"
