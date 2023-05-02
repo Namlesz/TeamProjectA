@@ -13,9 +13,13 @@ import { aliases, mdi } from 'vuetify/iconsets/mdi'
 import '@mdi/font/css/materialdesignicons.css'
 import messages from '@intlify/unplugin-vue-i18n/messages'
 import { VueQueryPlugin } from '@tanstack/vue-query'
+import * as labs from 'vuetify/labs/components'
 
 const vuetify = createVuetify({
-  components,
+  components: {
+    ...labs,
+    ...components,
+  },
   directives,
   theme: {
     defaultTheme: 'dark',
