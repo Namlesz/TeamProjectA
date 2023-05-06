@@ -28,8 +28,10 @@ declare module '@vue/runtime-core' {
     RouterView: typeof import('vue-router')['RouterView']
     TextBody: typeof import('./src/components/atoms/Typography/TextBody.vue')['default']
     TextButton: typeof import('./src/components/atoms/Buttons/TextButton.vue')['default']
+    TextButtonWithIcon: typeof import('./src/components/atoms/Buttons/TextButtonWithIcon.vue')['default']
     TextCaption: typeof import('./src/components/atoms/Typography/TextCaption.vue')['default']
     TextSubtitle: typeof import('./src/components/atoms/Typography/TextSubtitle.vue')['default']
     ToastAlert: typeof import('./src/components/atoms/ToastAlert/ToastAlert.vue')['default']
+    UserListItem: typeof import('./src/components/molecules/UserListItem/UserListItem.vue')['default']
   }
 }
