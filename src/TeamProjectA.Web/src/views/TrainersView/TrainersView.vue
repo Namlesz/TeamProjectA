@@ -1,7 +1,6 @@
 <script setup lang='ts'>
-
-import UserListItem from '@/components/molecules/UserListItem/UserListItem.vue'
 import { useI18n } from 'vue-i18n'
+import UserListVirtualScroll from '@/components/organisms/UserListVirtualScroll/UserListVirtualScroll.vue'
 
 const { t } = useI18n()
 
@@ -30,20 +29,11 @@ const handleAddFriend = () => {
 </script>
 <template>
   <HeadlineL>{{ t('trainers-list') }}</HeadlineL>
-  <v-virtual-scroll
+  <UserListVirtualScroll
+    :primary-action='{name: t("add-friend"), icon: "mdi-plus"}'
     :items='trainers'
-    item-height='48'
-  >
-    <template #default='{ item }'>
-      <UserListItem
-        :initials='item.initials'
-        :name='item.name'
-        :description='item.description'
-        :action-name='t("add-friend")'
-        @on-action='handleAddFriend'
-      />
-    </template>
-  </v-virtual-scroll>
+    @on-primary-action='handleAddFriend'
+  />
 </template>
 <i18n>
 {

@@ -32,6 +32,8 @@ declare module '@vue/runtime-core' {
     TextCaption: typeof import('./src/components/atoms/Typography/TextCaption.vue')['default']
     TextSubtitle: typeof import('./src/components/atoms/Typography/TextSubtitle.vue')['default']
     ToastAlert: typeof import('./src/components/atoms/ToastAlert/ToastAlert.vue')['default']
+    TrainersListVirtualScroll: typeof import('./src/components/organisms/UserListVirtualScroll/TrainersListVirtualScroll.vue')['default']
     UserListItem: typeof import('./src/components/molecules/UserListItem/UserListItem.vue')['default']
+    UserListVirtualScroll: typeof import('./src/components/organisms/UserListVirtualScroll/UserListVirtualScroll.vue')['default']
   }
 }

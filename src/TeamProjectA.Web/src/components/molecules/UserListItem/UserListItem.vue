@@ -1,14 +1,10 @@
 <script setup lang='ts'>
 import TextCaption from '@/components/atoms/Typography/TextCaption.vue'
-import TextButtonWithIcon from '@/components/atoms/Buttons/TextButtonWithIcon.vue'
 import { useDisplay } from 'vuetify'
-import IconButton from '@/components/atoms/Buttons/IconButton.vue'
 
 const { mobile } = useDisplay()
 
-defineProps<{ initials: string, name: string, description: string, actionName: string }>()
-defineEmits(['onAction'])
-
+defineProps<{ initials: string, name: string, description?: string }>()
 </script>
 <template>
   <v-list-item
@@ -32,19 +28,7 @@ defineEmits(['onAction'])
       </TextCaption>
     </div>
     <template #append>
-      <TextButtonWithIcon
-        v-if='!mobile'
-        variant='positive'
-        icon='mdi-plus'
-        @click='$emit("onAction")'
-      >
-        {{ actionName }}
-      </TextButtonWithIcon>
-      <IconButton
-        v-if='mobile'
-        icon='mdi-plus'
-        variant='positive'
-      />
+      <slot name='actions' />
     </template>
   </v-list-item>
 </template>

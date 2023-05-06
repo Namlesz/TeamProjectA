@@ -1,12 +1,12 @@
 <script setup lang='ts'>
-defineProps<{ fullWidth?: boolean, variant?: 'primary' | 'secondary' | 'positive', icon: string }>()
+defineProps<{ fullWidth?: boolean, variant?: 'primary' | 'secondary' | 'positive' | 'negative', icon: string }>()
 </script>
 <template>
   <v-btn
     :max-width='!fullWidth ? "300px" : ""'
     :width='fullWidth ? "100%" : ""'
     rounded='lg'
-    :color='variant === "primary" ? "indigo" : variant === "positive" ? "green" : ""'
+    :color='variant === "primary" ? "indigo" : variant === "positive" ? "green" : variant === "negative" ? "red" : ""'
     :prepend-icon='icon'
   >
     <slot />
