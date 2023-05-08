@@ -23,7 +23,7 @@ defineProps<{ initials: string, name: string, description?: string }>()
     </template>
     <div class='d-flex flex-column'>
       <v-list-item-title>{{ name }}</v-list-item-title>
-      <TextCaption v-if='!mobile'>
+      <TextCaption v-if='!mobile && description'>
         {{ description }}
       </TextCaption>
     </div>

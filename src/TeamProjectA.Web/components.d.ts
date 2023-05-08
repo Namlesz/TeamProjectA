@@ -9,6 +9,7 @@ export {}
 
 declare module '@vue/runtime-core' {
   export interface GlobalComponents {
+    ActionButton: typeof import('./src/components/molecules/Buttons/ActionButton.vue')['default']
     AppHeader: typeof import('./src/components/organisms/AppHeader/AppHeader.vue')['default']
     BasicBox: typeof import('./src/components/atoms/BasicBox/BasicBox.vue')['default']
     BasicModal: typeof import('./src/components/atoms/BasicModal/BasicModal.vue')['default']
