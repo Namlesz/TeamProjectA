@@ -5,7 +5,7 @@ namespace TeamProjectA.Api.Controllers;
 
 [ApiController]
 [Route("api/[controller]/[action]")]
-public class InvitesController
+public class InvitesController : ControllerBase
 {
     private readonly IMediator _mediator;
 
