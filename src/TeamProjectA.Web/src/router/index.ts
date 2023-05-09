@@ -38,6 +38,12 @@ const router = createRouter({
       component: () => import('@/views/FriendsView/FriendsView.vue'),
       beforeEnter: () => checkAuthentication(),
     },
+    {
+      path: '/friends/:name',
+      name: 'friend',
+      component: () => import('@/views/FriendView/FriendView.vue'),
+      beforeEnter: () => checkAuthentication(),
+    },
     // error 404
     {
       path: '/:pathMatch(.*)',
