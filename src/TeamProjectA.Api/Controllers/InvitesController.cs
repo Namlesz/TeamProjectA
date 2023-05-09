@@ -5,23 +5,29 @@ namespace TeamProjectA.Api.Controllers;
 
 [ApiController]
 [Route("api/[controller]/[action]")]
-public class FriendsController
+public class InvitesController
 {
     private readonly IMediator _mediator;
 
-    public FriendsController(IMediator mediator)
+    public InvitesController(IMediator mediator)
     {
         _mediator = mediator;
     }
 
     [HttpGet]
-    public async Task<IActionResult> GetFriends()
+    public async Task<IActionResult> GetInvites()
+    {
+        throw new NotImplementedException();
+    }
+
+    [HttpPost]
+    public async Task<IActionResult> ApproveInvite()
     {
         throw new NotImplementedException();
     }
 
     [HttpDelete]
-    public async Task<IActionResult> RemoveFriend()
+    public async Task<IActionResult> RejectInvite()
     {
         throw new NotImplementedException();
     }
