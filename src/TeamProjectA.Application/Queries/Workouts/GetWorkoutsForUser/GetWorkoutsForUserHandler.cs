@@ -16,6 +16,6 @@ public class GetWorkoutsForUserHandler : IRequestHandler<GetWorkoutsForUserQuery
         _currentUser = currentUser;
     }
 
-    public async Task<List<WorkoutDto>> Handle(GetWorkoutsForUserQuery request, CancellationToken cancellationToken) =>
-        await _workoutsRepository.GetWorkoutsForUser(_currentUser.UserId);
+    public Task<List<WorkoutDto>> Handle(GetWorkoutsForUserQuery request, CancellationToken cancellationToken) =>
+        _workoutsRepository.GetWorkoutsForUser(_currentUser.UserId);
 }

@@ -23,14 +23,14 @@ public sealed class TokenManager
         );
 
         var token = new JwtSecurityToken(
-            expires: DateTime.Now.AddDays(1),
             claims: authClaims,
+            expires: DateTime.Now.AddDays(1),
             signingCredentials: new SigningCredentials(authSigningKey, SecurityAlgorithms.HmacSha256)
         );
-        
+
         return token;
     }
-    
+
     public string GetTokenString(IEnumerable<Claim> authClaims) =>
         new JwtSecurityTokenHandler().WriteToken(GetToken(authClaims));
 }

@@ -12,6 +12,6 @@ public class GetUserHandler : IRequestHandler<GetUserQuery, Guid?>
         _userRepository = userRepository;
     }
 
-    public async Task<Guid?> Handle(GetUserQuery request, CancellationToken cancellationToken) =>
-        await _userRepository.GetUser(request.Login);
+    public Task<Guid?> Handle(GetUserQuery request, CancellationToken cancellationToken) =>
+        _userRepository.GetUser(request.Login);
 }
