@@ -6,4 +6,5 @@ public interface IUserRepository
 {
     public Task<Guid?> CreateNewUser(NewUser newUser);
     public Task<Guid?> GetUser(string login);
+    public Task<List<UserDto>> SearchUser(string login);
 }

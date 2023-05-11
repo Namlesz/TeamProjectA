@@ -35,8 +35,10 @@ public sealed class WorkoutsRepository : IWorkoutsRepository
     }
 
     public async Task<WorkoutDto?> GetWorkoutDetailsById(Guid workoutId) =>
-        _mapper.Map<WorkoutEntity, WorkoutDto>(await _context.WorkoutsCollection.AsQueryable()
-            .Where(x => x.Id == workoutId).FirstOrDefaultAsync());
+        _mapper.Map<WorkoutEntity, WorkoutDto>(await _context.WorkoutsCollection
+            .AsQueryable()
+            .Where(x => x.Id == workoutId)
+            .FirstOrDefaultAsync());
 
     public async Task<bool> DeleteWorkoutById(Guid workoutId)
     {
@@ -46,7 +48,11 @@ public sealed class WorkoutsRepository : IWorkoutsRepository
 
     public async Task<List<WorkoutDto>> GetWorkoutsForUser(Guid userId)
     {
-        var workouts = await _context.WorkoutsCollection.AsQueryable().Where(x => x.OwnerId == userId).ToListAsync();
+        var workouts = await _context.WorkoutsCollection
+            .AsQueryable()
+            .Where(x => x.OwnerId == userId)
+            .ToListAsync();
+
         return _mapper.Map<List<WorkoutEntity>, List<WorkoutDto>>(workouts);
     }
 }

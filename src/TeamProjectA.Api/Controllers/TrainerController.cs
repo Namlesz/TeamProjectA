@@ -1,6 +1,8 @@
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
+using Swashbuckle.AspNetCore.Annotations;
 using TeamProjectA.Application.Queries.Trainer.SearchTrainer;
+using TeamProjectA.Domain.Entities.Users;
 
 namespace TeamProjectA.Api.Controllers;
 
@@ -15,14 +17,10 @@ public class TrainerController : ControllerBase
         _mediator = mediator;
     }
 
-    // TODO: Active
+    //TODO: Check if trainer is already invited or friends 
     [HttpGet]
-    public async Task<IActionResult> SearchTrainer([FromQuery] SearchTrainerQuery request) =>
+    [SwaggerOperation("Search users by login, show all results containing part of login")]
+    [SwaggerResponse(StatusCodes.Status200OK)]
+    public async Task<ActionResult<List<UserDto>>> SearchTrainer([FromQuery] SearchTrainerQuery request) =>
         Ok(await _mediator.Send(request));
-
-    [HttpGet]
-    public async Task<IActionResult> GetTrainers()
-    {
-        throw new NotImplementedException();
-    }
 }
