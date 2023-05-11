@@ -3,4 +3,4 @@ using MediatR;
 
 namespace TeamProjectA.Application.Commands.Invites.SendInvite;
 
-public record SendInviteCommand([Required] Guid UserIdToInvite) : IRequest<Guid?>;
+public sealed record SendInviteCommand([Required] Guid UserIdToInvite) : IRequest<Guid?>;
