@@ -46,13 +46,9 @@ public sealed class WorkoutsRepository : IWorkoutsRepository
         return result.IsAcknowledged && result.DeletedCount == 1;
     }
 
-    public async Task<List<WorkoutDto>> GetWorkoutsForUser(Guid userId)
-    {
-        var workouts = await _context.WorkoutsCollection
+    public async Task<List<WorkoutDto>> GetWorkoutsForUser(Guid userId) =>
+        _mapper.Map<List<WorkoutEntity>, List<WorkoutDto>>(await _context.WorkoutsCollection
             .AsQueryable()
             .Where(x => x.OwnerId == userId)
-            .ToListAsync();
-
-        return _mapper.Map<List<WorkoutEntity>, List<WorkoutDto>>(workouts);
-    }
+            .ToListAsync());
 }

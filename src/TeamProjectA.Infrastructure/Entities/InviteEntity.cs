@@ -6,5 +6,5 @@ public class InviteEntity
 {
     [BsonId] public Guid Id { get; set; }
     public Guid InvitedUserId { get; set; }
-    public Guid OwnerId { get; set; }
+    public Guid InviteCreatorId { get; set; }
 }

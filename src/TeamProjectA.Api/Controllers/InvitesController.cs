@@ -2,7 +2,9 @@ using MediatR;
 using Microsoft.AspNetCore.Mvc;
 using Swashbuckle.AspNetCore.Annotations;
 using TeamProjectA.Application.Commands.Invites.SendInvite;
+using TeamProjectA.Application.Queries.Invites.GetInvites;
 using TeamProjectA.Domain.Entities.BaseModels;
+using TeamProjectA.Domain.Entities.Invites;
 
 namespace TeamProjectA.Api.Controllers;
 
@@ -21,7 +23,7 @@ public class InvitesController : ControllerBase
     [SwaggerOperation("Create invite for user")]
     [SwaggerResponse(StatusCodes.Status200OK)]
     [SwaggerResponse(StatusCodes.Status400BadRequest, "Can't create invite")]
-    public async Task<ActionResult<IdResult>> SendInvite([FromBody] SendInviteCommand request) =>
+    public async Task<ActionResult<IdResult>> SendInvite([FromQuery] SendInviteCommand request) =>
         await _mediator.Send(request) switch
         {
             { } inviteId => Ok(new IdResult(inviteId.ToString())),
@@ -29,10 +31,10 @@ public class InvitesController : ControllerBase
         };
 
     [HttpGet]
-    public async Task<IActionResult> GetInvites()
-    {
-        throw new NotImplementedException();
-    }
+    [SwaggerOperation("Get invites for user")]
+    [SwaggerResponse(StatusCodes.Status200OK)]
+    public async Task<ActionResult<List<InviteDto>>> GetInvites() =>
+        Ok(await _mediator.Send(new GetInvitesQuery()));
 
     [HttpPost]
     public async Task<IActionResult> ApproveInvite()
