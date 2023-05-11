@@ -14,6 +14,12 @@ public class InvitesController : ControllerBase
         _mediator = mediator;
     }
 
+    [HttpPost]
+    public async Task<IActionResult> SendInvite()
+    {
+        throw new NotImplementedException();
+    }
+
     [HttpGet]
     public async Task<IActionResult> GetInvites()
     {
