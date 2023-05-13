@@ -1,7 +1,8 @@
 {
   "common": {
     "errors": {
-      "internal-server-error": "Oops! Something went wrong."
+      "internal-server-error": "Oops! Something went wrong.",
+      "nickname-is-empty-error": "Nickname can't be empty"
     }
   },
   "landing-page": {
@@ -12,8 +13,7 @@
     "body": "All you need to do is provide us with your nickname to get started on your training adventure.",
     "button": "Let's go!",
     "form": {
-      "nickname": "Nickname",
-      "nickname-is-empty-error": "Nickname can't be empty"
+      "nickname": "Nickname"
     },
     "title": "hey"
   },

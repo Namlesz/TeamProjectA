@@ -14,7 +14,7 @@ const { handleSubmit } = useForm({
     nickname(value: string) {
       if (value) return true
 
-      return t(`${tKey}.form.nickname-is-empty-error`)
+      return t('common.errors.nickname-is-empty-error')
     },
   },
 })
