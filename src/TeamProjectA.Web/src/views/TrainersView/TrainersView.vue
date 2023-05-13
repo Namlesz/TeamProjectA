@@ -1,6 +1,18 @@
 <script setup lang='ts'>
 import { useI18n } from 'vue-i18n'
 import UserListVirtualScroll from '@/components/organisms/UserListVirtualScroll/UserListVirtualScroll.vue'
+import TextButton from '@/components/atoms/Buttons/TextButton.vue'
+import { useField, useForm } from 'vee-validate'
+
+const { handleSubmit } = useForm({
+  validationSchema: {
+    trainerName(value: string) {
+      if (value) return true
+
+      return t('common.errors.nickname-is-empty-error')
+    },
+  },
+})
 
 const { t } = useI18n()
 
@@ -22,28 +34,70 @@ const trainers: Trainer[] = [
   },
 ]
 
+const trainerName = useField('trainerName')
+const isFetching = false // TODO handle isFetching
+
 const handleAddFriend = () => {
   // TODO handle add friend
 }
 
+const handleGetTrainerDetails = () => {
+  // TODO get trainer details
+}
+
+const submitTrainer = handleSubmit(() => {
+  handleGetTrainerDetails()
+})
+
 </script>
 <template>
   <HeadlineL>{{ t('trainers-list') }}</HeadlineL>
+  <form
+    fast-fail
+    class='ma-5'
+    @submit.prevent='submitTrainer'
+  >
+    <HeadlineXS>{{ t('search-trainer') }}</HeadlineXS>
+    <div class='d-flex align-center justify-center'>
+      <v-text-field
+        v-model='trainerName.value.value'
+        :error-messages='trainerName.errorMessage.value ?? ""'
+        :label='t(`form.trainer-name`)'
+        :loading='isFetching'
+        name='trainerName'
+      />
+      <TextButton
+        variant='primary'
+        type='submitTrainer'
+        class='ml-5'
+      >
+        {{ t('form.button') }}
+      </TextButton>
+    </div>
+  </form>
   <UserListVirtualScroll
     :primary-action='{name: t("add-friend"), icon: "mdi-plus"}'
     :items='trainers'
     @on-primary-action='handleAddFriend'
   />
 </template>
-<i18n>
-{
-  "pl": {
-    "trainers-list": "Lista trenerów",
-    "add-friend": "Dodaj znajomego"
-  },
+<i18n>{
   "en": {
-    "trainers-list": "Trainers list",
-    "add-friend": "Add friend"
+    "add-friend": "Add friend",
+    "form": {
+      "button": "Search",
+      "trainer-name": "Trainer name"
+    },
+    "search-trainer": "Search trainer",
+    "trainers-list": "Trainers list"
+  },
+  "pl": {
+    "add-friend": "Dodaj znajomego",
+    "form": {
+      "button": "Wyszukaj",
+      "trainer-name": "Nazwa trenera"
+    },
+    "search-trainer": "Wyszukaj trenera",
+    "trainers-list": "Lista trenerów"
   }
-}
-</i18n>
+}</i18n>

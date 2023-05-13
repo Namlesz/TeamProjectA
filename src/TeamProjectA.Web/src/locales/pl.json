@@ -1,7 +1,8 @@
 {
   "common": {
     "errors": {
-      "internal-server-error": "Ups! Coś poszło nie tak."
+      "internal-server-error": "Ups! Coś poszło nie tak.",
+      "nickname-is-empty-error": "Nazwa użytkownika nie może być pusta"
     }
   },
   "landing-page": {
@@ -12,8 +13,7 @@
     "body": "Wystarczy, że podasz nam swoją nazwę użytkownika, aby rozpocząć przygodę z treningami.",
     "button": "Do dzieła!",
     "form": {
-      "nickname": "Nazwa użytkownika",
-      "nickname-is-empty-error": "Nazwa użytkownika nie może być pusta"
+      "nickname": "Nazwa użytkownika"
     },
     "title": "Hej"
   },
