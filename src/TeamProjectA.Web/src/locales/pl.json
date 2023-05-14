@@ -1,34 +1,9 @@
 {
-  "common": {
-    "errors": {
-      "internal-server-error": "Ups! Coś poszło nie tak.",
-      "nickname-is-empty-error": "Nazwa użytkownika nie może być pusta"
-    }
+  "back": "Wróć",
+  "errors": {
+    "internal-server-error": "Ups! Coś poszło nie tak.",
+    "nickname-is-empty-error": "Nazwa użytkownika nie może być pusta"
   },
-  "landing-page": {
-    "login": "Zaloguj się",
-    "register": "Zarejestruj się"
-  },
-  "loginModal": {
-    "body": "Wystarczy, że podasz nam swoją nazwę użytkownika, aby rozpocząć przygodę z treningami.",
-    "button": "Do dzieła!",
-    "form": {
-      "nickname": "Nazwa użytkownika"
-    },
-    "title": "Hej"
-  },
-  "loginView": {
-    "title": "Logowanie"
-  },
-  "menu-items": {
-    "friends": "Znajomi",
-    "home": "Strona główna",
-    "invites": "Zaproszenia",
-    "logout": "Wyloguj",
-    "trainers": "Trenerzy"
-  },
-  "registerView": {
-    "title": "Rejestracja"
-  },
-  "test": "Testujemy"
+  "next": "Dalej",
+  "ok": "Ok"
 }

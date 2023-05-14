@@ -5,8 +5,6 @@ import router from '@/router'
 import { useAccountStore } from '@/stores/account'
 import { useDisplay } from 'vuetify'
 
-const tKey = 'menu-items'
-
 const { mobile } = useDisplay()
 const { t } = useI18n()
 const accountStore = useAccountStore()
@@ -23,22 +21,22 @@ const activeMenuItem = computed({
 const menuItems = [
   {
     icon: 'mdi-home',
-    title: t(`${tKey}.home`),
+    title: t('home'),
     value: 'home',
   },
   {
     icon: 'mdi-account-multiple-plus',
-    title: t(`${tKey}.trainers`),
+    title: t('trainers'),
     value: 'trainers',
   },
   {
     icon: 'mdi-account-multiple-check',
-    title: t(`${tKey}.invites`),
+    title: t('invites'),
     value: 'invites',
   },
   {
     icon: 'mdi-account-multiple',
-    title: t(`${tKey}.friends`),
+    title: t('friends'),
     value: 'friends',
   },
 ]
@@ -88,7 +86,7 @@ const handleLogout = () => {
         <v-list>
           <v-list-item
             prepend-icon='mdi-logout-variant'
-            :title='t(`${tKey}.logout`)'
+            :title='t("logout")'
             value='logout'
             class='text-red'
             :active='false'
@@ -99,3 +97,20 @@ const handleLogout = () => {
     </v-sheet>
   </v-navigation-drawer>
 </template>
+<i18n>{
+  "en": {
+    "friends": "Friends",
+    "home": "Home page",
+    "invites": "Invites",
+    "logout": "Logout",
+    "trainers": "Trainers"
+  },
+  "pl": {
+    "friends": "Znajomi",
+    "home": "Strona główna",
+    "invites": "Zaproszenia",
+    "logout": "Wyloguj",
+    "trainers": "Trenerzy"
+  }
+}
+</i18n>

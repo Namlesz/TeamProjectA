@@ -3,8 +3,6 @@ import { useI18n } from 'vue-i18n'
 import LoginModal from '@/components/modals/LoginModal/LoginModal.vue'
 import { ref } from 'vue'
 
-const tKey = 'landing-page'
-
 const { t } = useI18n()
 
 const openLoginModal = ref<boolean>(false)
@@ -21,10 +19,18 @@ const closeModal = () => {
 <template>
   <HeadlineL>Landing Page TODO PZ-13</HeadlineL>
   <TextButton @click='goToLogin'>
-    {{ t(`${tKey}.login`) }}
+    {{ t('login') }}
   </TextButton>
   <LoginModal
     v-model='openLoginModal'
     @on-close='closeModal'
   />
 </template>
+<i18n>{
+  "en": {
+    "login": "Login"
+  },
+  "pl": {
+    "login": "Zaloguj się"
+  }
+}</i18n>
