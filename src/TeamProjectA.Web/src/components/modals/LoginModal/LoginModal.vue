@@ -14,14 +14,13 @@ const { handleSubmit } = useForm({
     nickname(value: string) {
       if (value) return true
 
-      return t('common.errors.nickname-is-empty-error')
+      return t('errors.nickname-is-empty-error')
     },
   },
 })
 
 defineEmits(['on-close'])
 
-const tKey = 'loginModal'
 const { t } = useI18n()
 const nickname = useField('nickname')
 const accountStore = useAccountStore()
@@ -43,7 +42,7 @@ const loginUser = async () => {
 
   if (isFetched.value) {
     if (isError.value) {
-      toasterStore.triggerToaster(t('common.errors.internal-server-error'), 'error')
+      toasterStore.triggerToaster(t('errors.internal-server-error'), 'error')
 
       return
     }
@@ -64,11 +63,11 @@ const submit = handleSubmit(() => {
     @on-close='$emit("on-close")'
   >
     <template #title>
-      {{ t(`${tKey}.title`) }}
+      {{ t('title') }}
     </template>
     <template #body>
       <TextBody class='text-justify'>
-        {{ t(`${tKey}.body`) }}
+        {{ t('body') }}
       </TextBody>
       <form
         fast-fail
@@ -77,7 +76,7 @@ const submit = handleSubmit(() => {
         <v-text-field
           v-model='nickname.value.value'
           :error-messages='nickname.errorMessage.value ?? ""'
-          :label='t(`${tKey}.form.nickname`)'
+          :label='t("form.nickname")'
           :loading='isFetching'
           name='nickname'
         />
@@ -87,9 +86,27 @@ const submit = handleSubmit(() => {
           type='submit'
           class='mt-5'
         >
-          {{ t(`${tKey}.button`) }}
+          {{ t('button') }}
         </TextButton>
       </form>
     </template>
   </CenteredModal>
 </template>
+<i18n>{
+  "en": {
+    "body": "All you need to do is provide us with your nickname to get started on your training adventure.",
+    "button": "Let's go!",
+    "form": {
+      "nickname": "Nickname"
+    },
+    "title": "hey"
+  },
+  "pl": {
+    "body": "Wystarczy, że podasz nam swoją nazwę użytkownika, aby rozpocząć przygodę z treningami.",
+    "button": "Do dzieła!",
+    "form": {
+      "nickname": "Nazwa użytkownika"
+    },
+    "title": "Hej"
+  }
+}</i18n>

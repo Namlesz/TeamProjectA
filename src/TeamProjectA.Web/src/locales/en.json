@@ -1,34 +1,9 @@
 {
-  "common": {
-    "errors": {
-      "internal-server-error": "Oops! Something went wrong.",
-      "nickname-is-empty-error": "Nickname can't be empty"
-    }
+  "back": "Back",
+  "errors": {
+    "internal-server-error": "Oops! Something went wrong.",
+    "nickname-is-empty-error": "Nickname can't be empty"
   },
-  "landing-page": {
-    "login": "Login",
-    "register": "Register"
-  },
-  "loginModal": {
-    "body": "All you need to do is provide us with your nickname to get started on your training adventure.",
-    "button": "Let's go!",
-    "form": {
-      "nickname": "Nickname"
-    },
-    "title": "hey"
-  },
-  "loginView": {
-    "title": "Login"
-  },
-  "menu-items": {
-    "friends": "Friends",
-    "home": "Home page",
-    "invites": "Invites",
-    "logout": "Logout",
-    "trainers": "Trainers"
-  },
-  "registerView": {
-    "title": "Register"
-  },
-  "test": "Testing"
+  "next": "Next",
+  "ok": "Ok"
 }

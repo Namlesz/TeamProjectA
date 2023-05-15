@@ -9,7 +9,7 @@ const { handleSubmit } = useForm({
     trainerName(value: string) {
       if (value) return true
 
-      return t('common.errors.nickname-is-empty-error')
+      return t('errors.nickname-is-empty-error')
     },
   },
 })
