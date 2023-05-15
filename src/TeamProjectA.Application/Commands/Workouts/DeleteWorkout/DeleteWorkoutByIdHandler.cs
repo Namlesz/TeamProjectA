@@ -13,5 +13,5 @@ public class DeleteWorkoutByIdHandler : IRequestHandler<DeleteWorkoutByIdCommand
     }
 
     public Task<bool> Handle(DeleteWorkoutByIdCommand request, CancellationToken cancellationToken) =>
-        _workoutRepository.DeleteWorkoutById(request.Id);
+        _workoutRepository.DeleteWorkoutById(request.Id, cancellationToken);
 }

@@ -14,5 +14,5 @@ public sealed class GetWorkoutDetailsByIdHandler : IRequestHandler<GetWorkoutDet
     }
 
     public Task<WorkoutDto?> Handle(GetWorkoutDetailsByIdQuery request, CancellationToken cancellationToken) =>
-        _workoutRepository.GetWorkoutDetailsById(request.Id);
+        _workoutRepository.GetWorkoutDetailsById(request.Id, cancellationToken);
 }

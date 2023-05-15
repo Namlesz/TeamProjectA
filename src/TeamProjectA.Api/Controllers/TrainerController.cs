@@ -17,7 +17,6 @@ public class TrainerController : ControllerBase
         _mediator = mediator;
     }
 
-    //TODO: Check if trainer is already invited or friends 
     [HttpGet]
     [SwaggerOperation("Search users by login, show all results containing part of login")]
     [SwaggerResponse(StatusCodes.Status200OK)]

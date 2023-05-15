@@ -24,6 +24,6 @@ public sealed class CreateWorkoutHandler : IRequestHandler<CreateWorkoutCommand,
         var workout = _mapper.Map<CreateWorkoutCommand, NewWorkout>(request);
         workout.AuthorId = _currentUser.UserId;
 
-        return _workoutRepository.CreateWorkout(workout);
+        return _workoutRepository.CreateWorkout(workout, cancellationToken);
     }
 }

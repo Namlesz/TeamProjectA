@@ -19,12 +19,12 @@ public sealed class WorkoutsRepository : IWorkoutsRepository
         _mapper = mapper;
     }
 
-    public async Task<Guid?> CreateWorkout(NewWorkout workout)
+    public async Task<Guid?> CreateWorkout(NewWorkout workout, CancellationToken cancellationToken)
     {
         var newWorkout = _mapper.Map<NewWorkout, WorkoutEntity>(workout);
         try
         {
-            await _context.WorkoutsCollection.InsertOneAsync(newWorkout);
+            await _context.WorkoutsCollection.InsertOneAsync(newWorkout, cancellationToken: cancellationToken);
             return newWorkout.Id;
         }
         catch (Exception e)
@@ -34,21 +34,32 @@ public sealed class WorkoutsRepository : IWorkoutsRepository
         }
     }
 
-    public async Task<WorkoutDto?> GetWorkoutDetailsById(Guid workoutId) =>
+    public async Task<WorkoutDto?> GetWorkoutDetailsById(Guid workoutId, CancellationToken cancellationToken) =>
         _mapper.Map<WorkoutEntity, WorkoutDto>(await _context.WorkoutsCollection
             .AsQueryable()
             .Where(x => x.Id == workoutId)
-            .FirstOrDefaultAsync());
+            .FirstOrDefaultAsync(cancellationToken: cancellationToken));
 
-    public async Task<bool> DeleteWorkoutById(Guid workoutId)
+    public async Task<bool> DeleteWorkoutById(Guid workoutId, CancellationToken cancellationToken)
     {
-        var result = await _context.WorkoutsCollection.DeleteOneAsync(x => x.Id == workoutId);
+        var result =
+            await _context.WorkoutsCollection.DeleteOneAsync(x => x.Id == workoutId,
+                cancellationToken: cancellationToken);
         return result.IsAcknowledged && result.DeletedCount == 1;
     }
 
-    public async Task<List<WorkoutDto>> GetWorkoutsForUser(Guid userId) =>
+    public async Task<List<WorkoutDto>> GetWorkoutsForUser(Guid userId, CancellationToken cancellationToken) =>
         _mapper.Map<List<WorkoutEntity>, List<WorkoutDto>>(await _context.WorkoutsCollection
             .AsQueryable()
             .Where(x => x.OwnerId == userId)
-            .ToListAsync());
+            .ToListAsync(cancellationToken: cancellationToken));
+
+    public async Task<List<WorkoutDto>> GetCreatedWorkouts(
+        Guid currentUserUserId,
+        CancellationToken cancellationToken
+    ) =>
+        _mapper.Map<List<WorkoutEntity>, List<WorkoutDto>>(await _context.WorkoutsCollection
+            .AsQueryable()
+            .Where(x => x.OwnerId == currentUserUserId)
+            .ToListAsync(cancellationToken: cancellationToken));
 }
