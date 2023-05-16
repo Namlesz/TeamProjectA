@@ -37,13 +37,13 @@ public class InvitesController : ControllerBase
         Ok(await _mediator.Send(new GetInvitesQuery()));
 
     [HttpPost]
-    public async Task<IActionResult> ApproveInvite()
+    public Task<IActionResult> ApproveInvite()
     {
         throw new NotImplementedException();
     }
 
     [HttpDelete]
-    public async Task<IActionResult> RejectInvite()
+    public Task<IActionResult> RejectInvite()
     {
         throw new NotImplementedException();
     }

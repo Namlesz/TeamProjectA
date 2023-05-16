@@ -15,13 +15,13 @@ public class FriendsController : ControllerBase
     }
 
     [HttpGet]
-    public async Task<IActionResult> GetFriends()
+    public Task<IActionResult> GetFriends()
     {
         throw new NotImplementedException();
     }
 
     [HttpDelete]
-    public async Task<IActionResult> RemoveFriend()
+    public Task<IActionResult> RemoveFriend()
     {
         throw new NotImplementedException();
     }

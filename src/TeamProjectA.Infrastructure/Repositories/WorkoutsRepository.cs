@@ -1,6 +1,7 @@
 using MapsterMapper;
 using MongoDB.Driver;
 using MongoDB.Driver.Linq;
+using TeamProjectA.Domain.Entities.BaseModels;
 using TeamProjectA.Domain.Entities.Workouts;
 using TeamProjectA.Domain.Repositories;
 using TeamProjectA.Infrastructure.DAL;
@@ -62,4 +63,21 @@ public sealed class WorkoutsRepository : IWorkoutsRepository
             .AsQueryable()
             .Where(x => x.OwnerId == currentUserUserId)
             .ToListAsync(cancellationToken: cancellationToken));
+
+    public Task<IdResult?> UpdateWorkout(WorkoutDto workout, CancellationToken cancellationToken)
+    {
+        var workoutEntity = _mapper.Map<WorkoutDto, WorkoutEntity>(workout);
+        return Task.FromResult(_context.WorkoutsCollection.UpdateOne(
+                x => x.Id == workoutEntity.Id,
+                Builders<WorkoutEntity>.Update
+                    .Set(x => x.WorkoutDate, workoutEntity.WorkoutDate)
+                    .Set(x => x.WorkoutName, workoutEntity.WorkoutName)
+                    .Set(x => x.Exercises, workoutEntity.Exercises),
+                cancellationToken: cancellationToken
+            ) switch
+            {
+                { IsAcknowledged: true, ModifiedCount: 1 } => new IdResult(workoutEntity.Id.ToString()),
+                _ => null
+            });
+    }
 }
