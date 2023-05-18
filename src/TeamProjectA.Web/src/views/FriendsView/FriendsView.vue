@@ -3,11 +3,7 @@ import { useI18n } from 'vue-i18n'
 import UserListVirtualScroll from '@/components/organisms/UserListVirtualScroll/UserListVirtualScroll.vue'
 import router from '@/router'
 import { useUserListStore } from '@/stores/userList'
-
-type Friend = {
-  name: string
-  initials: string
-}
+import type { Friend } from '@/types/Friend'
 
 const { t } = useI18n()
 const userListStore = useUserListStore()
