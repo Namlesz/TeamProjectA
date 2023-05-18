@@ -13,6 +13,6 @@ public sealed class GetWorkoutDetailsByIdHandler : IRequestHandler<GetWorkoutDet
         _workoutRepository = workoutRepository;
     }
 
-    public async Task<WorkoutDto?> Handle(GetWorkoutDetailsByIdQuery request, CancellationToken cancellationToken) => 
-        await _workoutRepository.GetWorkoutDetailsById(request.Id);
+    public Task<WorkoutDto?> Handle(GetWorkoutDetailsByIdQuery request, CancellationToken cancellationToken) =>
+        _workoutRepository.GetWorkoutDetailsById(request.Id, cancellationToken);
 }

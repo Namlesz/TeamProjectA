@@ -1,3 +1,4 @@
+using MapsterMapper;
 using MongoDB.Driver;
 using MongoDB.Driver.Linq;
 using TeamProjectA.Domain.Entities.Users;
@@ -10,10 +11,12 @@ namespace TeamProjectA.Infrastructure.Repositories;
 public sealed class UserRepository : IUserRepository
 {
     private readonly ITeamDbContext _context;
+    private readonly IMapper _mapper;
 
-    public UserRepository(ITeamDbContext context)
+    public UserRepository(ITeamDbContext context, IMapper mapper)
     {
         _context = context;
+        _mapper = mapper;
     }
 
     public async Task<Guid?> CreateNewUser(NewUser newUser)
@@ -36,5 +39,14 @@ public sealed class UserRepository : IUserRepository
     }
 
     public async Task<Guid?> GetUser(string login) =>
-        (await _context.UsersCollection.AsQueryable().Where(x => x.Login == login).FirstOrDefaultAsync())?.Id;
+        (await _context.UsersCollection
+            .AsQueryable()
+            .Where(x => x.Login == login)
+            .FirstOrDefaultAsync())?.Id;
+
+    public async Task<List<UserDto>> SearchUser(string login) =>
+        _mapper.Map<List<UserEntity>, List<UserDto>>(await _context.UsersCollection
+            .AsQueryable()
+            .Where(x => x.Login.Contains(login))
+            .ToListAsync());
 }

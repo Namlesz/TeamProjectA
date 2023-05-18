@@ -1,7 +1,7 @@
 namespace TeamProjectA.Domain.Entities.Workouts;
 
 public sealed class WorkoutDto
-{ 
+{
     public Guid Id { get; set; }
     public DateTime WorkoutDate { get; set; }
     public string WorkoutName { get; set; } = null!;

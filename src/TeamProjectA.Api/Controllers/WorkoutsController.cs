@@ -3,6 +3,8 @@ using Microsoft.AspNetCore.Mvc;
 using Swashbuckle.AspNetCore.Annotations;
 using TeamProjectA.Application.Commands.Workouts.CreateWorkout;
 using TeamProjectA.Application.Commands.Workouts.DeleteWorkout;
+using TeamProjectA.Application.Commands.Workouts.UpdateWorkout;
+using TeamProjectA.Application.Queries.Workouts.GetCreatedWorkouts;
 using TeamProjectA.Application.Queries.Workouts.GetWorkoutDetailsById;
 using TeamProjectA.Application.Queries.Workouts.GetWorkoutsForUser;
 using TeamProjectA.Domain.Entities.BaseModels;
@@ -60,4 +62,21 @@ public sealed class WorkoutsController : ControllerBase
     [SwaggerResponse(StatusCodes.Status200OK)]
     public async Task<ActionResult<List<WorkoutDto>>> GetWorkouts() =>
         Ok(await _mediator.Send(new GetWorkoutsForUserQuery()));
+
+    [HttpGet]
+    [SwaggerOperation("Get created workouts")]
+    [SwaggerResponse(StatusCodes.Status200OK)]
+    public async Task<ActionResult<List<WorkoutDto>>> GetCreatedWorkouts() =>
+        Ok(await _mediator.Send(new GetCreatedWorkoutsQuery()));
+
+    [HttpPost]
+    [SwaggerOperation("Update a workout")]
+    [SwaggerResponse(StatusCodes.Status200OK)]
+    [SwaggerResponse(StatusCodes.Status500InternalServerError, "Can't update workout")]
+    public async Task<ActionResult<IdResult>> UpdateWorkout([FromBody] UpdateWorkoutCommand request) =>
+        await _mediator.Send(request) switch
+        {
+            { } workoutId => Ok(workoutId),
+            null => BadRequest()
+        };
 }

@@ -7,5 +7,5 @@ public interface ITeamDbContext
 {
     public IMongoCollection<WorkoutEntity> WorkoutsCollection { get; }
     public IMongoCollection<UserEntity> UsersCollection { get; }
-
+    public IMongoCollection<InviteEntity> InvitesCollection { get; }
 }

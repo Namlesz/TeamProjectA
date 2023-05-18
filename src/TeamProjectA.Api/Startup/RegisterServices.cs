@@ -60,6 +60,7 @@ internal static class RegisterServices
     {
         services.AddScoped<IUserRepository, UserRepository>();
         services.AddScoped<IWorkoutsRepository, WorkoutsRepository>();
+        services.AddScoped<IInviteRepository, InviteRepository>();
     }
 
     // Use for B2C authentication
