@@ -51,7 +51,7 @@ const submitTrainer = handleSubmit(() => {
 
 </script>
 <template>
-  <HeadlineL>{{ t('trainers-list') }}</HeadlineL>
+  <HeadlineL>{{ t('trainers-list') }} - WIP TODO PZ-17</HeadlineL>
   <form
     fast-fail
     class='ma-5'
@@ -71,7 +71,7 @@ const submitTrainer = handleSubmit(() => {
         type='submitTrainer'
         class='ml-5'
       >
-        {{ t('form.button') }}
+        {{ t('search') }}
       </TextButton>
     </div>
   </form>
@@ -85,7 +85,6 @@ const submitTrainer = handleSubmit(() => {
   "en": {
     "add-friend": "Add friend",
     "form": {
-      "button": "Search",
       "trainer-name": "Trainer name"
     },
     "search-trainer": "Search trainer",
@@ -94,7 +93,6 @@ const submitTrainer = handleSubmit(() => {
   "pl": {
     "add-friend": "Dodaj znajomego",
     "form": {
-      "button": "Wyszukaj",
       "trainer-name": "Nazwa trenera"
     },
     "search-trainer": "Wyszukaj trenera",
