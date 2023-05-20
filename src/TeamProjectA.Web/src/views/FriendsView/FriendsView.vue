@@ -3,13 +3,10 @@ import { useI18n } from 'vue-i18n'
 import UserListVirtualScroll from '@/components/organisms/UserListVirtualScroll/UserListVirtualScroll.vue'
 import router from '@/router'
 import { useUserListStore } from '@/stores/userList'
+import type { Friend } from '@/types/Friend'
 import TextButton from '@/components/atoms/Buttons/TextButton.vue'
 import { useField, useForm } from 'vee-validate'
 
-type Friend = {
-  name: string
-  initials: string
-}
 
 const { handleSubmit } = useForm({
   validationSchema: {
