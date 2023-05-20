@@ -6,7 +6,7 @@
     <!--        <BuildOutputFolder>$(MSBuildProjectDirectory)\dist\CourierComplaints.Api\wwwroot</BuildOutputFolder>-->
     <!--    </PropertyGroup>-->
     <ItemGroup>
-        <Content Include="**"/>
-        <Content Remove="node_modules\**"/>
+        <Content Include="**" />
+        <Content Remove="node_modules\**" />
     </ItemGroup>
 </Project>

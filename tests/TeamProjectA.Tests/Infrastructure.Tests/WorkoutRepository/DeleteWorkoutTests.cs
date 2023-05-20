@@ -19,10 +19,12 @@ public class DeleteWorkoutTests
                 It.IsAny<CancellationToken>())).ReturnsAsync(new DeleteResult.Acknowledged(0));
 
         var repository = new WorkoutsRepository(mockContext.Object, null!);
-        var result = await repository.DeleteWorkoutById(new Guid("d081a23d-c007-4338-8a26-8d8706a9f87f"));
+        var result =
+            await repository.DeleteWorkoutById(new Guid("d081a23d-c007-4338-8a26-8d8706a9f87f"),
+                CancellationToken.None);
         Assert.IsFalse(result);
     }
-    
+
     [Test]
     public async Task DeleteWorkoutById_success_deleted_count_equal_one()
     {
@@ -32,7 +34,9 @@ public class DeleteWorkoutTests
                 It.IsAny<CancellationToken>())).ReturnsAsync(new DeleteResult.Acknowledged(1));
 
         var repository = new WorkoutsRepository(mockContext.Object, null!);
-        var result = await repository.DeleteWorkoutById(new Guid("d081a23d-c007-4338-8a26-8d8706a9f87f"));
+        var result =
+            await repository.DeleteWorkoutById(new Guid("d081a23d-c007-4338-8a26-8d8706a9f87f"),
+                CancellationToken.None);
         Assert.IsTrue(result);
     }
 }

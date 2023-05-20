@@ -30,7 +30,7 @@ internal static class RegisterMiddleware
         app.UseAuthorization();
 
         app.MapControllers().RequireAuthorization();
-        
+
         app.UseMiddleware<CurrentUserMiddleware>();
 
         return app;

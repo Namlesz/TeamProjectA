@@ -19,11 +19,11 @@ public sealed class CreateWorkoutHandler : IRequestHandler<CreateWorkoutCommand,
         _currentUser = currentUser;
     }
 
-    public async Task<Guid?> Handle(CreateWorkoutCommand request, CancellationToken cancellationToken)
+    public Task<Guid?> Handle(CreateWorkoutCommand request, CancellationToken cancellationToken)
     {
         var workout = _mapper.Map<CreateWorkoutCommand, NewWorkout>(request);
         workout.AuthorId = _currentUser.UserId;
-        
-        return await _workoutRepository.CreateWorkout(workout);
+
+        return _workoutRepository.CreateWorkout(workout, cancellationToken);
     }
 }

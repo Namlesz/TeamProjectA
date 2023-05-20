@@ -6,4 +6,5 @@ public sealed class DbConfig
     public string DatabaseName { get; set; } = null!;
     public string UsersCollection { get; set; } = null!;
     public string WorkoutsCollection { get; set; } = null!;
+    public string InvitesCollection { get; set; } = null!;
 }
