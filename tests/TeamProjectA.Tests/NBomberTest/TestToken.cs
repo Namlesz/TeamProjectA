@@ -1,0 +1,7 @@
+namespace TeamProjectA.Tests.NBomberTest;
+
+public static class TokenGenerator
+{
+    public static string GeTestToken() =>
+        "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJVc2VySWQiOiIwYmFlM2RiOC1hNzdmLTQ3OGEtODliMS1lZWIyNGEwZDNhM2EiLCJodHRwOi8vc2NoZW1hcy54bWxzb2FwLm9yZy93cy8yMDA1LzA1L2lkZW50aXR5L2NsYWltcy9uYW1lIjoibmFtbGVzeiIsImp0aSI6Ijg5ZjdmYTc5LTk3YjAtNGRiMi1hODcyLWZmZjY2Y2RhODZjNyIsImV4cCI6MTY4NDY4NDA3MH0.l3gLqtDGfxYcbUZBX-jbbhbKJLs5GTc650m1JXfIvSc";
+}
