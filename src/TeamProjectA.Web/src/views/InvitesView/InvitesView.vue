@@ -27,7 +27,7 @@ const declineInvite = () => {
 
 </script>
 <template>
-  <HeadlineL>{{ t('invites-list') }}</HeadlineL>
+  <HeadlineL>{{ t('invites-list') }} - WIP TODO PZ-18</HeadlineL>
   <UserListVirtualScroll
     :primary-action='{name: t("accept-invitation"), icon: "mdi-account-plus"}'
     :secondary-action='{name: t("decline-invitation"), icon: "mdi-account-remove"}'
