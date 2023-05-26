@@ -1,7 +1,7 @@
 <script setup lang='ts'>
 import { useField } from 'vee-validate'
 
-const props = defineProps<{ name: string, type?: string, label: string }>()
+const props = defineProps<{ name: string, type?: string, label: string, loading?: boolean }>()
 
 const field = useField(() => props.name, undefined)
 </script>
@@ -12,5 +12,6 @@ const field = useField(() => props.name, undefined)
     :label='label'
     :error-messages='field.errorMessage.value ?? ""'
     :type='type ?? "text"'
+    :loading='loading ?? false'
   />
 </template>

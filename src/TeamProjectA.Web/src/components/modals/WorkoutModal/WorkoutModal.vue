@@ -1,7 +1,7 @@
 <script setup lang='ts'>
 import CenteredModal from '@/components/organisms/CenteredModal/CenteredModal.vue'
 import { useI18n } from 'vue-i18n'
-import { useForm, useFieldArray } from 'vee-validate'
+import { useForm, useFieldArray, useField } from 'vee-validate'
 import TextButton from '@/components/atoms/Buttons/TextButton.vue'
 import { object, string, date, array, number } from 'yup'
 import HeadlineS from '@/components/atoms/Typography/HeadlineS.vue'
@@ -24,6 +24,7 @@ interface Exercise {
 interface WorkoutPlan {
   workoutName: string
   workoutDate: Date
+  ownerId: string
   exercises: Exercise[]
 }
 
@@ -49,7 +50,11 @@ const { handleSubmit, values } = useForm<WorkoutPlan>({
   validationSchema: schema,
 })
 
+useField('workoutName')
+useField('workoutDate')
 const { remove, push, fields } = useFieldArray('exercises')
+
+values.ownerId = 'a886dc5f-cd0a-4477-850d-b7c1fa061467' // TODO get selected user Id
 
 const { refetch: postCreateWorkout, isFetched, isError } = useQuery({
   queryKey: ['createWorkout'],

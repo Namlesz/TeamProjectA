@@ -9,6 +9,7 @@ import WorkoutModal from '@/components/modals/WorkoutModal/WorkoutModal.vue'
 import { ref } from 'vue'
 import { useDisplay } from 'vuetify'
 import IconButton from '@/components/atoms/Buttons/IconButton.vue'
+import TextBody from '@/components/atoms/Typography/TextBody.vue'
 
 const route = useRoute()
 const { t } = useI18n()
@@ -56,7 +57,7 @@ const handleCloseModal = () => {
     </TextCaption>
   </v-sheet>
   <div class='d-flex align-center justify-space-between ma-5'>
-    <HeadlineXS>{{ t('workout-plan') }} TODO PZ-67</HeadlineXS>
+    <HeadlineXS>{{ t('workout-plan') }}</HeadlineXS>
     <TextButtonWithIcon
       v-if='!mobile'
       icon='mdi-plus'
@@ -72,6 +73,14 @@ const handleCloseModal = () => {
       @click='handleAddWorkout'
     />
   </div>
+  <v-sheet
+    class='ma-5 pa-1'
+    rounded='lg'
+  >
+    <TextBody>
+      Plany treningowe znajomego TODO PZ-77
+    </TextBody>
+  </v-sheet>
   <WorkoutModal
     v-model='openWorkoutModal'
     @on-close='handleCloseModal'
