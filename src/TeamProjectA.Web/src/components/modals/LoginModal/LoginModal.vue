@@ -70,7 +70,6 @@ const submit = handleSubmit(() => {
         {{ t('body') }}
       </TextBody>
       <form
-        fast-fail
         @submit.prevent='submit'
       >
         <v-text-field

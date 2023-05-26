@@ -1,8 +1,12 @@
 {
+  "add": "Add",
   "back": "Back",
   "errors": {
     "internal-server-error": "Oops! Something went wrong.",
-    "nickname-is-empty-error": "Nickname can't be empty"
+    "nickname-is-empty-error": "Nickname can't be empty",
+    "field-is-empty-error": "Field can't be empty",
+    "date-is-in-past-error": "Date can't be in past",
+    "at-least-one-exercise-error": "Add at least one exercise"
   },
   "next": "Next",
   "ok": "Ok",

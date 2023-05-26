@@ -13,6 +13,8 @@ defineEmits(['on-close'])
     <CenteredBox
       :width='width ?? "auto"'
       :height='height ?? "auto"'
+      max-width='600px'
+      max-height='750px'
     >
       <div class='position-absolute align-self-end'>
         <IconButton
@@ -21,10 +23,10 @@ defineEmits(['on-close'])
         />
       </div>
       <div class='d-flex flex-column align-center fill-height px-lg-5'>
-        <HeadlineL class='mx-12 my-2'>
+        <HeadlineL class='mx-12 my-2 text-center'>
           <slot name='title' />
         </HeadlineL>
-        <div class='mx-5 mb-10 d-flex flex-column justify-space-between fill-height'>
+        <div class='mx-5 mb-10 px-5 d-flex flex-column justify-space-between fill-height w-100'>
           <slot name='body' />
         </div>
       </div>
