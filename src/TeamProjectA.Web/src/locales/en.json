@@ -6,7 +6,8 @@
     "date-is-in-past-error": "Date can't be in past",
     "field-is-empty-error": "Field can't be empty",
     "internal-server-error": "Oops! Something went wrong.",
-    "nickname-is-empty-error": "Nickname can't be empty"
+    "nickname-is-empty-error": "Nickname can't be empty",
+    "not-found-error": "No search results found"
   },
   "next": "Next",
   "ok": "Ok",

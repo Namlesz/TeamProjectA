@@ -1,18 +1,15 @@
 <script setup lang='ts'>
 import { useI18n } from 'vue-i18n'
 import UserListVirtualScroll from '@/components/organisms/UserListVirtualScroll/UserListVirtualScroll.vue'
+import type { InviteDto } from '@/types/dto/InviteDto'
 
 const { t } = useI18n()
 
-type Invite = {
-  name: string
-  initials: string
-}
-
 // TODO delete when data will be fetched from backend
-const invites: Invite[] = [
+const invites: InviteDto[] = [
   {
-    name: 'Trener Testowy',
+    id: '34e4fa85-015d-4213-9635-142a721ea744',
+    login: 'Trener Testowy',
     initials: 'TT',
   },
 ]

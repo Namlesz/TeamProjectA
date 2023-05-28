@@ -6,17 +6,22 @@ import type { Friend } from '@/types/Friend'
 import { useI18n } from 'vue-i18n'
 import TextButtonWithIcon from '@/components/atoms/Buttons/TextButtonWithIcon.vue'
 import WorkoutModal from '@/components/modals/WorkoutModal/WorkoutModal.vue'
-import { ref } from 'vue'
+import { onMounted, ref } from 'vue'
 import { useDisplay } from 'vuetify'
 import IconButton from '@/components/atoms/Buttons/IconButton.vue'
 import TextBody from '@/components/atoms/Typography/TextBody.vue'
+import { useUserListStore } from '@/stores/userList'
+import { storeToRefs } from 'pinia'
+import router from '@/router'
 
 const route = useRoute()
 const { t } = useI18n()
 const { mobile } = useDisplay()
 const openWorkoutModal = ref<boolean>(false)
+const { selectedUser } = storeToRefs(useUserListStore())
 
 const friend: Friend = {
+  id: '',
   name: route.params.name.toString(),
   initials: 'TT',
   description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec ornare dignissim ipsum, nec consequat\n' +
@@ -24,6 +29,16 @@ const friend: Friend = {
     '        in faucibus. Donec id tellus porttitor neque pretium dictum sed in felis. Vivamus id tristique nibh. Phasellus\n' +
     '        quam tellus, viverra vitae tempor quis, fringilla quis tortor.',
 }
+
+onMounted(() => {
+  if (!selectedUser || selectedUser.value?.login !== route.params.name.toString()) {
+    router.replace({ name: 'friends' })
+
+    return
+  } else {
+    friend.id = selectedUser.value!.id
+  }
+})
 
 const handleAddWorkout = () => {
   openWorkoutModal.value = true
@@ -82,17 +97,18 @@ const handleCloseModal = () => {
     </TextBody>
   </v-sheet>
   <WorkoutModal
+    :id='friend.id'
     v-model='openWorkoutModal'
     @on-close='handleCloseModal'
   />
 </template>
 <i18n>{
   "en": {
-    "workout-plan": "Workout plan",
-    "add-workout-plan": "Add workout plan"
+    "add-workout-plan": "Add workout plan",
+    "workout-plan": "Workout plan"
   },
   "pl": {
-    "workout-plan": "Plan treningowy",
-    "add-workout-plan": "Dodaj plan treningowy"
+    "add-workout-plan": "Dodaj plan treningowy",
+    "workout-plan": "Plan treningowy"
   }
 }</i18n>

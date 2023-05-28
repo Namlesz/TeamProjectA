@@ -3,77 +3,100 @@ import { useI18n } from 'vue-i18n'
 import UserListVirtualScroll from '@/components/organisms/UserListVirtualScroll/UserListVirtualScroll.vue'
 import router from '@/router'
 import { useUserListStore } from '@/stores/userList'
-import type { Friend } from '@/types/Friend'
 import TextButton from '@/components/atoms/Buttons/TextButton.vue'
 import { useField, useForm } from 'vee-validate'
-
-
-const { handleSubmit } = useForm({
-  validationSchema: {
-    friendName(value: string) {
-      if (value) return true
-
-      return t('errors.nickname-is-empty-error')
-    },
-  },
-})
+import TextFieldWithValidation from '@/components/atoms/TextFieldWithValidation/TextFieldWithValidation.vue'
+import { object, string } from 'yup'
+import { useQuery } from '@tanstack/vue-query'
+import axios from 'axios'
+import { ref } from 'vue'
+import type { FriendDto } from '@/types/dto/FriendDto'
+import TextBody from '@/components/atoms/Typography/TextBody.vue'
 
 const { t } = useI18n()
 const userListStore = useUserListStore()
 
-const friendName = useField('friendName')
-const isFetching = false // TODO handle isFetching
+const schema = object({
+  friendName: string().required(t('errors.nickname-is-empty-error')),
+})
 
-// TODO delete when data will be fetched from backend
-const friends: Friend[] = [
-  {
-    name: 'Trener Testowy',
-    initials: 'TT',
-  },
-]
+const { handleSubmit } = useForm({
+  validationSchema: schema,
+})
+
+const friendName = useField('friendName')
+
+const friends = ref<FriendDto[]>()
+
+const { refetch: getTrainers, isFetching, isFetched, isError, data } = useQuery({
+  queryKey: ['getTrainers'],
+  queryFn: () => axios.get('/api/Trainer/SearchTrainer', {
+    headers: {
+      Authorization: 'Bearer ' + localStorage.getItem('userToken'),
+    },
+    params: {
+      Login: friendName.value.value,
+    },
+  }),
+  select: (response) => response.data,
+  enabled: false,
+})
+
+const submit = handleSubmit(async () => {
+  console.log(friendName)
+
+  await getTrainers()
+
+  if (isFetched.value) {
+    if (isError.value) {
+      return
+    }
+
+    friends.value = data.value
+  }
+})
 
 const goToFriendDetails = () => {
-  router.push({ name: 'friend', params: { name: userListStore.selectedUser } })
+  router.push({ name: 'friend', params: { name: userListStore.selectedUser?.login } })
 }
-
-const searchFriend = () => {
-  // TODO get friends list
-}
-
-const submitFriendSearch = handleSubmit(() => {
-  searchFriend()
-})
 </script>
 <template>
   <HeadlineL>{{ t('friends-list') }}</HeadlineL>
-  <form
-    fast-fail
+  <v-form
     class='ma-5'
-    @submit.prevent='submitFriendSearch'
+    @submit.prevent='submit'
   >
     <HeadlineXS>{{ t('search-friend') }}</HeadlineXS>
     <div class='d-flex align-center justify-center'>
-      <v-text-field
-        v-model='friendName.value.value'
-        :error-messages='friendName.errorMessage.value ?? ""'
+      <TextFieldWithValidation
+        name='friendName'
         :label='t(`form.friend-name`)'
-        :loading='isFetching'
-        name='trainerName'
       />
       <TextButton
         variant='primary'
-        type='submitTrainer'
+        type='submit'
         class='ml-5'
       >
         {{ t('search') }}
       </TextButton>
     </div>
-  </form>
+  </v-form>
   <UserListVirtualScroll
+    v-if='friends'
     :items='friends'
     clickable-row
+    :is-loading='isFetching'
     @on-list-item-click='goToFriendDetails'
   />
+  <div
+    v-else
+    class='d-flex justify-center align-center flex-column'
+  >
+    <v-icon icon='mdi-text-search' />
+    <TextBody>
+      {{ t('information') }}
+    </TextBody>
+  </div>
 </template>
 <i18n>{
   "en": {
@@ -81,6 +104,7 @@ const submitFriendSearch = handleSubmit(() => {
       "friend-name": "Friend name"
     },
     "friends-list": "Friends list",
+    "information": "Enter a user name in the search box to display a list of friends",
     "search-friend": "Search friends"
   },
   "pl": {
@@ -88,6 +112,7 @@ const submitFriendSearch = handleSubmit(() => {
       "friend-name": "Nazwa znajomego"
     },
     "friends-list": "Lista znajomych",
+    "information": "Wpisz nazwę użytkownika w polu wyszukiwania, aby wyświetlić listę znajomych",
     "search-friend": "Szukaj znajomych"
   }
 }</i18n>
