@@ -3,6 +3,7 @@ import { useI18n } from 'vue-i18n'
 import UserListVirtualScroll from '@/components/organisms/UserListVirtualScroll/UserListVirtualScroll.vue'
 import TextButton from '@/components/atoms/Buttons/TextButton.vue'
 import { useField, useForm } from 'vee-validate'
+import type { TrainerDto } from '@/types/dto/TrainerDto'
 
 const { handleSubmit } = useForm({
   validationSchema: {
@@ -16,16 +17,11 @@ const { handleSubmit } = useForm({
 
 const { t } = useI18n()
 
-type Trainer = {
-  name: string,
-  initials: string,
-  description: string
-}
-
 // TODO delete when data will be fetched from backend
-const trainers: Trainer[] = [
+const trainers: TrainerDto[] = [
   {
-    name: 'Trener Testowy',
+    id: '34e4fa85-015d-4213-9635-142a721ea744',
+    login: 'Trener Testowy',
     initials: 'TT',
     description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec ornare dignissim ipsum, nec consequat\n' +
       '        ligula dignissim non. Ut ultricies feugiat pellentesque. Cras viverra pulvinar gravida. Duis ullamcorper ut orci\n' +

@@ -28,6 +28,7 @@ interface WorkoutPlan {
   exercises: Exercise[]
 }
 
+const props = defineProps<{ id: string }>()
 const emit = defineEmits(['on-close'])
 const { t } = useI18n()
 const toasterStore = useToasterStore()
@@ -54,8 +55,6 @@ useField('workoutName')
 useField('workoutDate')
 const { remove, push, fields } = useFieldArray('exercises')
 
-values.ownerId = 'a886dc5f-cd0a-4477-850d-b7c1fa061467' // TODO get selected user Id
-
 const { refetch: postCreateWorkout, isFetched, isError } = useQuery({
   queryKey: ['createWorkout'],
   queryFn: () => axios.post('/api/Workouts/CreateWorkout', values, {
@@ -68,6 +67,8 @@ const { refetch: postCreateWorkout, isFetched, isError } = useQuery({
 })
 
 const submit = handleSubmit(async () => {
+  values.ownerId = props.id
+  
   if (!values.exercises) {
     toasterStore.triggerToaster(t('errors.at-least-one-exercise-error'), 'warning')
 
