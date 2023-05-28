@@ -8,23 +8,24 @@ import axios from 'axios'
 import { useField, useForm } from 'vee-validate'
 import { useAccountStore } from '@/stores/account'
 import { useToasterStore } from '@/stores/toaster'
-
-const { handleSubmit } = useForm({
-  validationSchema: {
-    nickname(value: string) {
-      if (value) return true
-
-      return t('errors.nickname-is-empty-error')
-    },
-  },
-})
+import { object, string } from 'yup'
+import TextFieldWithValidation from '@/components/atoms/TextFieldWithValidation/TextFieldWithValidation.vue'
 
 defineEmits(['on-close'])
 
 const { t } = useI18n()
-const nickname = useField('nickname')
 const accountStore = useAccountStore()
 const toasterStore = useToasterStore()
+
+const schema = object({
+  nickname: string().required(t('errors.nickname-is-empty-error')),
+})
+
+const { handleSubmit } = useForm({
+  validationSchema: schema,
+})
+
+const nickname = useField('nickname')
 
 const { refetch, isFetching, isFetched, isError, data } = useQuery({
   queryKey: ['loginUser'],
@@ -37,7 +38,7 @@ const { refetch, isFetching, isFetched, isError, data } = useQuery({
   enabled: false,
 })
 
-const loginUser = async () => {
+const submit = handleSubmit(async () => {
   await refetch()
 
   if (isFetched.value) {
@@ -49,10 +50,6 @@ const loginUser = async () => {
 
     accountStore.login(data.value.token)
   }
-}
-
-const submit = handleSubmit(() => {
-  loginUser()
 })
 
 </script>
@@ -70,15 +67,12 @@ const submit = handleSubmit(() => {
         {{ t('body') }}
       </TextBody>
       <form
-        fast-fail
         @submit.prevent='submit'
       >
-        <v-text-field
-          v-model='nickname.value.value'
-          :error-messages='nickname.errorMessage.value ?? ""'
+        <TextFieldWithValidation
+          name='nickname'
           :label='t("form.nickname")'
           :loading='isFetching'
-          name='nickname'
         />
         <TextButton
           full-width

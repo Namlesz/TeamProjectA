@@ -1,6 +1,10 @@
 {
+  "add": "Dodaj",
   "back": "Wróć",
   "errors": {
+    "at-least-one-exercise-error": "Dodaj przynajmniej jedno ćwiczenie",
+    "date-is-in-past-error": "Data nie może być z przeszłości",
+    "field-is-empty-error": "Pole nie może być puste",
     "internal-server-error": "Ups! Coś poszło nie tak.",
     "nickname-is-empty-error": "Nazwa użytkownika nie może być pusta"
   },

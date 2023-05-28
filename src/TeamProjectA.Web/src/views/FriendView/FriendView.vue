@@ -4,9 +4,17 @@ import { useRoute } from 'vue-router'
 import TextCaption from '@/components/atoms/Typography/TextCaption.vue'
 import type { Friend } from '@/types/Friend'
 import { useI18n } from 'vue-i18n'
+import TextButtonWithIcon from '@/components/atoms/Buttons/TextButtonWithIcon.vue'
+import WorkoutModal from '@/components/modals/WorkoutModal/WorkoutModal.vue'
+import { ref } from 'vue'
+import { useDisplay } from 'vuetify'
+import IconButton from '@/components/atoms/Buttons/IconButton.vue'
+import TextBody from '@/components/atoms/Typography/TextBody.vue'
 
 const route = useRoute()
 const { t } = useI18n()
+const { mobile } = useDisplay()
+const openWorkoutModal = ref<boolean>(false)
 
 const friend: Friend = {
   name: route.params.name.toString(),
@@ -15,6 +23,14 @@ const friend: Friend = {
     '        ligula dignissim non. Ut ultricies feugiat pellentesque. Cras viverra pulvinar gravida. Duis ullamcorper ut orci\n' +
     '        in faucibus. Donec id tellus porttitor neque pretium dictum sed in felis. Vivamus id tristique nibh. Phasellus\n' +
     '        quam tellus, viverra vitae tempor quis, fringilla quis tortor.',
+}
+
+const handleAddWorkout = () => {
+  openWorkoutModal.value = true
+}
+
+const handleCloseModal = () => {
+  openWorkoutModal.value = false
 }
 
 </script>
@@ -40,13 +56,43 @@ const friend: Friend = {
       {{ friend.description }}
     </TextCaption>
   </v-sheet>
-  <HeadlineXS class='ma-5'>{{ t('workout-plan') }} TODO PZ-67</HeadlineXS>
+  <div class='d-flex align-center justify-space-between ma-5'>
+    <HeadlineXS>{{ t('workout-plan') }}</HeadlineXS>
+    <TextButtonWithIcon
+      v-if='!mobile'
+      icon='mdi-plus'
+      variant='primary'
+      @click='handleAddWorkout'
+    >
+      {{ t('add-workout-plan') }}
+    </TextButtonWithIcon>
+    <IconButton
+      v-if='mobile'
+      icon='mdi-plus'
+      variant='primary'
+      @click='handleAddWorkout'
+    />
+  </div>
+  <v-sheet
+    class='ma-5 pa-1'
+    rounded='lg'
+  >
+    <TextBody>
+      Plany treningowe znajomego TODO PZ-77
+    </TextBody>
+  </v-sheet>
+  <WorkoutModal
+    v-model='openWorkoutModal'
+    @on-close='handleCloseModal'
+  />
 </template>
 <i18n>{
   "en": {
-    "workout-plan": "Workout plan"
+    "workout-plan": "Workout plan",
+    "add-workout-plan": "Add workout plan"
   },
   "pl": {
-    "workout-plan": "Plan treningowy"
+    "workout-plan": "Plan treningowy",
+    "add-workout-plan": "Dodaj plan treningowy"
   }
 }</i18n>
