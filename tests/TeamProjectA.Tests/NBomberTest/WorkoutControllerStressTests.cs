@@ -7,7 +7,7 @@ namespace TeamProjectA.Tests.NBomberTest;
 public class WorkoutControllerStressTests
 {
     [Test]
-    public void GetWorkoutDetails_stress_test_20_requests_per_second_10_sec_duration()
+    public void GetWorkoutDetails_stress_test_60_requests_per_second_5_sec_duration()
     {
         const string workoutId = "24ed49c3-a0d9-44db-9951-1c3c32bf2ecd";
         var httpClient = new HttpClient();
@@ -25,9 +25,9 @@ public class WorkoutControllerStressTests
                 return response;
             })
             .WithLoadSimulations(
-                Simulation.Inject(rate: 20,
+                Simulation.Inject(rate: 60,
                     interval: TimeSpan.FromSeconds(1),
-                    during: TimeSpan.FromSeconds(10))
+                    during: TimeSpan.FromSeconds(5))
             ).WithoutWarmUp();
 
         NBomberRunner
