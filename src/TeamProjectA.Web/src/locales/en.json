@@ -1,6 +1,7 @@
 {
   "add": "Add",
   "back": "Back",
+  "collapse": "Collapse",
   "errors": {
     "at-least-one-exercise-error": "Add at least one exercise",
     "date-is-in-past-error": "Date can't be in past",
@@ -9,6 +10,7 @@
     "nickname-is-empty-error": "Nickname can't be empty",
     "not-found-error": "No search results found"
   },
+  "expand": "Expand",
   "next": "Next",
   "ok": "Ok",
   "search": "Search"

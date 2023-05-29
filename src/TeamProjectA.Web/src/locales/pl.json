@@ -1,6 +1,7 @@
 {
   "add": "Dodaj",
   "back": "Wróć",
+  "collapse": "Zwiń",
   "errors": {
     "at-least-one-exercise-error": "Dodaj przynajmniej jedno ćwiczenie",
     "date-is-in-past-error": "Data nie może być z przeszłości",
@@ -9,6 +10,7 @@
     "nickname-is-empty-error": "Nazwa użytkownika nie może być pusta",
     "not-found-error": "Nie znaleziono wyników wyszukiwania"
   },
+  "expand": "Rozwiń",
   "next": "Dalej",
   "ok": "Ok",
   "search": "Wyszukaj"
