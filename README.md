@@ -110,10 +110,10 @@ W tym miejscu możliwe jest ustawienie i modyfikacja planów treningowych danej 
 #### 3.1.1. Instrukcja użycia Dockera
 
 - build
-> `docker build [ścieżka do pliku dockerfile] -t [nazwa obrazu]:[tag]`
+`docker build [ścieżka do pliku dockerfile] -t [nazwa obrazu]:[tag]`
 
 - run image
-> `docker run -p [port hosta]:[port kontenera] [nazwa obrazu]:[tag]`
+`docker run -p [port hosta]:[port kontenera] [nazwa obrazu]:[tag]`
 
 #### 3.1.2. Przykład użycia Dockera
 
@@ -121,11 +121,11 @@ Przykład użycia:
 
 Ustaw terminal w katalogu głównym projektu. Następnie uruchom polecenie:
 
-> `docker build . -t teamprojecta:latest`
+`docker build . -t teamprojecta:latest`
 
 Po zbudowaniu obrazu uruchom go za pomocą następującego polecenia:
 
-> `docker run -p 8000:80 teamprojecta:latest -e ASPNETCORE_ENVIRONMENT='Production' ConnectionStrings:TeamProjectAppDb='[CONNECTION_STRING]`
+`docker run -p 8000:80 teamprojecta:latest -e ASPNETCORE_ENVIRONMENT='Production' ConnectionStrings:TeamProjectAppDb='[CONNECTION_STRING]`
 
 Gdzie `[CONNECTION_STRING]` to ciąg połączenia do bazy danych.
 
@@ -133,7 +133,7 @@ Jeśli nie chcesz budować obrazu i uruchamiać kontenera, możesz użyć pliku 
 obraz. Uprzednio należy zmienić `[CONNECTION_STRING]` do bazy danych w pliku docker-compose.yml.
 Aby to zrobić, uruchom następujące polecenie w katalogu głównym projektu:
 
-> `docker compose up`
+`docker compose up`
 
 *Ten przykład uruchomi aplikację na adresie http://localhost:8000*.
 
@@ -143,14 +143,14 @@ Należy otworzyć folder `src/TeamProjectA.Web` zawierający projekt frontendowy
 
 Następnie, należy zainstalować pakiety za pomocą polecenia:
 
-> `npm install`
+`npm install`
 
 Po prawidłowym zainstalowaniu pakietów, można uruchomić aplikację. Aby uruchomić wersję deweloperską,
 należy wykonać polecenie
 
 #### 3.2.2. Uruchomienie wersji deweloperskiej
 
-> `npm run dev`
+`npm run dev`
 
 *Aplikacja zostanie uruchomiona na adresie http://127.0.0.1:5173/*.
 
@@ -158,13 +158,13 @@ należy wykonać polecenie
 Aby uruchomić produkcyjną wersję aplikacji, należy najpierw zbudować aplikację. 
 W tym celu należy użyć polecenia:
 
-> `npm run build`
+`npm run build`
 
 Po poprawnym zbudowaniu aplikacji utworzony zostanie folder `build` zawierający zbudowaną aplikację.
 
 Aby uruchomić zbudowaną aplikację można na przykład użyć polecenia:
 
-> `serve -s build`
+`serve -s build`
 
 *Aplikacja zostanie uruchomiona na adresie http://localhost:3000*.
 
@@ -174,11 +174,11 @@ Aby uruchomić zbudowaną aplikację można na przykład użyć polecenia:
 
 Aby uruchomić backend naley ustawić się w folderze `src/TeamProjectA.Api` i wykonać polecenie:
 
-> `dotnet build`
+`dotnet build`
 
 A następnie:
 
-> `dotnet run`
+`dotnet run`
 
 Alternatywnie możemy uruchomić aplikację poprzez dockera link -> [3.1.1. Instrukcja użycia Dockera](#311-instrukcja-użycia-dockera)
 
@@ -188,11 +188,11 @@ Alternatywnie możemy uruchomić aplikację poprzez dockera link -> [3.1.1. Inst
 #### 4.1.1. Testy jednostkowe
 Testy jednostkowe obsługiwane są poprzez framework Vitest. Aby uruchomić testy należy użyć polecenia:
 
-> `vitest`
+`vitest`
 
 lub, jeśli chcemy uruchomić testy w trybie z widokiem UI:
 
-> `vitest --ui`
+`vitest --ui`
 
 lub uruchomić testy poprzez IDE.
 
@@ -201,20 +201,20 @@ lub uruchomić testy poprzez IDE.
 #### 4.1.2. Testy E2E
 Testy E2E w aplikacji obsługiwane są przez framework Cypress. Aby uruchomić aplikację Cypress, należy wywołać polecenie:
 
-> `cypress open`
+`cypress open`
 
 W aplikacji możemy uruchamiać testy, podglądać ich przebieg działania oraz wyniki.
 
 Alternatywnie, testy można uruchomić w konsoli za pomocą polecenia
 
-> `cypress run`
+`cypress run`
 
 *Więcej informacji na temat testów E2E można zobaczyć [tutaj](https://docs.google.com/document/d/1Jd_ImszGPKUfrRuKLSVFaWSSOAZmFC9mzr-D9Z_X16Y/edit?usp=sharing)*.
 
 
 ### 4.2. Testy po stronie Backendu
 Testy wykorzystują bibliotekę NUnit, aby uruchomć testy należy wykonać komendę:
-> `dotnet test`
+`dotnet test`
 
 *Więcej informacji na temat testów jednostkowych można zobaczyć [tutaj](https://docs.google.com/document/d/161wIlvncjs8s8SH3qJOzpQLuskzMM12Pj3N9FCaC7w0/edit?usp=sharing)*.
 
