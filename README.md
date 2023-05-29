@@ -44,7 +44,15 @@ Aplikacja komunikuje się poprzez zapytania HTTP z serwerem backendowym napisany
 Obie aplikacje hostowane są na platformie Microsoft Azure ([link do aplikacji webowej](https://project-a-team.azurewebsites.net/)).
 
 ### 1.3. Architektura aplikacji
-*TODO opis architektury aplikacji*
+Aplikacja została utworzona w architekturze klient-serwer. Klientem jest aplikacja webowa, która komunikuje się z serwerem poprzez zapytania HTTP.
+Serwer został utworzony w architekturze REST API, a komunikacja z bazą danych odbywa się poprzez Entity Framework Core.
+Struktura projektu została zaprojektowana w architekturze onion, w której wyróżniamy następujące warstwy:
+- **Domain** - warstwa zawierająca modele, interfejsy
+- **Application** - warstwa zawierająca logikę biznesową
+- **Infrastructure** - warstwa zawierająca implementacje interfejsów repozytorium z warstwy Domain
+- **Api** - warstwa zawierająca kontrolery, które są punktem wejścia do aplikacji
+- **Web** - warstwa zawierająca aplikację webową
+- **Tests** - warstwa zawierająca testy jednostkowe i integracyjne
 
 ### 1.4. Opis funkcjonalności
 Po wejściu do aplikacji, użytkownik ma możliwość zalogowania się poprzez podanie swojej nazwy użytkownika.
@@ -82,7 +90,18 @@ W tym miejscu możliwe jest ustawienie i modyfikacja planów treningowych danej 
 - [Prettier](https://prettier.io)
 
 ## 2.2. Backend
-TODO Opis technologii na backendzie
+
+#### 2.2.1. Użyte technologie:
+
+- [ASP.NET](https://dotnet.microsoft.com/apps/aspnet)
+- [MongoDB.Driver](https://www.nuget.org/packages/MongoDB.Driver)
+- [Mapster](https://www.nuget.org/packages/Mapster)
+- [MediatR](https://www.nuget.org/packages/MediatR)
+- [Moq](https://www.nuget.org/packages/Moq)
+- [NBomber](https://www.nuget.org/packages/NBomber)
+- [NUnit](https://www.nuget.org/packages/NUnit)
+- [Roslynator](https://github.com/josefpihrt/roslynator)
+- [Swashbuckle.AspNetCore](https://www.nuget.org/packages/Swashbuckle.AspNetCore)
 
 ## 3. Uruchomienie aplikacji
 
@@ -153,7 +172,15 @@ Aby uruchomić zbudowaną aplikację można na przykład użyć polecenia:
 
 ### 3.3. Uruchomienie lokalnie backendu
 
-TODO uruchomienie lokalne backendu
+Aby uruchomić backend naley ustawić się w folderze `src/TeamProjectA.Api` i wykonać polecenie:
+
+> `dotnet build`
+
+A następnie:
+
+> `dotnet run`
+
+Alternatywnie możemy uruchomić aplikację poprzez dockera link -> [3.1.1. Instrukcja użycia Dockera](#311-instrukcja-użycia-dockera)
 
 ## 4. Testy
 
