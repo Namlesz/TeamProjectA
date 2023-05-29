@@ -16,6 +16,7 @@ declare module '@vue/runtime-core' {
     CenteredBox: typeof import('./src/components/molecules/CenteredBox/CenteredBox.vue')['default']
     CenteredModal: typeof import('./src/components/organisms/CenteredModal/CenteredModal.vue')['default']
     ExerciseForm: typeof import('./src/components/modals/WorkoutModal/ExerciseForm.vue')['default']
+    ExerciseListItem: typeof import('./src/components/molecules/ExerciseListItem/ExerciseListItem.vue')['default']
     FullscreenLoader: typeof import('./src/components/molecules/FullscreenLoader/FullscreenLoader.vue')['default']
     HeadlineL: typeof import('./src/components/atoms/Typography/HeadlineL.vue')['default']
     HeadlineM: typeof import('./src/components/atoms/Typography/HeadlineM.vue')['default']
@@ -40,7 +41,9 @@ declare module '@vue/runtime-core' {
     TrainersListVirtualScroll: typeof import('./src/components/organisms/UserListVirtualScroll/TrainersListVirtualScroll.vue')['default']
     UserListItem: typeof import('./src/components/molecules/UserListItem/UserListItem.vue')['default']
     UserListVirtualScroll: typeof import('./src/components/organisms/UserListVirtualScroll/UserListVirtualScroll.vue')['default']
+    WorkoutListItem: typeof import('./src/components/molecules/WorkoutListItem/WorkoutListItem.vue')['default']
     WorkoutModal: typeof import('./src/components/modals/WorkoutModal/WorkoutModal.vue')['default']
     WorkoutModaltemp: typeof import('./src/components/modals/WorkoutModal/WorkoutModaltemp.vue')['default']
+    WorkoutsListVirtualScroll: typeof import('./src/components/organisms/WorkoutsListVirtualScroll/WorkoutsListVirtualScroll.vue')['default']
   }
 }
