@@ -39,9 +39,9 @@ const { t } = useI18n()
     v-else
     class='d-flex justify-center align-center flex-column'
   >
-    <v-icon icon='mdi-alert-circle' />
+    <v-icon icon='mdi-information' />
     <TextBody>
-      {{ t('errors.not-found-error') }}
+      {{ t('errors.no-workout-plans-error') }}
     </TextBody>
   </div>
 </template>

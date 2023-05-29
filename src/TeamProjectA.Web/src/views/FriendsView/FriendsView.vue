@@ -12,9 +12,12 @@ import axios from 'axios'
 import { ref } from 'vue'
 import type { FriendDto } from '@/types/dto/FriendDto'
 import TextBody from '@/components/atoms/Typography/TextBody.vue'
+import { useDisplay } from 'vuetify'
+import IconButton from '@/components/atoms/Buttons/IconButton.vue'
 
 const { t } = useI18n()
 const userListStore = useUserListStore()
+const { mobile } = useDisplay()
 
 const schema = object({
   friendName: string().required(t('errors.nickname-is-empty-error')),
@@ -43,8 +46,6 @@ const { refetch: getTrainers, isFetching, isFetched, isError, data } = useQuery(
 })
 
 const submit = handleSubmit(async () => {
-  console.log(friendName)
-
   await getTrainers()
 
   if (isFetched.value) {
@@ -73,12 +74,17 @@ const goToFriendDetails = () => {
         :label='t(`form.friend-name`)'
       />
       <TextButton
+        v-if='!mobile'
         variant='primary'
         type='submit'
         class='ml-5'
       >
         {{ t('search') }}
       </TextButton>
+      <IconButton
+        v-if='mobile'
+        icon='mdi-magnify'
+      />
     </div>
   </v-form>
   <UserListVirtualScroll

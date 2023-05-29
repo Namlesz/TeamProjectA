@@ -18,7 +18,7 @@ interface Exercise {
   name: string
   reps: number
   sets: number
-  description?: string
+  description: string
 }
 
 interface WorkoutPlan {
@@ -42,7 +42,7 @@ const schema = object({
       name: string().required(t('errors.field-is-empty-error')),
       reps: number().required(t('errors.field-is-empty-error')),
       sets: number().required(t('errors.field-is-empty-error')),
-      description: string().notRequired(),
+      description: string().required(t('errors.field-is-empty-error')),
     }),
   ),
 })
@@ -68,7 +68,7 @@ const { refetch: postCreateWorkout, isFetched, isError } = useQuery({
 
 const submit = handleSubmit(async () => {
   values.ownerId = props.id
-  
+
   if (!values.exercises) {
     toasterStore.triggerToaster(t('errors.at-least-one-exercise-error'), 'warning')
 
