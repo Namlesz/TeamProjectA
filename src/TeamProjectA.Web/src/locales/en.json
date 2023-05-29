@@ -8,6 +8,7 @@
     "field-is-empty-error": "Field can't be empty",
     "internal-server-error": "Oops! Something went wrong.",
     "nickname-is-empty-error": "Nickname can't be empty",
+    "no-workout-plans-error": "No training plans have been created for you yet",
     "not-found-error": "No search results found"
   },
   "expand": "Expand",
