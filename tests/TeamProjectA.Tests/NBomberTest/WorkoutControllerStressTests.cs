@@ -44,7 +44,7 @@ public class WorkoutControllerStressTests
             {
                 var request =
                     Http.CreateRequest("GET",
-                            $"https://localhost:7188/api/Workouts/GetWorkouts")
+                            "https://localhost:7188/api/Workouts/GetWorkouts")
                         .WithHeader("Accept", "application/json")
                         .WithHeader("Authorization", "bearer " + TokenGenerator.GeTestToken());
 
