@@ -73,7 +73,7 @@ internal static class RegisterServices
 
                     options.TokenValidationParameters.NameClaimType = "name";
                 },
-                options => { builder.Configuration.Bind("AzureAdB2C", options); });
+                options => builder.Configuration.Bind("AzureAdB2C", options));
     }
 
     private static void AddJwtBearerAuthentication(this WebApplicationBuilder builder)

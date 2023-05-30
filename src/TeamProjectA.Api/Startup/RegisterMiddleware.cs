@@ -8,8 +8,6 @@ internal static class RegisterMiddleware
     {
         if (app.Environment.IsDevelopment())
         {
-            app.UseSwagger();
-            app.UseSwaggerUI();
             app.UseDeveloperExceptionPage();
             app.UseCors(x => x
                 .AllowAnyOrigin()
@@ -23,6 +21,9 @@ internal static class RegisterMiddleware
             app.UseStaticFiles();
             app.MapFallbackToFile("index.html");
         }
+
+        app.UseSwagger();
+        app.UseSwaggerUI();
 
         app.UseHttpsRedirection();
 

@@ -1,5 +1,6 @@
 # All
 .idea
+.vscode
 
 # Api
 src/TeamProjectA.Api/obj

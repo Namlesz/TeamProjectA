@@ -42,6 +42,7 @@ dzięki którym trenerzy będą mieli możliwość ustalania planów treningowyc
 Aplikacja webowa została utworzona we frameworku Vue.js w wesji 3 z wykorzystaniem języka TypeScript.
 Aplikacja komunikuje się poprzez zapytania HTTP z serwerem backendowym napisanym w technologii .NET.
 Obie aplikacje hostowane są na platformie Microsoft Azure ([link do aplikacji webowej](https://project-a-team.azurewebsites.net/)).
+Link do dokumentacji swagger: [link](https://project-a-team.azurewebsites.net/swagger/index.html)
 
 ### 1.3. Architektura aplikacji
 Aplikacja została utworzona w architekturze klient-serwer. Klientem jest aplikacja webowa, która komunikuje się z serwerem poprzez zapytania HTTP.
@@ -100,7 +101,6 @@ W tym miejscu możliwe jest ustawienie i modyfikacja planów treningowych danej 
 - [Moq](https://www.nuget.org/packages/Moq)
 - [NBomber](https://www.nuget.org/packages/NBomber)
 - [NUnit](https://www.nuget.org/packages/NUnit)
-- [Roslynator](https://github.com/josefpihrt/roslynator)
 - [Swashbuckle.AspNetCore](https://www.nuget.org/packages/Swashbuckle.AspNetCore)
 
 ## 3. Uruchomienie aplikacji
